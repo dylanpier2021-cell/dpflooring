@@ -4,7 +4,7 @@ Static, dependency-free marketing site for **DP Flooring Services LLC**
 (Drayton Potthast & Dylan Pierson) — epoxy flooring across Champaign County,
 Bloomington-Normal and 50+ miles of Central Illinois.
 
-- **28 pages**: home, services hub + 6 service pages, 13 location pages, about,
+- **29 pages**: home, services hub + 6 service pages, 14 location pages, about,
   service area, gallery, FAQ, contact, thank-you, 404
 - No framework, no build step at deploy time, no runtime JavaScript dependency
 - Total page weight is dominated by photos; the CSS is ~40 KB and the JS ~6 KB
@@ -22,10 +22,11 @@ build overwrites your changes. Edit one of these three instead:
 | Any page copy, page structure, a new page | `tools/build.py` |
 | Design, layout, colors | `assets/css/styles.css` |
 
-Then rebuild and preview:
+Then rebuild and preview (`--prune` deletes pages left behind by a renamed slug —
+without it they are reported but kept):
 
 ```bash
-python3 tools/build.py .          # regenerates all 28 pages + sitemap.xml + robots.txt
+python3 tools/build.py . --prune  # regenerates all 29 pages + sitemap.xml + robots.txt
 python3 -m http.server 8000       # then open http://localhost:8000
 ```
 
@@ -71,37 +72,43 @@ so a redeploy with new pages needs no further action.
 One page per city, at the `/[service]-[city]/` URL format:
 
 ```
-/epoxy-flooring-champaign-il/        /epoxy-flooring-bloomington-il/
-/epoxy-flooring-urbana-il/           /epoxy-flooring-normal-il/
-/epoxy-flooring-savoy-il/            /epoxy-flooring-decatur-il/
-/epoxy-flooring-mahomet-il/          /epoxy-flooring-danville-il/
-/epoxy-flooring-rantoul-il/          /epoxy-flooring-monticello-il/
-                                     /epoxy-flooring-tuscola-il/
-/garage-floor-coating-champaign-il/  /garage-floor-coating-bloomington-il/
+/epoxy-flooring-champaign-il/     /epoxy-flooring-bloomington-il/
+/epoxy-flooring-urbana-il/        /epoxy-flooring-normal-il/
+/epoxy-flooring-savoy-il/         /epoxy-flooring-decatur-il/
+/epoxy-flooring-mahomet-il/       /epoxy-flooring-danville-il/
+/epoxy-flooring-rantoul-il/       /epoxy-flooring-monticello-il/
+/epoxy-flooring-tolono-il/        /epoxy-flooring-tuscola-il/
+/epoxy-flooring-paxton-il/        /epoxy-flooring-clinton-il/
 ```
 
+Each page targets **both** `epoxy flooring [City] IL` (the `<h1>` and title) and
+`garage floor coating [City] IL` (a dedicated `<h2>` section with its own copy).
 Each one carries a unique title tag, a unique meta description, the city in the
-`<h1>`, the city in the opening paragraph, the city in at least one image `alt`,
-an embedded Google Map centered on that city, `Service` + `LocalBusiness` schema
-with `areaServed` set to that city and county, and — most importantly — a
-**genuinely different body section** describing what the concrete is actually
-like in that town. The build refuses nothing, but the audit in §5 will flag you
-if two pages ever end up with the same title, description or H1.
+H1, in the opening paragraph and in at least one image `alt`, an embedded Google
+Map centered on that city, and `LocalBusiness` + `Service` schema with
+`areaServed` set to that city and county.
 
-> **One judgement call worth knowing about.** The brief asked for a page per
-> service *per* city. Six services × 40 towns is 240 near-identical pages, which
-> is the textbook definition of a doorway-page network and is the single most
-> reliable way to get a local site filtered out of the results. So this ships
-> with 13 pages that each say something true and specific instead: the 11
-> headline towns on the primary service, plus dedicated pages for the two exact
-> keyword phrases you named (`garage floor coating Bloomington IL`,
-> `garage floor coating Champaign IL`). Adding more is a five-line change in
-> `LOCATIONS` — the constraint is not the code, it is having something distinct
-> to say about each town. Say the word and I'll write more.
+Every location page runs **1,070–1,190 words** of genuinely different copy —
+named neighborhoods and subdivisions, local landmarks, the actual era and
+condition of the concrete in that town, and what that means for the quote. None
+of it survives a find-and-replace of the city name, which is the only test that
+matters here.
+
+> **One structural decision worth knowing about.** Both keywords live on one
+> page per city rather than on two. Splitting them would mean 28 pages competing
+> in pairs for near-identical intent — the two would cannibalize each other's
+> rankings, and neither would carry enough distinct content to justify existing.
+> A single strong city page targeting both, with a dedicated garage section, is
+> what actually ranks. Same reasoning caps this at 14 cities rather than
+> 6 services × 14 cities = 84: near-duplicate pages at that scale read as a
+> doorway network and get the whole site filtered.
 
 **To add a city:** append a dict to `LOCATIONS` in `tools/build.py` and rebuild.
-Write real copy for `intro` and `local` — if it could be find-and-replaced with
-another town's name, it is not worth publishing.
+The title, description, H1 and garage H2 are all derived from the city and county
+names, so they cannot be duplicated by accident — but you must write real copy
+for `intro`, `local`, `garage` and `area`. If it could be find-and-replaced with
+another town's name, it is not worth publishing, and `tools/audit.py` will fail
+the build if it comes in under 500 words.
 
 ### Service pages
 
@@ -110,10 +117,16 @@ before/after slider, a pricing panel, and internal links out to the location
 pages:
 
 ```
-/services/garage-epoxy-floors/                  /services/shop-warehouse-floors/
-/services/basement-floors/                      /services/decorative-flake-and-metallic-epoxy/
-/services/commercial-industrial-coatings/       /services/floor-prep-and-repair/
+/services/garage-floor-epoxy/                    /services/flake-epoxy-flooring/
+/services/basement-floor-epoxy/                  /services/metallic-epoxy-flooring/
+/services/commercial-industrial-floor-coating/   /services/concrete-floor-prep-and-repair/
 ```
+
+Each runs 700–730 words of its own copy, carries `LocalBusiness` + `Service`
+schema, and links out to **all 14** location pages. Shop, warehouse and pole barn
+work lives inside the commercial & industrial page rather than on its own page —
+it is the same system, the same prep and the same crew, and splitting it would
+have created two pages competing for the same searches.
 
 `/services/` remains as a hub that links to all six.
 
@@ -123,7 +136,7 @@ been worse than useless. When you're ready to publish ranges, put them in the
 `pricing` block of `site.config.json`:
 
 ```json
-"pricing": { "garage-epoxy-floors": "$4.50 – $7.00 / sq ft" }
+"pricing": { "garage-floor-epoxy": "$4.50 – $7.00 / sq ft" }
 ```
 
 The page then leads with that figure instead. Leave a value as `""` to keep the
@@ -131,9 +144,12 @@ cost-drivers version.
 
 ### Internal linking
 
-Home → service pages → location pages → back to service pages, with the service
-area hub linking every location page and every location page linking all six
-services plus nine sibling towns. There are no orphan pages; §5 verifies that.
+Complete both ways: **every one of the 6 service pages links all 14 location
+pages, and every one of the 14 location pages links all 6 service pages.** On top
+of that, each location page links its 13 sibling towns, the service-area hub
+links all 14, and the homepage links the first six. There are no orphan pages,
+and `tools/audit.py` fails the build if a single link in that matrix goes
+missing.
 
 ---
 
@@ -211,12 +227,21 @@ or submissions will pile up in the dashboard unseen.
 python3 tools/build.py . && python3 tools/audit.py .
 ```
 
-`tools/audit.py` fails loudly on: a missing title, description or canonical; a
-page with zero or two `<h1>`s; a title over 70 characters or a description
-outside 110–175; **any duplicate title, description or H1 across pages**; an
-`<img>` with no `alt`; invalid JSON-LD; a broken internal link; a missing image;
-an unrendered template placeholder; and any page not reachable from the sitemap.
-Run it before every deploy.
+`tools/audit.py` exits non-zero — so it can gate a deploy — on any of:
+
+- a missing title, description or canonical; zero or two `<h1>`s
+- a title over 70 chars, or a description outside 110–175
+- **any duplicate title, description or H1 across pages**
+- an `<img>` with no `alt`, or without `width`/`height`
+- invalid JSON-LD, a service or location page missing `LocalBusiness` or
+  `Service` schema, or `/faq/` missing `FAQPage`
+- no click-to-call link in the header or the footer
+- a service or location page under 500 words
+- **a hole in the service ↔ location linking matrix**
+- a broken internal link, a missing asset, an unrendered template placeholder
+- an indexable page absent from `sitemap.xml`, or a `noindex` page present in it
+
+Current state: **29 pages, 0 failures, 0 warnings.**
 
 ---
 
@@ -235,3 +260,5 @@ Run it before every deploy.
 - [ ] Swap in real job photos as they come — see
       `assets/img/PHOTO-CREDITS.md` for the priority order and the aspect ratios
 - [ ] Optional: add real price ranges to `site.config.json` → `pricing`
+
+Run `python3 tools/audit.py .` after any of the above and before every deploy.

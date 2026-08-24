@@ -14,7 +14,8 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else ROOT
+_args = [a for a in sys.argv[1:] if not a.startswith("-")]
+OUT = os.path.abspath(_args[0]) if _args else ROOT
 CFG = json.load(open(os.path.join(ROOT, "site.config.json"), encoding="utf-8"))
 
 BASE = CFG["baseUrl"].rstrip("/")
@@ -55,9 +56,9 @@ I = {
 }
 
 LOGO_MARK = ('<img class="brand__mark" src="/assets/img/logo-mark.png" '
-             'alt="{alt}" width="520" height="424" fetchpriority="high" decoding="async">')
+             'alt="{alt}" width="260" height="214" fetchpriority="high" decoding="async">')
 LOGO_FULL = ('<img class="footer__logo" src="/assets/img/logo-full-ondark.png" '
-             'alt="{alt}" width="900" height="965" loading="lazy" decoding="async">')
+             'alt="{alt}" width="420" height="450" loading="lazy" decoding="async">')
 TAGLINE = "Built to last. Finished to impress."
 
 
@@ -67,60 +68,241 @@ NAV = [("Home", "/"), ("Services", "/services/"), ("About", "/about/"),
 NAV_MOBILE = NAV + [("Contact", "/contact/")]
 
 SERVICES = [
- dict(slug="garage-epoxy-floors", name="Garage Epoxy Floors", icon="home", type="Garage",
-      img="garage-floor-coating-champaign-il.jpg",
-      alt="Clean residential garage with a light gray epoxy floor coating and open overhead doors",
-      short="The floor you look at every single day. Ground down to clean concrete, filled, coated and top-sealed so oil, road salt, hot tires and dropped tools stop leaving their mark.",
-      long="A garage slab takes more abuse than any other floor in the house: hot tires parking on it, road salt melting off the fenders every February, oil drips, jack stands and whatever you dropped last weekend. Bare concrete soaks all of that up and never lets go. A properly installed epoxy floor seals it out, wipes clean with a mop, and makes the whole garage read as finished space instead of storage.",
+ dict(slug="garage-floor-epoxy", name="Garage Floor Epoxy", icon="home", type="Garage", pair_idx=3,
+      img="blue-flake-epoxy-garage-floor.jpg",
+      alt="Residential garage in Champaign County, IL finished with a blue and gray flake epoxy floor",
+      title="Garage Floor Epoxy Champaign IL | Garage Floor Coating | DP Flooring",
+      desc="Epoxy garage floor coating in Champaign-Urbana, Bloomington-Normal and Central Illinois. "
+           "Diamond-ground prep, hot-tire resistant systems, flake and solid color finishes.",
+      h1="Garage Floor Epoxy",
+      sub_h2="A garage floor that shrugs off hot tires and road salt",
+      short="The floor you look at every single day. Ground down to clean concrete, filled, coated and "
+            "top-sealed so oil, road salt, hot tires and dropped tools stop leaving their mark.",
+      long="A garage slab takes more abuse than any other floor on the property. Hot tires park on it all "
+           "summer, road salt melts off the fenders every February, oil drips, and sooner or later "
+           "something heavy gets dropped on it. Bare concrete absorbs every bit of that and never gives it "
+           "back &mdash; which is why an uncoated garage floor goes gray-black around the parking spots and "
+           "starts flaking apart along the apron by the door. A properly installed epoxy system seals the "
+           "concrete completely. Spills sit on the surface until you wipe them up, the whole floor mops "
+           "clean, and the garage stops reading as storage and starts reading as finished space.",
+      body2="The failure everybody has heard about is <strong>hot-tire pickup</strong>: you pull the car in "
+            "on a hot day, the tires soften slightly, and when you back out a week later the coating comes "
+            "up with them in dinner-plate sized sheets. That is what happens to every big-box DIY kit and to "
+            "any installer who acid-etched the slab instead of grinding it. Etching leaves a residue and "
+            "barely opens the surface; the coating sits on top of the concrete rather than keying into it, "
+            "and warm rubber beats that bond every time. We diamond grind every garage down to clean, open "
+            "concrete, vacuum it, repair the cracks and pits, and install a system rated for hot-tire "
+            "exposure. It is one extra day of work and it is the entire difference. Most two- and three-car "
+            "garages run one to two days on site: prep and repair on day one, base coat, flake broadcast and "
+            "topcoat on day two. You can walk on it the next morning, move shelving back in after two or "
+            "three days, and park on it after about a week.",
       bullets=["Diamond-ground surface prep, so the coating bonds instead of peeling in a year",
                "Hot-tire resistant &mdash; no lifting or delamination where the car parks",
                "Solid color, partial flake or full-broadcast flake, in a blend you pick",
-               "Most two- and three-car garages are a one- to two-day install"]),
- dict(slug="basement-floors", name="Basement Floors", icon="layers", type="Basement",
+               "Crack, pit and apron-spall repair included before anything is coated",
+               "Most two- and three-car garages are a one- to two-day install"],
+      drivers=["Square footage &mdash; a two-car garage and a four-car outbuilding price very differently per foot",
+               "Slab condition &mdash; cracking, pitting and spalling at the apron all add repair time",
+               "Finish &mdash; solid color, partial flake or full-broadcast flake",
+               "Extras &mdash; non-slip aggregate, cove base at the walls, and a second clear coat"]),
+
+ dict(slug="basement-floor-epoxy", name="Basement Floor Epoxy", icon="layers", type="Basement", pair_idx=2,
       img="basement-epoxy-floor-urbana-il.jpg",
-      alt="Bright finished basement living space with clean seamless flooring and natural light",
-      short="Turn a cold, dusty slab into a finished floor that mops clean. A sealed basement stops concrete dust at the source and makes the whole lower level feel like real living space.",
-      long="Untreated basement concrete is a dust factory &mdash; it sheds fine powder onto everything you store down there, and it wicks moisture up from the ground underneath. Sealing it with the right epoxy system shuts both of those down. We moisture-test before we quote, because a slab with vapor drive through it needs a different system than a dry one, and putting the wrong coating on it is how basement floors fail.",
+      alt="Bright finished basement in Urbana, IL with a clean, seamless coated floor",
+      title="Basement Floor Epoxy | Champaign &amp; Bloomington IL | DP Flooring",
+      desc="Basement floor epoxy coating across Central Illinois. Seals concrete dust, resists moisture "
+           "and brightens the lower level. Moisture tested before we quote.",
+      h1="Basement Floor Epoxy",
+      sub_h2="Stop the concrete dust and get the lower level back",
+      short="Turn a cold, dusty slab into a finished floor that mops clean. A sealed basement stops "
+            "concrete dust at the source and makes the whole lower level feel like real living space.",
+      long="Untreated basement concrete is a dust factory. It sheds a fine gray powder onto every box, "
+           "bike and storage tote down there, and it wicks moisture up out of the ground underneath, which "
+           "is where the musty smell in most Central Illinois basements actually comes from. Sealing the "
+           "slab with the right epoxy system shuts both of those down at once. You get a seamless, "
+           "light-reflecting surface with nowhere for dirt or mildew to collect, and a floor you can damp "
+           "mop instead of sweep and re-sweep.",
+      body2="The part that matters most on a basement is the part you cannot see, which is why we "
+            "<strong>moisture test before we quote</strong> rather than after. Concrete below grade is in "
+            "constant contact with damp soil, and if water vapor is driving up through the slab it will "
+            "push a standard coating right back off &mdash; you get blisters and bubbles within months, and "
+            "no amount of surface prep prevents it. We run calcium chloride or relative-humidity testing on "
+            "the slab, and if the numbers come back high we spec a moisture-mitigating primer or a "
+            "vapor-tolerant system built for exactly that condition. It costs more than a plain coating, so "
+            "we would rather show you the readings and let you decide than quote you cheap and come back "
+            "next spring. Beyond the technical side, a light-colored basement floor genuinely changes the "
+            "room. Lower levels are short on natural light, and a reflective floor throws what little there "
+            "is back up into the space. It is the single cheapest thing you can do to make a basement feel "
+            "finished, and it works just as well under a home gym, a workshop, a laundry room or a "
+            "full rec room build-out.",
       bullets=["Moisture-tested before we quote, so the system actually matches the slab",
                "Seamless surface &mdash; nowhere for dirt, dust or mildew to collect",
                "Light-colored coatings bounce what little natural light a basement gets",
-               "Ideal under home gyms, workshops, laundry rooms and finished rec space"]),
- dict(slug="commercial-industrial-coatings", name="Commercial &amp; Industrial Coatings", icon="truck", type="Commercial / industrial",
+               "Vapor-tolerant systems available where the slab readings call for one",
+               "Ideal under home gyms, workshops, laundry rooms and finished rec space"],
+      drivers=["Square footage of the finished area",
+               "Moisture readings &mdash; a slab with vapor drive needs a different, costlier system",
+               "How much crack, joint and patch work the slab needs first",
+               "Finish choice and whether you want cove base up the walls"]),
+
+ dict(slug="commercial-industrial-floor-coating", name="Commercial &amp; Industrial Floor Coating",
+      icon="truck", type="Commercial / industrial", pair_idx=6,
       img="commercial-epoxy-floor-coating-bloomington-il.jpg",
-      alt="Large commercial building interior with a freshly coated high-gloss epoxy floor",
-      short="Coatings specified for the traffic the floor actually takes &mdash; forklifts, pallet jacks, wash-downs and chemicals. We schedule around your operation, nights and weekends included.",
-      long="A production floor is not a garage floor with more square footage. Forklift wheels, pallet jack casters, hot wash-downs and spilled chemistry all attack a coating differently, and the system has to be specified for whichever of those is happening on your floor. We spec the build thickness and the topcoat around your actual use, then phase the work so you are never shut down completely.",
+      alt="Commercial building interior in Bloomington, IL with a freshly coated high-gloss epoxy floor",
+      title="Commercial &amp; Industrial Floor Coating | Bloomington &amp; Decatur IL",
+      desc="Commercial and industrial epoxy floor coatings in Central Illinois. Warehouses, shops, pole "
+           "barns and production floors. High-build systems, line striping, off-hours installs.",
+      h1="Commercial &amp; Industrial Floor Coating",
+      sub_h2="Specified for the traffic your floor actually takes",
+      short="Coatings specified for what really happens on the floor &mdash; forklifts, pallet jacks, "
+            "wash-downs and chemicals. Warehouses, shops, pole barns and production space, any size, "
+            "scheduled around your operation.",
+      long="A production floor is not a garage floor with more square footage. Forklift wheels, pallet jack "
+           "casters, hot wash-downs, dropped tooling and spilled chemistry each attack a coating in a "
+           "different way, and the system has to be specified around whichever of those is actually "
+           "happening on your floor. We spec the build thickness, the resin chemistry and the topcoat from "
+           "what we see during the walkthrough, then phase the install so you are never shut down "
+           "completely. This is also where we handle shop, warehouse and pole barn floors of any size &mdash; "
+           "from a single service bay up to a full distribution floor.",
+      body2="Two things separate a commercial floor that lasts from one that does not. The first is "
+            "<strong>prep method</strong>. On a slab with years of oil and hydraulic fluid soaked into it, "
+            "grinding alone will not get you a bond &mdash; we degrease first, then shot blast to drive a "
+            "deep mechanical profile into the concrete. Joints and cracks get chased out and filled with a "
+            "semi-rigid filler that can take a wheel load without collapsing at the edge. The second is "
+            "<strong>scheduling</strong>. Almost nobody can hand us an empty building for a week, so we work "
+            "in sections, overnight and on weekends, and we sequence it so there is always a route through "
+            "for your people and your equipment. Once the floor is down, the practical wins show up fast: "
+            "a coated floor reflects your existing lights, so the building is measurably brighter without "
+            "adding a single fixture; spills stop soaking in and become a mop job; and line striping, aisle "
+            "marking and hazard zones can be built directly into the system rather than painted on top to "
+            "wear off again. Where the floor gets wet, we broadcast non-slip aggregate into the topcoat.",
       bullets=["High-build and chemical-resistant systems for real production environments",
+               "Shop, warehouse and pole barn floors &mdash; single bay through full distribution floor",
                "Safety line striping, aisle marking, walkways and hazard zones",
-               "Phased in sections so the operation keeps running while we work",
-               "Off-hours, overnight and weekend scheduling available"]),
- dict(slug="shop-warehouse-floors", name="Shop &amp; Warehouse Floors", icon="wrench", type="Shop or warehouse",
-      img="shop-warehouse-epoxy-floor-central-illinois.jpg",
-      alt="Empty shop and warehouse building interior with a smooth coated concrete floor",
-      short="Big square footage, done right and done on schedule. Pole barns, machine shops, body shops, ag buildings and distribution space all over Central Illinois.",
-      long="Shop floors are where epoxy earns its keep. Instead of concrete that drinks up every drop of hydraulic fluid and turns gray-black over a decade, you get a surface that a push broom and a mop actually clean. It reflects your lights, so the shop is brighter without adding a single fixture, and dropped tools and welding spatter stop taking chunks out of the slab.",
-      bullets=["Any size &mdash; a single service bay through a full warehouse floor",
-               "Stands up to dropped tools, welding spatter, hydraulic fluid and steel wheels",
-               "Sweeps and mops clean instead of absorbing every spill",
-               "Non-slip aggregate available wherever the floor gets wet"]),
- dict(slug="decorative-flake-and-metallic-epoxy", name="Decorative Flake &amp; Metallic Epoxy", icon="sparkle", type="Decorative / showroom",
+               "Shot blasting and degreasing for oil-contaminated slabs",
+               "Phased, overnight and weekend installs so the operation keeps running"],
+      drivers=["Total square footage and how many phases the install has to run in",
+               "Build thickness and chemical resistance the operation requires",
+               "Prep method &mdash; grinding versus shot blasting on a heavily contaminated slab",
+               "Line striping, aisle marking, non-slip aggregate and out-of-hours scheduling"]),
+
+ dict(slug="flake-epoxy-flooring", name="Flake Epoxy Flooring", icon="grid", type="Flake epoxy", pair_idx=4,
       img="decorative-flake-epoxy-floor-finish.jpg",
-      alt="Close-up of a gray and white decorative flake epoxy floor finish",
-      short="For when the floor is part of the room. Vinyl flake blends in any color mix, or a poured metallic finish with movement and depth you will never get out of a can of paint.",
-      long="Flake and metallic are the finishes people stop and look at. Full-broadcast flake gives you a subtle texture underfoot, hides the small imperfections every slab has, and comes in whatever color blend you want. A metallic pour is a different animal entirely &mdash; pigments move through the resin as it levels, so no two floors are ever the same, and the depth in the finished surface looks like polished stone. Both get a clear urethane topcoat over the top.",
-      bullets=["Full-broadcast flake hides slab imperfections and adds grip underfoot",
-               "Metallic pours &mdash; genuinely one of a kind, every single time",
-               "Pick your blend from real samples we bring to the estimate",
-               "Clear urethane topcoat for UV stability and scuff resistance"]),
- dict(slug="floor-prep-and-repair", name="Floor Prep &amp; Repair", icon="ruler", type="Repair / not sure",
+      alt="Close-up of a gray, white and blue full-broadcast flake epoxy floor finish",
+      title="Flake Epoxy Flooring | Garage &amp; Basement Floors | Illinois",
+      desc="Full-broadcast flake epoxy flooring in Central Illinois. Custom color blends, built-in grip, "
+           "hides slab imperfections, finished with a clear urethane topcoat.",
+      h1="Flake Epoxy Flooring",
+      sub_h2="The finish most people picture when they picture an epoxy floor",
+      short="Vinyl flake broadcast into the base coat until the floor will not take another chip, then "
+            "scraped, vacuumed and sealed under clear urethane. Custom color blends, built-in grip, and "
+            "it hides everything a slab has been through.",
+      long="Flake is the most popular floor we install, and for good reason: it looks sharp, it is the "
+           "most forgiving finish there is, and it costs less than metallic. Colored vinyl chips are "
+           "broadcast by hand into the wet base coat until the surface reaches refusal &mdash; the point "
+           "where it physically will not hold another flake. The floor is then scraped back, vacuumed, and "
+           "sealed under one or two coats of clear urethane. The result is a subtle texture underfoot, a "
+           "surface that hides dust and tire marks between cleanings, and a look you can tune to the room.",
+      body2="The practical advantage of flake is <strong>what it forgives</strong>. A solid-color floor is a "
+            "mirror: every trowel mark, every patched crack and every low spot in the slab shows through it "
+            "in raking light. Flake breaks the surface up visually, so an older garage or basement slab that "
+            "has been repaired reads as a finished floor rather than as a repair job. It also builds grip "
+            "in, because the chip edges leave a fine texture that is noticeably less slick underfoot when "
+            "wet than a smooth coating &mdash; worth knowing in a garage where you track snow in from "
+            "December to March. Blends are yours to choose. We bring physical sample boards to the estimate "
+            "rather than asking you to pick off a screen, because flake never looks the same on a monitor as "
+            "it does on a floor. You can go subtle with grays and whites, pull your blend toward the blues "
+            "in our own logo, or run school or team colors through a rec room. Coverage is a choice too: a "
+            "full broadcast gives you the classic dense look, while a lighter partial broadcast leaves the "
+            "base color visible and costs less.",
+      bullets=["Broadcast to refusal &mdash; full coverage, not a light scatter",
+               "Hides slab imperfections and repaired cracks better than any solid color",
+               "Chip edges build in grip, which matters on a wet winter garage floor",
+               "Custom blends chosen from physical samples at the estimate",
+               "Sealed under one or two coats of clear urethane for UV and scuff resistance"],
+      drivers=["Square footage and how complex the layout is to cut in",
+               "Full broadcast versus a lighter partial broadcast",
+               "Slab prep and repair needed before the decorative work starts",
+               "Number of clear urethane topcoats and whether you add non-slip aggregate"]),
+
+ dict(slug="metallic-epoxy-flooring", name="Metallic Epoxy Flooring", icon="sparkle",
+      type="Metallic epoxy", pair_idx=5,
+      img="metallic-epoxy-floor-finish.jpg",
+      alt="Large interior with a poured metallic epoxy floor in an amber blend and steel columns",
+      title="Metallic Epoxy Flooring | Showroom &amp; Garage Floors | Central Illinois",
+      desc="Poured metallic epoxy floors in Central Illinois. Pigments move through the resin as it "
+           "levels, so no two floors are alike. Showrooms, retail, basements and feature garages.",
+      h1="Metallic Epoxy Flooring",
+      sub_h2="A floor with depth and movement you cannot get from paint",
+      short="Metallic pigments suspended in clear resin, worked while it levels so the color moves. Every "
+            "floor is genuinely one of a kind &mdash; and it is the finish people stop walking to look at.",
+      long="Metallic is the premium end of what we install. Reflective pigments are dispersed into a clear "
+           "resin, poured over a pigmented base, and then worked with rollers, brushes and air while the "
+           "material is still moving. The pigments travel as it levels and self-heals, which produces the "
+           "depth, veining and cloud movement people associate with polished stone. Nobody &mdash; including "
+           "us &mdash; can reproduce a metallic floor exactly twice, and that is the point of it.",
+      body2="Because the finish is created live, on the floor, <strong>a metallic pour is the least "
+            "forgiving thing we do</strong> and the most dependent on the person doing it. The working "
+            "window is short, the pour has to stay wet edge to wet edge across the whole room, and once the "
+            "resin starts to gel the pattern is locked in for good. That is a large part of why we handle "
+            "these ourselves rather than sending a crew: there is no touching one up afterward. It also "
+            "means the slab underneath has to be genuinely flat and genuinely sound before we start, so "
+            "metallic jobs usually carry more prep than a flake floor on the same square footage. Where it "
+            "earns its keep is anywhere the floor is part of the room &mdash; a showroom or retail space, a "
+            "restaurant, an office lobby, a finished basement, or a garage that has stopped being just a "
+            "garage. We will show you sample panels of the blends we run at the estimate, and we are honest "
+            "about the trade-off: metallic costs more and takes longer, and if what you actually want is a "
+            "hard-working, forgiving floor, flake is the better buy.",
+      bullets=["Poured and worked by hand &mdash; genuinely one of a kind, every time",
+               "Depth, veining and movement that reads like polished stone",
+               "Blends shown as physical sample panels at the estimate",
+               "Flatter, sounder slab prep than a flake floor of the same size",
+               "Finished with clear urethane for UV stability and scuff resistance"],
+      drivers=["Square footage and how many people it takes to keep a wet edge across the room",
+               "Extra slab flatness and repair work a metallic pour demands",
+               "Number of pigment colors and the complexity of the blend",
+               "Clear urethane topcoats over the finished pour"]),
+
+ dict(slug="concrete-floor-prep-and-repair", name="Concrete Floor Prep &amp; Repair", icon="ruler",
+      type="Prep / repair", pair_idx=1,
       img="concrete-floor-prep-and-repair.jpg",
-      alt="Cracked and stained bare concrete slab of the kind that needs grinding and repair before coating",
-      short="The part nobody sees, and the part everything else depends on. Cracks, pits, spalling, failing old coatings and oil-soaked concrete all get dealt with before a drop of epoxy goes down.",
-      long="Almost every failed epoxy floor we get called out to look at failed for the same reason: nobody prepped the concrete. Someone rolled a coating over a sealed, dusty or oily slab and the bond never had a chance. We mechanically profile every floor we touch &mdash; no acid etching and hoping &mdash; then chase and fill the cracks, patch the pits and pull the old coating off if there is one. It is the slowest day of the job and the only one that decides how long the floor lasts.",
-      bullets=["Diamond grinding or shot blasting to open up the concrete profile",
-               "Crack chasing, pit filling and spall repair with structural patch material",
+      alt="Cracked, pitted and stained concrete slab in Central Illinois before grinding and repair",
+      title="Concrete Floor Prep &amp; Repair | Crack Repair | Central Illinois",
+      desc="Concrete floor preparation and repair in Central Illinois: diamond grinding, shot blasting, "
+           "crack chasing, spall and pit repair, and failed coating removal.",
+      h1="Concrete Floor Prep &amp; Repair",
+      sub_h2="The step that decides how long the floor lasts",
+      short="The part nobody sees, and the part everything else depends on. Cracks, pits, spalling, "
+            "failing old coatings and oil-soaked concrete all get dealt with before a drop of epoxy "
+            "goes down.",
+      long="Almost every failed epoxy floor we get called out to look at failed for the same reason: "
+           "nobody prepped the concrete. Someone rolled a coating over a sealed, dusty or oily slab and the "
+           "bond never had a chance to form. We mechanically profile every floor we touch &mdash; no acid "
+           "etching and hoping &mdash; then chase and fill the cracks, patch the pits and pull the old "
+           "coating off if there is one. It is the slowest day of the job and the only one that decides how "
+           "long the floor lasts.",
+      body2="Concrete has to be <strong>opened up</strong> before anything will stick to it. A troweled or "
+            "sealed slab is effectively closed at the surface, so we run diamond grinders with vacuum "
+            "shrouds until the profile is right, or shot blast where the contamination runs deeper. Cracks "
+            "get chased out into a V with a crack saw and filled with a structural repair resin rather than "
+            "smeared over &mdash; a crack that is only skimmed will telegraph straight back through the "
+            "finished floor within a season. Spalled and pitted areas get patched and re-leveled. Oil and "
+            "grease are their own problem: they wick down into the slab, and heat or foot traffic pulls them "
+            "back up through a fresh coating, so contaminated concrete gets degreased and tested before "
+            "anything else happens. Old failing coatings come off entirely. We also take this work on its "
+            "own, without a coating attached. If you have a slab that just needs the cracks stabilized "
+            "before you put down tile, racking or equipment &mdash; or you inherited a building with a "
+            "peeling floor and want it stripped back to bare concrete &mdash; call us for that too.",
+      bullets=["Diamond grinding and shot blasting with vacuum dust control",
+               "Crack chasing and structural filling, not a skim coat over the top",
+               "Spall, pit and edge repair with re-leveling where the slab needs it",
                "Removal of failed coatings &mdash; old paint, sealers and peeling epoxy",
-               "Degreasing so oil-contaminated concrete will actually take a bond"]),
+               "Degreasing and testing so oil-contaminated concrete will take a bond",
+               "Available as standalone work, with or without a new coating after it"],
+      drivers=["Prep method &mdash; a diamond grind versus shot blasting a contaminated slab",
+               "Linear feet of cracking and joints that need chasing and filling",
+               "Square footage of spalling, pitting or delaminated surface to patch",
+               "Whether a failed coating has to come off before anything else happens"]),
 ]
 
 TRUST = [
@@ -203,12 +385,17 @@ PAIRS = [
  ("Cracked &amp; pitted slab", "Repaired &rarr; full flake finish",
   "concrete-floor-prep-and-repair.jpg", "Cracked, pitted and stained concrete slab before repair",
   "decorative-flake-epoxy-floor-finish.jpg", "Gray and white full-broadcast flake epoxy finish"),
+ ("Showroom &amp; feature floor", "Bare slab &rarr; poured metallic",
+  "before-bare-warehouse-slab.jpg", "Bare concrete slab in a large interior before a metallic epoxy pour",
+  "metallic-epoxy-floor-finish.jpg", "Poured metallic epoxy floor in an amber blend with visible movement and depth"),
  ("Commercial deck", "Stained deck &rarr; coating with safety striping",
   "before-stained-parking-deck.jpg", "Stained and worn commercial parking deck before coating",
   "commercial-floor-coating-line-striping.jpg", "Close-up of a coated commercial floor with painted directional arrows and safety striping"),
 ]
 
 SHOTS = [
+ ("blue-flake-epoxy-garage-floor.jpg", "Blue and gray flake epoxy in a residential garage",
+  "Residential garage in Champaign County, IL with a blue and gray flake epoxy floor"),
  ("car-showroom-epoxy-floor.jpg", "Showroom floor under a high-gloss clear topcoat",
   "Car showroom with a high-gloss coated floor reflecting the vehicles on display"),
  ("showroom-epoxy-floor-graphics.jpg", "Coated floor with inlaid color graphics and striping",
@@ -218,82 +405,11 @@ SHOTS = [
 ]
 
 
-# ------------------- per-service page metadata (titles, H1s, cost drivers) --
-SERVICE_META = {
- "garage-epoxy-floors": dict(
-   pair=3,
-   title="Garage Floor Coating Champaign IL | Epoxy Garage Floors | DP Flooring",
-   desc="Epoxy garage floor coating in Champaign-Urbana, Bloomington-Normal and Central Illinois. "
-        "Diamond-ground prep, hot-tire resistant systems, flake and solid color finishes.",
-   h1="Epoxy Garage Floors",
-   sub_h2="A garage floor that shrugs off hot tires and road salt",
-   drivers=["Square footage &mdash; a two-car garage and a four-car outbuilding price very differently per foot",
-            "Slab condition &mdash; cracking, pitting and spalling at the apron all add repair time",
-            "Finish &mdash; solid color, partial flake or full-broadcast flake",
-            "Extras &mdash; non-slip aggregate, cove base at the walls, and a second clear coat"]),
- "basement-floors": dict(
-   pair=2,
-   title="Basement Floor Epoxy Coating | Champaign &amp; Bloomington IL",
-   desc="Basement floor epoxy coating across Central Illinois. Seals concrete dust, resists moisture "
-        "and brightens the lower level. Moisture tested before we quote.",
-   h1="Basement Floor Coatings",
-   sub_h2="Stop the concrete dust and get the lower level back",
-   drivers=["Square footage of the finished area",
-            "Moisture readings &mdash; a slab with vapor drive needs a different, costlier system",
-            "How much crack, joint and patch work the slab needs first",
-            "Finish choice and whether you want cove base up the walls"]),
- "commercial-industrial-coatings": dict(
-   pair=5,
-   title="Commercial &amp; Industrial Epoxy Flooring | Bloomington &amp; Decatur IL",
-   desc="Commercial and industrial epoxy floor coatings in Central Illinois. High-build, chemical-"
-        "resistant systems, safety line striping and phased off-hours installs.",
-   h1="Commercial &amp; Industrial Epoxy Coatings",
-   sub_h2="Specified for the traffic your floor actually takes",
-   drivers=["Total square footage and how many phases the install has to run in",
-            "Build thickness and chemical resistance the operation requires",
-            "Prep method &mdash; grinding versus shot blasting on a heavily contaminated slab",
-            "Line striping, aisle marking, non-slip aggregate and out-of-hours scheduling"]),
- "shop-warehouse-floors": dict(
-   pair=0,
-   title="Shop &amp; Warehouse Epoxy Floors | Pole Barn Coating IL",
-   desc="Shop, warehouse and pole barn epoxy floor coatings across Central Illinois. Any size, from a "
-        "single service bay to a full warehouse. Free on-site quotes - (217) 417-5950.",
-   h1="Shop &amp; Warehouse Floors",
-   sub_h2="Big square footage, done right and on schedule",
-   drivers=["Square footage &mdash; this is where the per-foot rate drops the most",
-            "Whether the slab is contaminated with oil, hydraulic fluid or an old coating",
-            "Joint and crack treatment across a large floor",
-            "Non-slip aggregate, striping and any traffic-marking you need"]),
- "decorative-flake-and-metallic-epoxy": dict(
-   pair=4,
-   title="Decorative Flake &amp; Metallic Epoxy Floors | Champaign &amp; Bloomington IL",
-   desc="Decorative flake and poured metallic epoxy floors in Central Illinois. Custom color blends, "
-        "one-of-a-kind metallic finishes and a clear urethane topcoat.",
-   h1="Decorative Flake &amp; Metallic Epoxy",
-   sub_h2="When the floor is meant to be looked at",
-   drivers=["System &mdash; full flake sits mid-range, a metallic pour is the premium option",
-            "Square footage and how complex the layout is to cut in",
-            "Slab prep and repair before any decorative work starts",
-            "Number of clear urethane topcoats over the finish"]),
- "floor-prep-and-repair": dict(
-   pair=1,
-   title="Concrete Floor Prep &amp; Repair | Central Illinois",
-   desc="Concrete floor preparation and repair in Central Illinois: diamond grinding, shot blasting, "
-        "crack chasing, spall and pit repair, failed coating removal.",
-   h1="Floor Prep &amp; Repair",
-   sub_h2="The step that decides how long the floor lasts",
-   drivers=["Prep method &mdash; a diamond grind versus shot blasting a contaminated slab",
-            "Linear feet of cracking and joints that need chasing and filling",
-            "Square footage of spalling, pitting or delaminated surface to patch",
-            "Whether a failed coating has to come off before anything else happens"]),
-}
 for _s in SERVICES:
-    _m = SERVICE_META[_s["slug"]]
-    _s.update({k: v for k, v in _m.items() if k != "pair"})
-    _s["pair"] = PAIRS[_m["pair"]]
+    _s["pair"] = PAIRS[_s["pair_idx"]]
 
-FLOOR_TYPES = ["Garage", "Basement", "Shop or warehouse", "Commercial / industrial",
-               "Decorative / showroom", "Patio, porch or other concrete", "Repair / not sure"]
+FLOOR_TYPES = ["Garage", "Basement", "Commercial / industrial", "Shop, warehouse or pole barn",
+               "Flake epoxy", "Metallic epoxy", "Prep / repair", "Not sure yet"]
 
 # ------------------------------------------------------------------- helpers
 def fill(s):
@@ -391,7 +507,7 @@ def header(path):
     </nav>
     <a class="btn btn--sm btn--onDark header__cta" href="/contact/">Get a Free Quote</a>
 
-    <a class="header__call" href="tel:{TEL}">{I['phone']}<span>{PHONE}</span></a>
+    <a class="header__call" href="tel:{TEL}" aria-label="Call {NAME} on {PHONE}">{I['phone']}<span>{PHONE}</span></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
       <span class="icon-open">{I['menu']}</span><span class="icon-close">{I['close']}</span>
     </button>
@@ -889,7 +1005,8 @@ def page_service(s):
         "areaServed": [{"@type": "City", "name": t + ", IL"} for t in AREA["headline"]],
         "offers": {"@type": "Offer", "priceCurrency": "USD",
                    "availability": "https://schema.org/InStock",
-                   "url": BASE + "/contact/"}}]
+                   "url": BASE + "/contact/"}},
+        local_business()]
 
     return head(title, desc, path, schema=schema) + header("/services/") + f"""
 <section class="pagehead">
@@ -916,6 +1033,7 @@ def page_service(s):
         <p class="eyebrow">What you get</p>
         <h2>{s['sub_h2']}</h2>
         <p>{s['long']}</p>
+        <p>{s['body2']}</p>
         <ul class="checks">
 {bullets}
         </ul>
@@ -961,7 +1079,7 @@ def page_service(s):
         <p>Available everywhere in our {AREA['radiusMiles']}+ mile service area. These are the towns we
         work in most often &mdash; if yours is not listed, call anyway.</p>
         <ul class="link-grid" style="margin-top:1.25rem">
-{loc_links(limit=8)}
+{loc_links()}
         </ul>
         <p style="margin-top:1.1rem"><a class="arrow-link" href="/service-area/">Full service area <span aria-hidden="true">&rarr;</span></a></p>
       </div>
@@ -989,148 +1107,402 @@ def page_service(s):
 # ================================================================ LOCATIONS ==
 LOCATIONS = [
  dict(slug="epoxy-flooring-champaign-il", city="Champaign", county="Champaign County",
-      service="Epoxy Flooring", kw="epoxy flooring Champaign IL",
       img="hero-epoxy-floor-champaign-il-1280.jpg",
-      alt="High-gloss epoxy floor coating installed for a commercial building in Champaign, IL",
-      title="Epoxy Flooring Champaign IL | Garage &amp; Commercial Floor Coating",
-      desc="Epoxy flooring in Champaign, IL. Garage floor coatings, basement, shop and commercial epoxy from a locally owned Champaign County installer. Free quotes.",
-      h1="Epoxy Flooring in Champaign, IL",
-      intro="Champaign is home base. {name} is owned and run by {owners}, and most of our jobs are inside a twenty-minute drive of here &mdash; which means when you have a question about your floor six months from now, we are not three hours away.",
-      local="Champaign gives us two very different kinds of slab. Near campus and through the older neighborhoods off Church and University, we are usually looking at mid-century concrete with a few decades of cracking, oil and settling in it &mdash; that floor needs chasing, filling and patching before anything gets coated. Out on the newer southwest side, the three-car attached garages are typically clean, sound slabs that need a proper diamond grind and nothing more. Add the commercial and light-industrial space north of I-74 and around the Market Street corridor, and there is very little we have not already had to spec for in this town.",
-      nearby=["Urbana", "Savoy", "Mahomet", "Rantoul"]),
+      alt="High-gloss epoxy floor coating installed in a commercial building in Champaign, IL",
+      intro="Champaign is home base. {name} is owned and run by {owners}, and most of our jobs are inside "
+            "a twenty-minute drive of here &mdash; which means when you have a question about your floor "
+            "six months from now, we are not three hours away.",
+      local="Champaign hands us two very different kinds of slab, and which one you have decides most of "
+            "the quote. Through Old Town, the Clark Park and Beardsley Park blocks and the streets running "
+            "off West Church and University, the housing is early-1900s foursquares and bungalows, and the "
+            "garages are detached, sat off the alley, and poured somewhere between the 1940s and the 1970s. "
+            "Those slabs are usually sound underneath but carry real cracking, some settlement, and heavy "
+            "spalling at the apron where seventy Illinois winters of road salt have chewed the surface off. "
+            "Garden Hills and the mid-century ranch neighborhoods sit in a similar bracket. Out on the "
+            "southwest side it flips completely: Trails at Brittany, Ironwood, Cherry Hills, Boulder Ridge "
+            "and Sawgrass were built from the 1990s onward with attached three-car garages on clean, flat, "
+            "well-poured concrete that needs a diamond grind and essentially nothing else. Then there is the "
+            "commercial and light-industrial stock north of I-74 along North Market Street, Apollo Drive and "
+            "Interstate Drive, plus the service and retail buildings along Neil Street &mdash; bigger floors, "
+            "heavier traffic, and usually a phased overnight install.",
+      garage="A Champaign garage floor takes a specific beating: hot tires pulling in off I-57 and I-74 in "
+             "August, and road salt melting off the fenders from December through March. Both of those are "
+             "what kill a cheap floor. Hot tires lift any coating that was not mechanically bonded to the "
+             "concrete, and salt works into every pore of an uncoated slab and spalls the surface off it. So "
+             "we grind, we repair the concrete properly, and we install a system rated for hot-tire pickup. "
+             "In the older neighborhoods that means budgeting for crack and apron repair before the coating; "
+             "in the newer subdivisions it usually means the whole budget goes into the finish instead. "
+             "Either way most two- and three-car garages here are a one- to two-day install, and you are "
+             "parking on it again inside a week.",
+      area="We are ten minutes from Memorial Stadium and the State Farm Center, so scheduling in Champaign "
+           "is genuinely easy &mdash; including the small single-bay jobs a lot of contractors will not "
+           "drive out for.",
+      nearby=["Urbana", "Savoy", "Tolono", "Mahomet"]),
 
  dict(slug="epoxy-flooring-urbana-il", city="Urbana", county="Champaign County",
-      service="Epoxy Flooring", kw="epoxy flooring Urbana IL",
       img="epoxy-garage-floor-interior.jpg",
-      alt="Coated garage floor in an Urbana, IL detached garage with storage shelving",
-      title="Epoxy Flooring Urbana IL | Garage &amp; Basement Floor Coating",
-      desc="Epoxy flooring in Urbana, IL. Garage floor coatings, basement floors and commercial epoxy from a locally owned Champaign County installer. Free quotes.",
-      h1="Epoxy Flooring in Urbana, IL",
-      intro="Urbana is about ten minutes from where we keep the equipment, so it is one of the easiest towns in the county for us to schedule &mdash; including the small jobs a lot of contractors will not drive out for.",
-      local="Urbana has an older housing stock than most of the county, and that shows up in the concrete. A lot of what we coat here is a detached garage built in the 1950s or 60s: a thinner slab, some spalling near the door where forty winters of road salt have done their work, and hairline cracking through the middle. None of that rules out epoxy &mdash; it just means the repair stage is real work rather than a formality. On the commercial side, the medical and office buildings around the Carle campus and the businesses downtown tend to want low-odour scheduling and overnight turnarounds, which we can do.",
+      alt="Detached garage in Urbana, IL with a clean coated gray epoxy floor and storage shelving",
+      intro="Urbana is about ten minutes from where we keep the equipment, which makes it one of the "
+            "easiest towns in the county for us to schedule &mdash; small jobs included.",
+      local="Urbana has an older housing stock than most of Champaign County, and that shows up in the "
+            "concrete. Around Leal, the Historic East Urbana blocks and the streets near downtown and "
+            "Crystal Lake Park, you are mostly looking at pre-1940 homes with detached garages set back off "
+            "the alley. Those slabs tend to be thinner than a modern pour, with hairline cracking through "
+            "the middle, some settlement toward the door, and spalling along the apron. None of that rules "
+            "out epoxy &mdash; it just means the repair stage is genuine work rather than a formality, and "
+            "we say so in the quote instead of discovering it on the day. The 1950s and 60s ranches out "
+            "toward Ambucs and Crystal Lake are a step up in slab quality, and Stone Creek on the southeast "
+            "side is a different world again: newer construction, attached three-car garages, flat sound "
+            "concrete. On the commercial side, the medical and office buildings around the Carle Foundation "
+            "Hospital campus and the businesses around Lincoln Square and the Market at the Square district "
+            "usually want low-odor products and an overnight turnaround, which we can schedule.",
+      garage="Most garage floor coating we do in Urbana is on a detached garage that has been standing for "
+             "sixty or seventy years, and the honest answer is that those floors need more prep than a new "
+             "build does. We chase and fill the cracks, patch the spalled apron by the door, grind the whole "
+             "slab to open concrete and then coat it. Done that way an Urbana garage floor looks as good as "
+             "anything in a new subdivision and lasts just as long. Skipped, the coating peels off the "
+             "patched areas first and the whole thing looks worse than bare concrete did. Flake is the "
+             "popular choice here for exactly that reason &mdash; it hides repaired areas far better than a "
+             "solid color ever will.",
+      area="Urbana sits right next to our base, so there is no trip charge, and we can usually get out to "
+           "look at a floor within a few days of the call.",
       nearby=["Champaign", "St. Joseph", "Savoy", "Rantoul"]),
 
  dict(slug="epoxy-flooring-savoy-il", city="Savoy", county="Champaign County",
-      service="Epoxy Flooring", kw="epoxy flooring Savoy IL",
       img="garage-floor-coating-champaign-il.jpg",
-      alt="Clean three-car garage in Savoy, IL with a light gray epoxy floor coating",
-      title="Epoxy Flooring Savoy IL | Garage Floor Coating &amp; Basement Floors",
-      desc="Epoxy flooring in Savoy, IL. Garage floor coatings, basement floors and shop epoxy from locally owned installers based in Champaign County. Free quotes - (217) 417-5950.",
-      h1="Epoxy Flooring in Savoy, IL",
-      intro="Savoy sits ten minutes south of Champaign, and it is one of our favorite places to work &mdash; largely because of what the concrete under the village looks like.",
-      local="Most of Savoy&rsquo;s residential growth is recent, which means the garages here are generally newer, bigger and sitting on sound, well-poured slabs. That is the ideal starting point for epoxy: little to no crack repair, a straightforward diamond grind, and the whole budget goes into the coating rather than into fixing the concrete. Three-car attached garages are common in the subdivisions off Prospect and Dunlap, and a full-flake floor across that much square footage genuinely changes how the space feels. We also cover the commercial and hangar-adjacent buildings out toward Willard Airport.",
+      alt="Newer three-car garage in Savoy, IL finished with a light gray epoxy floor coating",
+      intro="Savoy sits ten minutes south of Champaign on Neil Street, and it is one of our favorite "
+            "villages to work in &mdash; largely because of what the concrete under it looks like.",
+      local="Savoy grew late and it grew fast, and almost all of that growth is post-1995. Prairie Fields, "
+            "the subdivisions off Curtis Road and Burwash Avenue, and the newer streets around Windsor and "
+            "Church were built to modern standards, which means the garage slabs here are generally "
+            "thicker, flatter, better cured and far less cracked than anything in the older parts of the "
+            "county. For an epoxy floor that is close to the ideal starting point: minimal crack and spall "
+            "repair, a straightforward diamond grind, and the entire budget goes into the coating system "
+            "rather than into fixing concrete. Three-car attached garages are common through these "
+            "subdivisions, and a full-broadcast flake floor across that much square footage genuinely "
+            "changes how the space works &mdash; people stop using it purely for cars and start using it. "
+            "Beyond the residential side, we cover the commercial buildings along the Route 45 corridor, the "
+            "retail around Savoy Plaza and the 16 IMAX, and the hangar-adjacent and institutional space out "
+            "toward University of Illinois Willard Airport.",
+      garage="Garage floor coating in Savoy is usually the cleanest version of this job. A slab poured in "
+             "the last twenty-five years typically needs joint treatment and a grind rather than structural "
+             "repair, so the install runs fast and the finish comes out flawless. That also means solid "
+             "color is genuinely on the table here, which it often is not on an older slab &mdash; a "
+             "solid-color floor is a mirror and shows every imperfection, so it only works over concrete "
+             "that is actually flat. If you want the classic dense flake look instead, this is the kind of "
+             "slab where it goes down beautifully. Either way, expect one to two days on site and vehicles "
+             "back on it after about a week.",
+      area="Ten minutes from our base, well inside the radius, no trip charge, and easy to schedule around "
+           "Willard Airport traffic.",
       nearby=["Champaign", "Tolono", "Urbana", "Monticello"]),
 
  dict(slug="epoxy-flooring-mahomet-il", city="Mahomet", county="Champaign County",
-      service="Epoxy Flooring", kw="epoxy flooring Mahomet IL",
       img="shop-warehouse-epoxy-floor-central-illinois.jpg",
-      alt="Pole barn shop near Mahomet, IL with a coated concrete floor",
-      title="Epoxy Flooring Mahomet IL | Garage, Shop &amp; Pole Barn Floors",
-      desc="Epoxy flooring in Mahomet, IL. Garage floor coatings, pole barn and shop floors, and basement epoxy from a locally owned Champaign County installer.",
-      h1="Epoxy Flooring in Mahomet, IL",
-      intro="Mahomet is a straight fifteen-minute run west on I-74 for us, and it has grown fast enough that we are out there most months.",
-      local="What sets Mahomet apart is the outbuildings. Lots here run bigger than they do in town, so alongside the attached garages in the newer subdivisions we spend a lot of time in detached shops, pole barns and machine sheds &mdash; and those bring their own considerations. A pole barn slab is often poured later, thinner or without a vapor barrier under it, so moisture testing genuinely matters before we pick a system. Get that right and a coated barn floor is transformative: it stops the concrete dust, it reflects your lights, and you can actually sweep it out.",
+      alt="Pole barn shop near Mahomet, IL with a freshly coated concrete floor",
+      intro="Mahomet is a straight fifteen-minute run west on I-74, and it has grown fast enough that we "
+            "are out there most months of the year.",
+      local="What sets Mahomet apart is the outbuildings. Lots here run considerably bigger than they do in "
+            "Champaign or Urbana, so alongside the attached garages in Timberline, Thornewood, Prairieview "
+            "and the newer streets north of the interstate, we spend a lot of time in detached shops, pole "
+            "barns and machine sheds &mdash; and those bring their own considerations. A pole barn slab is "
+            "frequently poured later than the building, thinner than a house garage, and often without a "
+            "vapor barrier underneath it, so moisture testing genuinely matters before we pick a system. "
+            "Coat a slab with vapor driving up through it and you will have blisters by the following "
+            "summer. When the readings come back clean, a coated shop or barn floor is transformative: it "
+            "stops the concrete dust that gets into everything, it throws your existing lights back up into "
+            "the building, and you can push a broom across it instead of fighting it. Around the village "
+            "itself, the older homes near the Sangamon River and toward Lake of the Woods sit on typical "
+            "mid-century garage concrete that wants the usual crack and apron work first.",
+      garage="Garage floor coating in Mahomet splits between two jobs. In the newer subdivisions it is a "
+             "clean modern slab and a straightforward grind-and-coat. Out on the acreages it is often a "
+             "detached shop or a barn floor of two, three or four times the square footage, where the "
+             "per-foot rate drops but the moisture question comes first. We test either way. And because "
+             "these buildings usually double as workshops rather than just parking, we tend to steer people "
+             "toward a full-broadcast flake with a non-slip aggregate in the topcoat &mdash; it hides "
+             "everything, it grips when there is snowmelt or a spilled drink on it, and dropped tools do not "
+             "mark it the way they mark bare concrete.",
+      area="Fifteen minutes from base, right past Lake of the Woods Forest Preserve and the Museum of the "
+           "Grand Prairie. No trip charge anywhere in the village or the surrounding acreages.",
       nearby=["Champaign", "Fisher", "Urbana", "Monticello"]),
 
  dict(slug="epoxy-flooring-rantoul-il", city="Rantoul", county="Champaign County",
-      service="Epoxy Flooring", kw="epoxy flooring Rantoul IL",
       img="high-gloss-epoxy-shop-floor.jpg",
       alt="Large hangar-style building in Rantoul, IL with a high-gloss epoxy floor",
-      title="Epoxy Flooring Rantoul IL | Hangar, Shop &amp; Garage Floor Coating",
-      desc="Epoxy flooring in Rantoul, IL. Hangar and shop floor coatings, commercial epoxy and residential garage floors from a locally owned Champaign County installer. (217) 417-5950.",
-      h1="Epoxy Flooring in Rantoul, IL",
-      intro="Rantoul is about twenty minutes north of Champaign on I-57, and it has a building stock unlike anywhere else in the county.",
-      local="Because of the old Chanute air base, Rantoul carries far more hangar, warehouse and institutional square footage than a town its size normally would &mdash; and a lot of those floors are big, old, and have been sitting under decades of traffic. Those are exactly the slabs where surface prep is not optional: shot blasting or heavy grinding, serious crack and joint work, and a high-build system that can take the abuse. On the residential side, Rantoul&rsquo;s mid-century homes come with the same thinner, salt-worn garage slabs we see in Urbana, and they respond well to a proper repair-and-coat.",
-      nearby=["Champaign", "Paxton", "Gibson City", "Urbana"]),
+      intro="Rantoul is about twenty minutes north of Champaign on I-57, and it has a building stock unlike "
+            "anywhere else in the county.",
+      local="Because of the old Chanute Air Force Base, Rantoul carries far more hangar, warehouse and "
+            "institutional square footage than a town its size would normally have. The Rantoul National "
+            "Aviation Center and the surrounding former base buildings hold floors that are large, old, and "
+            "have been under traffic for decades &mdash; and those are exactly the slabs where prep is not "
+            "optional. They get shot blasting rather than grinding, serious crack and joint treatment, and a "
+            "high-build system that can take forklifts and steel wheels rather than a thin residential-grade "
+            "coating. On the residential side, a large share of Rantoul housing dates from the base era, "
+            "1950s and 60s, and those garage slabs come with the same thinner concrete and salt-worn aprons "
+            "we see across older Urbana. They respond very well to a proper repair-and-coat. Around downtown "
+            "and out toward Wabash & Erie Park the housing runs older still, with detached garages that are "
+            "worth quoting individually rather than off a per-foot rate.",
+      garage="Garage floor coating in Rantoul is mostly work on mid-century slabs, and we approach it the "
+             "same way we do in Urbana: fix the concrete first, then coat it. The apron by the overhead door "
+             "is nearly always the worst area, because that is where the snow and the salt collect, and it "
+             "needs patching and re-leveling before anything goes over it. Once that is done, flake is the "
+             "sensible finish &mdash; it is forgiving over repaired areas and it builds in grip. We also get "
+             "a fair number of calls here for larger detached garages and shop buildings, which price better "
+             "per square foot than a standard two-car does.",
+      area="Twenty minutes up I-57, comfortably inside the service radius, no trip charge.",
+      nearby=["Paxton", "Champaign", "Gibson City", "Urbana"]),
 
  dict(slug="epoxy-flooring-bloomington-il", city="Bloomington", county="McLean County",
-      service="Epoxy Flooring", kw="epoxy flooring Bloomington IL",
       img="commercial-epoxy-floor-coating-bloomington-il.jpg",
       alt="Commercial building in Bloomington, IL with a freshly coated high-gloss epoxy floor",
-      title="Epoxy Flooring Bloomington IL | Commercial &amp; Garage Floor Coating",
-      desc="Epoxy flooring in Bloomington, IL. Commercial and industrial coatings, warehouse floors and residential garage epoxy across McLean County. Free quotes - (217) 417-5950.",
-      h1="Epoxy Flooring in Bloomington, IL",
-      intro="Bloomington is our second home market. It is roughly a fifty-minute drive up I-74 from Champaign County, and there is no trip charge for it &mdash; we quote and schedule McLean County exactly the way we do our own back yard.",
-      local="Bloomington leans commercial for us. The corporate and office employers here keep a lot of light-industrial, service and back-of-house square footage in play, and those floors almost always need to be coated in phases and outside business hours &mdash; which is how we prefer to run them anyway. Residentially, the established neighborhoods on the east and south sides have the classic mid-century garage slab, while the newer builds toward the edges are usually clean pours that only want a grind. If you are weighing a full flake floor against solid color, this is a market where we bring plenty of samples.",
-      nearby=["Normal", "Downs", "Le Roy", "Heyworth"]),
+      intro="Bloomington is our second home market. It is roughly a fifty-minute drive up I-74 from "
+            "Champaign County, and there is no trip charge for it &mdash; we quote and schedule McLean "
+            "County exactly the way we do our own back yard.",
+      local="Bloomington has more architectural range than most Central Illinois cities, and it changes what "
+            "we quote block to block. Dimmitt's Grove and Founders' Grove are full of Victorians, "
+            "foursquares and early-1900s homes with detached carriage-style garages sitting on old, thin, "
+            "much-repaired concrete. The east side and the streets around Miller Park run to 1950s through "
+            "70s ranches with attached two-car garages &mdash; sound slabs, but usually with settlement "
+            "cracking and a spalled apron. Then Fox Creek, Eagle Crest, Tipton Trails and the Grove at "
+            "Kickapoo Creek are modern subdivisions with big attached three-car garages on clean concrete "
+            "that needs little more than a grind. Commercially, Bloomington keeps a lot of office, service "
+            "and back-of-house square footage in play thanks to the insurance and corporate employers here, "
+            "and those floors almost always need to be coated in phases and outside business hours &mdash; "
+            "which is how we prefer to run them anyway.",
+      garage="Garage floor coating in Bloomington divides cleanly into those same two jobs. In the "
+             "established neighborhoods the slab is mid-century: sound underneath, but with hairline "
+             "cracking, some pitting, and spalling along the apron where the salt collects, all of which "
+             "gets chased, filled and patched before anything else happens. In the newer subdivisions the "
+             "concrete is generally clean and flat, so the work is a straight diamond grind and the budget "
+             "goes into the finish instead. Either way you get a system rated for hot-tire pickup, because a "
+             "coating that lifts where the car parks is not a floor, it is a callback &mdash; and driving "
+             "back up I-74 to redo somebody's garage is not a business model.",
+      area="Fifty minutes up I-74, past Downs and Le Roy. We treat McLean County as a home market: same "
+           "pricing, same scheduling, no trip charge.",
+      nearby=["Normal", "Downs", "Le Roy", "Clinton"]),
 
  dict(slug="epoxy-flooring-normal-il", city="Normal", county="McLean County",
-      service="Epoxy Flooring", kw="epoxy flooring Normal IL",
       img="polished-epoxy-parking-deck.jpg",
-      alt="Coated concrete floor in a Normal, IL commercial lower level",
-      title="Epoxy Flooring Normal IL | Garage, Basement &amp; Commercial Floors",
-      desc="Epoxy flooring in Normal, IL. Garage floor coatings, basement floors and commercial epoxy across McLean County from a locally owned installer. Free quotes - (217) 417-5950.",
-      h1="Epoxy Flooring in Normal, IL",
-      intro="Normal sits right next to Bloomington, so we cover it on the same runs &mdash; and like the rest of McLean County, there is no trip charge to come out and quote.",
-      local="Normal splits neatly for us. Around Illinois State and Uptown there is a steady stream of rental, retail and small-commercial floors where the priority is a fast turnaround between tenants and a surface that mops clean. Out on the north side, the newer subdivisions bring big attached garages on good concrete, where a full-flake floor is usually the ask. And the manufacturing corridor around town keeps heavier industrial work in the mix &mdash; different system, different build thickness, same prep discipline.",
-      nearby=["Bloomington", "Hudson", "Towanda", "Lexington"]),
+      alt="Coated concrete floor in a commercial lower level in Normal, IL",
+      intro="Normal sits right against Bloomington, so we cover it on the same runs &mdash; and like the "
+            "rest of McLean County, there is no trip charge to come out and quote.",
+      local="Normal splits three ways for us. Around Illinois State University and Uptown, there is a steady "
+            "stream of rental, retail and small-commercial floors where the priority is a fast turnaround "
+            "between tenants and a surface that mops clean rather than one that looks like a showpiece. Old "
+            "North Normal and the streets around Fairview Park run to older homes with detached garages on "
+            "aging concrete. Out on the north side, Blackstone Trails, Savannah Green and the newer "
+            "subdivisions off Raab Road bring large attached three-car garages on modern slabs, and those are "
+            "where most of our residential flake work in Normal happens. There is also real industrial "
+            "square footage in and around town &mdash; the manufacturing corridor here keeps heavier work in "
+            "the mix, which means a different system, a heavier build thickness and shot blasting rather "
+            "than grinding, but the same prep discipline underneath it.",
+      garage="Garage floor coating in Normal is mostly newer-subdivision work, and on a clean modern slab "
+             "the install is quick: grind, treat the joints, base coat, broadcast flake, scrape and vacuum, "
+             "clear topcoat. One to two days on site. Around Old North Normal and the older streets it is "
+             "the familiar mid-century slab that needs crack and apron repair first. One thing worth knowing "
+             "if you are near campus: we can schedule around the university calendar, which matters if you "
+             "are coating a rental garage or a small commercial floor and need it done between tenants "
+             "rather than during a move-in week.",
+      area="Same run as Bloomington, straight up I-74. Uptown Normal, ISU, Constitution Trail and the north "
+           "side are all inside the no-trip-charge area.",
+      nearby=["Bloomington", "Hudson", "Towanda", "Le Roy"]),
 
  dict(slug="epoxy-flooring-decatur-il", city="Decatur", county="Macon County",
-      service="Epoxy Flooring", kw="epoxy flooring Decatur IL",
       img="metallic-epoxy-floor-finish.jpg",
       alt="Large industrial interior in Decatur, IL with a poured metallic epoxy floor",
-      title="Epoxy Flooring Decatur IL | Industrial, Shop &amp; Garage Floor Coating",
-      desc="Epoxy flooring in Decatur, IL. Industrial and warehouse floor coatings, shop floors and residential garage epoxy across Macon County. Free quotes - (217) 417-5950.",
-      h1="Epoxy Flooring in Decatur, IL",
-      intro="Decatur is about fifty minutes southwest of Champaign, well inside our service area, and it is one of the more industrial markets we work in.",
-      local="Decatur&rsquo;s ag-processing and manufacturing base means the floors here are frequently large, hard-used and chemically abused &mdash; the sort of slab where a thin roll-on coating would not last a season. Those jobs get shot blasting or heavy grinding, full joint and crack treatment, and a high-build chemical-resistant system with line striping where the traffic patterns need marking. Alongside that there is a big, established residential base, and a Decatur garage slab from the 60s or 70s benefits from exactly the same repair-first approach we take everywhere else.",
-      nearby=["Forsyth", "Mt. Zion", "Argenta", "Cerro Gordo"]),
+      intro="Decatur is about fifty minutes southwest of Champaign, well inside our service area, and it is "
+            "the most industrial market we work in.",
+      local="Decatur's ag-processing and manufacturing base means the floors here are frequently large, "
+            "hard-used and chemically abused &mdash; the sort of slab where a thin roll-on coating would not "
+            "survive a season. Those jobs get shot blasting or heavy grinding, full joint and crack "
+            "treatment, and a high-build chemical-resistant system, usually with line striping where the "
+            "traffic patterns need marking out. Residentially, Decatur has some of the best older housing "
+            "stock in Central Illinois. The West End Historic District and the streets around Millikin "
+            "University hold grand early-1900s homes, many with detached carriage-house garages on original "
+            "concrete that has been patched more than once. The mid-century ranches out toward Mound Road "
+            "and the neighborhoods around Fairview Park are more straightforward. South Shores, on Lake "
+            "Decatur, is a different case again &mdash; lakefront properties, plenty of detached shops and "
+            "boat storage, and slabs that see a lot of wet traffic and so usually want non-slip aggregate "
+            "worked into the topcoat.",
+      garage="Garage floor coating in Decatur ranges from a standard attached two-car to a detached "
+             "carriage house that has been standing for a century. On the older properties the concrete is "
+             "the deciding factor, and we will tell you honestly at the estimate whether a slab is worth "
+             "coating or whether the money is better spent replacing it &mdash; occasionally it is, and we "
+             "would rather say so than take the job. Where the slab is sound, the process is the same one we "
+             "run everywhere: grind, chase and fill, patch the spalling, coat, flake, seal. Around the lake "
+             "we normally recommend non-slip aggregate as standard.",
+      area="Fifty minutes southwest via Route 121 or I-72. Decatur, Forsyth, Mt. Zion and Argenta are all "
+           "inside the radius with no trip charge.",
+      nearby=["Forsyth", "Mt. Zion", "Cerro Gordo", "Clinton"]),
 
  dict(slug="epoxy-flooring-danville-il", city="Danville", county="Vermilion County",
-      service="Epoxy Flooring", kw="epoxy flooring Danville IL",
       img="before-bare-shop-concrete-floor.jpg",
-      alt="Shop building in Danville, IL with bare concrete ready for epoxy floor coating",
-      title="Epoxy Flooring Danville IL | Shop, Warehouse &amp; Garage Floor Coating",
-      desc="Epoxy flooring in Danville, IL. Shop and warehouse floor coatings, commercial epoxy and residential garage floors across Vermilion County. Free quotes - (217) 417-5950.",
-      h1="Epoxy Flooring in Danville, IL",
-      intro="Danville is a straight thirty-five-minute shot east on I-74, which puts the whole of Vermilion County comfortably inside our range.",
-      local="Danville&rsquo;s industrial history left it with a lot of older shop and warehouse space, and those floors tend to arrive with the full set of problems: oil-soaked concrete, spalling at the dock doors, joints that have opened up, and often an old coating that is already letting go. That is fine &mdash; it just means the prep day is a real day. Degrease it, strip what is failing, blast or grind the profile open, fix the joints, and then it will take a coating that holds. The residential side is mostly older detached garages, where the same logic applies at a smaller scale.",
+      alt="Shop building in Danville, IL with bare concrete ready for an epoxy floor coating",
+      intro="Danville is a straight thirty-five-minute shot east on I-74, which puts the whole of Vermilion "
+            "County comfortably inside our range.",
+      local="Danville's industrial history left it with a lot of older shop and warehouse space, and those "
+            "floors tend to arrive with the full set of problems at once: oil-soaked concrete, spalling at "
+            "the dock doors, joints that have opened up under years of wheel traffic, and often an old "
+            "coating that is already letting go in sheets. That is fine &mdash; it just means the prep day is "
+            "a real day. Degrease it, strip whatever is failing, blast the profile open, fix the joints, and "
+            "then it will take a coating that holds. On the residential side, the North Street Historic "
+            "District and the older streets around Lincoln Park run to pre-1930 homes with detached garages "
+            "off the alley, on thin original slabs. Vermilion Heights and the mid-century neighborhoods are "
+            "a more typical ranch-and-attached-garage proposition. We also cover the smaller towns around "
+            "Danville &mdash; Tilton, Westville, Georgetown and out toward Kickapoo State Recreation Area.",
+      garage="Garage floor coating in Danville is mostly older-slab work, and the apron is nearly always the "
+             "problem area. Decades of freeze-thaw and salt take the top layer off the concrete right where "
+             "the overhead door sits, and if that is coated over without being repaired it will fail there "
+             "first and take the surrounding floor with it. We patch and re-level the apron, chase and fill "
+             "the cracks, grind the whole slab, then coat. Flake is the default recommendation here because "
+             "it hides repaired areas so much better than solid color does, and on a garage that has been "
+             "standing since the 1920s there will be repaired areas.",
+      area="Thirty-five minutes east on I-74. Danville, Tilton, Westville, Georgetown and Hoopeston are all "
+           "inside the service radius.",
       nearby=["Tilton", "Westville", "Georgetown", "Hoopeston"]),
 
  dict(slug="epoxy-flooring-monticello-il", city="Monticello", county="Piatt County",
-      service="Epoxy Flooring", kw="epoxy flooring Monticello IL",
       img="blue-flake-epoxy-garage-floor.jpg",
       alt="Residential garage near Monticello, IL finished with a blue and gray flake epoxy floor",
-      title="Epoxy Flooring Monticello IL | Garage, Pole Barn &amp; Shop Floors",
-      desc="Epoxy flooring in Monticello, IL. Garage floor coatings, pole barn and machine shed floors, and basement epoxy across Piatt County. Free quotes - (217) 417-5950.",
-      h1="Epoxy Flooring in Monticello, IL",
-      intro="Monticello is twenty-five minutes west of Champaign, and Piatt County is well inside the area we cover without a trip charge.",
-      local="Work in Monticello skews rural. Between the acreages outside town and the farms around them, a lot of what we coat is a detached shop, a machine shed or a pole barn rather than an attached two-car garage &mdash; and those slabs almost always need moisture testing first, because plenty were poured without a vapor barrier underneath. When the numbers come back right, a coated shop floor pays for itself in how much easier it is to keep clean. In town, the older homes near downtown and Allerton bring the usual mid-century garage concrete.",
-      nearby=["Bement", "Cerro Gordo", "Mahomet", "Champaign"]),
+      intro="Monticello is twenty-five minutes west of Champaign on I-72, and Piatt County is well inside "
+            "the area we cover without a trip charge.",
+      local="Work in Monticello skews rural, and that shapes what we quote. Between the acreages outside "
+            "town and the farms around them, a large share of what we coat is a detached shop, a machine "
+            "shed or a pole barn rather than an attached two-car garage. Those slabs almost always need "
+            "moisture testing first, because plenty of them were poured without a vapor barrier underneath "
+            "and will push a standard coating straight back off. When the readings come back right, a coated "
+            "shop floor pays for itself in how much easier the building is to keep clean and how much "
+            "brighter it gets. In town, the older homes around the courthouse square and the streets running "
+            "toward Allerton Park sit on typical mid-century garage concrete that needs the usual crack and "
+            "apron work, while the newer subdivisions on the edges of the village are clean modern pours. We "
+            "also pick up commercial work along the Route 105 corridor and around the Monticello Railway "
+            "Museum end of town.",
+      garage="Garage floor coating in Monticello often is not a garage at all &mdash; it is a thirty by "
+             "forty shop with a workbench down one side. Those price better per square foot than a standard "
+             "two-car and they benefit more from being coated, because that is a building you actually spend "
+             "time in. For a working shop we recommend full flake with non-slip aggregate: it hides the "
+             "concrete repairs, it grips when there is snow melting off a truck, and it does not show every "
+             "mark the way a solid color does. For an attached garage in one of the newer village "
+             "subdivisions, it is a straightforward grind-and-coat.",
+      area="Twenty-five minutes west on I-72, past Allerton Park and Lodge Park. All of Piatt County is "
+           "inside the radius.",
+      nearby=["Bement", "Cerro Gordo", "Mahomet", "Clinton"]),
 
  dict(slug="epoxy-flooring-tuscola-il", city="Tuscola", county="Douglas County",
-      service="Epoxy Flooring", kw="epoxy flooring Tuscola IL",
       img="showroom-epoxy-floor-graphics.jpg",
       alt="Retail floor in Tuscola, IL finished with a coated epoxy surface and inlaid graphics",
-      title="Epoxy Flooring Tuscola IL | Garage, Retail &amp; Shop Floor Coating",
-      desc="Epoxy flooring in Tuscola, IL. Garage floor coatings, retail and commercial epoxy, and shop floors across Douglas County. Free on-site quotes - (217) 417-5950.",
-      h1="Epoxy Flooring in Tuscola, IL",
-      intro="Tuscola sits about half an hour south of Champaign where I-57 meets US-36, and that crossroads position is a big part of what we get called out for.",
-      local="Because of the interstate junction, Tuscola punches above its size on the commercial side &mdash; retail, service bays and light industrial that all need floors which look presentable and still take a beating. Those jobs usually want a hard-wearing solid color or flake system plus a clear urethane topcoat, and often line striping to mark out walkways. Away from the junction it is ag country, so machine sheds and shop buildings make up a good share of the rest, and those get the same moisture-test-first treatment we give every rural slab.",
-      nearby=["Arcola", "Villa Grove", "Arthur", "Champaign"]),
+      intro="Tuscola sits about half an hour south of Champaign where I-57 meets US-36, and that crossroads "
+            "position is a big part of what we get called out for.",
+      local="Because of the interstate junction and Tanger Outlets, Tuscola punches well above its size on "
+            "the commercial side. Retail units, service bays and light industrial along the Route 36 "
+            "corridor all need floors that look presentable to customers and still take a beating from carts "
+            "and foot traffic, and those jobs usually want a hard-wearing solid color or flake system with a "
+            "clear urethane topcoat over it, plus line striping to mark walkways and back-of-house routes. "
+            "Away from the junction, Tuscola is a small county-seat town: older homes around the Douglas "
+            "County courthouse and Ervin Park with detached garages on original concrete, a scattering of "
+            "newer builds on the edges, and then ag country in every direction. That last part matters most "
+            "by volume &mdash; machine sheds, grain-operation shops and equipment buildings make up a good "
+            "share of the square footage we coat down here, and every one of those rural slabs gets moisture "
+            "tested before we spec anything.",
+      garage="Garage floor coating in Tuscola runs the full spread, from a two-car attached in a newer "
+             "subdivision to a farm shop big enough to pull a combine into. The small end is a "
+             "grind-and-coat over sound concrete. The large end is about square footage and moisture: the "
+             "per-foot rate drops as the floor gets bigger, but a barn or shed slab poured without a vapor "
+             "barrier needs a system that can tolerate it. On the older in-town garages it is the familiar "
+             "story of a thin slab, a cracked middle and a spalled apron, all of which we repair before "
+             "coating rather than after.",
+      area="Half an hour south at the I-57 and US-36 junction. Tuscola, Arcola, Villa Grove and Arthur are "
+           "all inside the service radius.",
+      nearby=["Arcola", "Villa Grove", "Arthur", "Tolono"]),
 
- dict(slug="garage-floor-coating-champaign-il", city="Champaign", county="Champaign County",
-      service="Garage Floor Coating", kw="garage floor coating Champaign IL",
-      img="blue-flake-epoxy-garage-floor.jpg",
-      alt="Champaign, IL residential garage finished with a blue and gray flake epoxy floor coating",
-      title="Garage Floor Coating Champaign IL | Epoxy Garage Floors",
-      desc="Garage floor coating in Champaign, IL. Diamond-ground prep, hot-tire resistant epoxy, solid color and full flake finishes. Locally owned, free quotes - (217) 417-5950.",
-      h1="Garage Floor Coating in Champaign, IL",
-      intro="If you have been looking at your garage slab all winter thinking it deserves better, this is the page. We coat garage floors right here in Champaign, and we are usually able to get out and quote within a few days.",
-      local="A Champaign garage floor takes a specific beating: hot tires pulling in off the interstate in August, and road salt melting off the fenders from December through March. Both of those are what kill a cheap floor. Hot tires lift any coating that was not mechanically bonded to the concrete, and salt works its way into every pore of an uncoated slab and spalls the surface off. So we grind, we fix the concrete, and we use a system rated for hot-tire pickup. Most two- and three-car garages here are a one- to two-day install, and you are parking on it again inside a week.",
-      nearby=["Urbana", "Savoy", "Mahomet", "Rantoul"]),
+ dict(slug="epoxy-flooring-paxton-il", city="Paxton", county="Ford County",
+      img="shop-warehouse-epoxy-floor-central-illinois.jpg",
+      alt="Farm shop building near Paxton, IL with a coated concrete floor",
+      intro="Paxton is around thirty-five minutes north of Champaign on I-57, and Ford County sits "
+            "comfortably inside the fifty-mile radius we work.",
+      local="Paxton is a county seat in the middle of some of the most productive farmland in Illinois, and "
+            "the floors follow from that. Grain operation shops, equipment sheds and ag service buildings "
+            "make up most of the larger square footage we coat here, and those are almost always slabs that "
+            "went in without a vapor barrier and have spent years taking dirt, chemical and steel-wheel "
+            "traffic. They get moisture tested, degreased where needed, blasted or ground hard, and then a "
+            "build heavy enough to survive equipment rather than cars. In town, the housing around the Ford "
+            "County courthouse and Pells Park is mostly older &mdash; pre-war and mid-century homes with "
+            "detached garages on original concrete that will need crack and apron repair. There is also a "
+            "steady run of small commercial work along the US-45 corridor. Paxton is a small town, and we "
+            "quote the single-bay jobs here the same way we quote the big ones.",
+      garage="Garage floor coating in Paxton is usually one of two things: an older detached garage in town "
+             "that needs its concrete fixed before anything is coated, or a farm shop several times that "
+             "size where the moisture reading decides the system. For the in-town garages we recommend flake "
+             "&mdash; it is the most forgiving finish over repaired concrete and it adds grip for the "
+             "winter. For a working shop, flake with a non-slip aggregate in the topcoat, because those "
+             "floors get wet and get walked on in boots. Either way, there is no trip charge to come out and "
+             "look at it.",
+      area="Thirty-five minutes north on I-57, past Rantoul and Gibson City. All of Ford County is inside "
+           "the radius.",
+      nearby=["Rantoul", "Gibson City", "Champaign", "Hoopeston"]),
 
- dict(slug="garage-floor-coating-bloomington-il", city="Bloomington", county="McLean County",
-      service="Garage Floor Coating", kw="garage floor coating Bloomington IL",
-      img="garage-floor-coating-champaign-il.jpg",
-      alt="Bloomington, IL garage with a freshly installed light gray epoxy floor coating",
-      title="Garage Floor Coating Bloomington IL | Epoxy Garage Floors",
-      desc="Garage floor coating in Bloomington, IL. Diamond-ground prep, hot-tire resistant epoxy, flake and solid color finishes across McLean County. Free quotes - (217) 417-5950.",
-      h1="Garage Floor Coating in Bloomington, IL",
-      intro="We coat garage floors right across Bloomington and McLean County, and there is no trip charge to come out and quote &mdash; we treat this market exactly like our home one.",
-      local="Bloomington garages divide into two jobs. In the established neighborhoods, the slab is usually mid-century: sound underneath, but with hairline cracking, some pitting, and spalling along the apron where the salt collects. That gets chased, filled and patched before anything else happens. In the newer subdivisions the concrete is generally clean and flat, so the work is a straight diamond grind and the budget goes into the finish instead. Either way you get a hot-tire rated system, because a coating that lifts where the car parks is not a floor, it is a callback.",
-      nearby=["Normal", "Downs", "Le Roy", "Heyworth"]),
+ dict(slug="epoxy-flooring-clinton-il", city="Clinton", county="DeWitt County",
+      img="polished-epoxy-parking-deck.jpg",
+      alt="Coated concrete floor in a large building in Clinton, IL",
+      intro="Clinton is about forty-five minutes west of Champaign, roughly halfway between us and "
+            "Bloomington, and DeWitt County is inside our service radius with no trip charge.",
+      local="Clinton is a small county seat with a mix we do not see everywhere. There is the older housing "
+            "around the DeWitt County courthouse square and the C.H. Moore Homestead &mdash; pre-war and "
+            "mid-century homes, detached garages, original concrete with the usual cracking and apron "
+            "spalling. There is genuine industrial and institutional square footage in the area, including "
+            "the buildings supporting the Clinton Power Station, where floors need real build thickness and "
+            "chemical resistance rather than a residential-grade coating. And then there is Clinton Lake and "
+            "Weldon Springs, which brings a surprising number of detached shops, boat and RV storage "
+            "buildings and lakeside outbuildings into the mix. Those lake-adjacent floors see a lot of wet "
+            "traffic, so we normally spec non-slip aggregate into the topcoat as standard rather than as an "
+            "upgrade. Rural shops and machine sheds across the rest of DeWitt County round it out, and every "
+            "one of those gets moisture tested first.",
+      garage="Garage floor coating in Clinton is a good example of why we quote on site rather than over "
+             "the phone. A detached garage near the square and a forty-foot storage building out by the lake "
+             "are the same service on paper and completely different jobs in practice &mdash; different "
+             "prep, different system, different per-foot rate. What does not change is the order of "
+             "operations: test the slab, fix the concrete, grind it open, then coat. For storage buildings "
+             "and anything near the water we push hard for non-slip aggregate, because a smooth coated floor "
+             "with lake water and a trailer on it is genuinely slick.",
+      area="Forty-five minutes west, an easy run out Route 54. Clinton, Farmer City and the Clinton Lake "
+           "area are all inside the radius.",
+      nearby=["Farmer City", "Bloomington", "Decatur", "Monticello"]),
+
+ dict(slug="epoxy-flooring-tolono-il", city="Tolono", county="Champaign County",
+      img="epoxy-garage-floor-interior.jpg",
+      alt="Garage in Tolono, IL with a clean coated concrete floor and workbench",
+      intro="Tolono is fifteen minutes south of Champaign on US-45, which makes it one of the closest towns "
+            "on this list and one of the easiest for us to fit into a week.",
+      local="Tolono is a village of a few thousand surrounded immediately by farmland, and that combination "
+            "gives us a nice split of work. In the village itself, the older homes around the historic rail "
+            "crossing and toward Tolono Community Park have detached garages on mid-century concrete &mdash; "
+            "thin slabs, cracking through the middle, spalled aprons, all of it repairable and all of it "
+            "worth repairing properly. The newer subdivisions on the edges of the village, and the homes out "
+            "toward the Unity school campus, are modern pours with attached two- and three-car garages that "
+            "need little more than a diamond grind. Step outside the village limits and it becomes machine "
+            "sheds, grain shops and equipment buildings, which is where the bigger square footage is. Those "
+            "rural slabs get moisture tested without exception, because a barn floor poured straight onto "
+            "grade will drive vapor up through a coating that was not specified for it.",
+      garage="Garage floor coating in Tolono is genuinely quick for us to schedule &mdash; it is fifteen "
+             "minutes from base, so we can drop in to look at a floor almost any day and there is obviously "
+             "no trip charge. On the newer subdivision slabs it is a straight grind-and-coat, one to two "
+             "days on site, and solid color is a real option because the concrete is flat enough to carry "
+             "it. On the older village garages we repair first and then recommend flake, which hides the "
+             "patched areas and adds grip. For the farm shops out of town, expect a moisture test, a heavier "
+             "build and non-slip aggregate in the topcoat.",
+      area="Fifteen minutes south on US-45, closer than most of the towns we cover. Tolono, Philo, Sidney "
+           "and Pesotum are all a short run from base.",
+      nearby=["Champaign", "Savoy", "Philo", "Tuscola"]),
 ]
+
+for _l in LOCATIONS:
+    _c, _co = _l["city"], _l["county"]
+    _l["service"] = "Epoxy Flooring"
+    _l["h1"] = f"Epoxy Flooring in {_c}, IL"
+    _l["h2_garage"] = f"Garage Floor Coating in {_c}, IL"
+    _l["title"] = f"Epoxy Flooring {_c} IL | Garage Floor Coating {_c} IL"
+    _l["desc"] = (f"Epoxy flooring and garage floor coating in {_c}, IL. Garage, basement, flake, "
+                  f"metallic and commercial epoxy across {_co}. Free quotes.")
 
 LOC_BY_SLUG = {l["slug"]: l for l in LOCATIONS}
 
@@ -1139,7 +1511,7 @@ def loc_links(limit=None, dark=False, exclude=None):
     if limit: items = items[:limit]
     return "\n".join(
         f'      <li><a class="link-card" href="/{l["slug"]}/">{I["pin"]}'
-        f'<span>{l["service"]} in {l["city"]}, IL</span>'
+        f'<span>Epoxy Flooring in {l["city"]}, IL</span>'
         f'<span class="go" aria-hidden="true">&rarr;</span></a></li>' for l in items)
 
 def svc_links(exclude=None, dark=False):
@@ -1158,24 +1530,30 @@ def map_embed(query, label):
 
 def page_location(l):
     path = f"/{l['slug']}/"
-    trail = [("Home", "/"), ("Service Area", "/service-area/"), (f"{l['service']} in {l['city']}", None)]
+    trail = [("Home", "/"), ("Service Area", "/service-area/"), (f"Epoxy Flooring in {l['city']}", None)]
     intro = l["intro"].format(name=NAME, owners=OWNER_PAIR)
     nearby = ", ".join(l["nearby"])
 
-    schema = [crumb_schema(trail), {
+    schema = [crumb_schema(trail), local_business(), {
         "@context": "https://schema.org", "@type": "Service",
         "@id": BASE + path + "#service",
-        "name": f"{l['service']} in {l['city']}, IL",
-        "serviceType": l["service"],
+        "name": f"Epoxy Flooring in {l['city']}, IL",
+        "serviceType": "Epoxy flooring",
         "description": plain(l["desc"]),
         "url": BASE + path,
         "provider": {"@id": BASE + "/#business"},
         "areaServed": {"@type": "City", "name": f"{l['city']}, IL",
                        "containedInPlace": {"@type": "AdministrativeArea",
                                             "name": f"{l['county']}, Illinois"}},
+        "hasOfferCatalog": {"@type": "OfferCatalog",
+                            "name": f"Epoxy flooring services in {l['city']}, IL",
+                            "itemListElement": [
+                                {"@type": "Offer", "itemOffered": {
+                                    "@type": "Service", "name": plain(sv["name"]),
+                                    "url": BASE + "/services/" + sv["slug"] + "/"}}
+                                for sv in SERVICES]},
         "offers": {"@type": "Offer", "priceCurrency": "USD", "url": BASE + "/contact/",
-                   "availability": "https://schema.org/InStock"}},
-        local_business()]
+                   "availability": "https://schema.org/InStock"}}]
 
     return head(l["title"], l["desc"], path, schema=schema) + header("") + f"""
 <section class="pagehead">
@@ -1218,14 +1596,36 @@ def page_location(l):
   </div>
 </section>
 
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="split split--flip">
+      <div>
+        <p class="eyebrow">Garages</p>
+        <h2>{l['h2_garage']}</h2>
+        <p>{l['garage']}</p>
+        <div class="btn-row" style="margin-top:1.75rem">
+          <a class="btn btn--onDark" href="/contact/?type=Garage">Quote my garage floor</a>
+          <a class="btn btn--ghostDark" href="/services/garage-floor-epoxy/">Garage floor epoxy</a>
+        </div>
+      </div>
+      <div class="split__media reveal">
+        <img src="{IMG}/blue-flake-epoxy-garage-floor.jpg"
+             alt="Garage floor coating of the kind we install in {l['city']}, IL &ndash; blue and gray flake epoxy"
+             width="1280" height="854" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section section--paper2">
   <div class="wrap">
     <div class="split">
       <div>
         <p class="eyebrow">Service area</p>
         <h2>Where {l['city']} sits in our range</h2>
+        <p>{l['area']}</p>
         <p>We are based in {CFG['basedIn']['county']} and work {AREA['radiusMiles']}+ miles in every
-        direction. {l['city']} and the rest of {l['county']} are well inside that, along with
+        direction, so {l['city']} and the rest of {l['county']} are well inside it, along with
         {nearby}.</p>
         <p>Call <a href="tel:{TEL}"><strong>{PHONE}</strong></a> and we will tell you straight away
         when we can get out to look at it.</p>
@@ -1241,7 +1641,7 @@ def page_location(l):
     <div class="section-head">
       <p class="eyebrow">Services</p>
       <h2>What we install in {l['city']}</h2>
-      <p class="lede">Every service below is available across {l['county']} and the surrounding towns.</p>
+      <p class="lede">All six services are available across {l['county']} and the surrounding towns.</p>
     </div>
     <ul class="link-grid link-grid--3">
 {svc_links()}
@@ -1256,7 +1656,7 @@ def page_location(l):
       <h2 style="font-size:clamp(1.4rem,3vw,2rem)">Other towns we cover</h2>
     </div>
     <ul class="link-grid link-grid--3">
-{loc_links(exclude=l['slug'], limit=9, dark=True)}
+{loc_links(exclude=l['slug'], dark=True)}
     </ul>
     <p style="margin-top:1.5rem"><a class="arrow-link" href="/service-area/">See the full service area <span aria-hidden="true">&rarr;</span></a></p>
   </div>
@@ -1277,6 +1677,7 @@ def page_location(l):
           f"On-site, itemized and in writing &mdash; with no trip charge anywhere in {l['county']}.")}
 </main>
 """ + footer()
+
 
 # ==================================================================== ABOUT ==
 def page_about():
@@ -1839,6 +2240,7 @@ def page_404():
 """ + footer()
 
 
+
 # ====================================================== SITEMAP / MAIN LOOP ==
 from datetime import date as _date
 
@@ -1905,6 +2307,26 @@ def main():
     write("sitemap.xml", sitemap(sm))
     write("robots.txt", robots())
     write("site.webmanifest", webmanifest())
+
+    # Renaming a slug leaves the old directory behind, still crawlable and still
+    # competing with its replacement. Report those; --prune deletes them.
+    wanted = {os.path.normpath(os.path.join(OUT, rel)) for _, rel, _, _, _, _ in pages}
+    stale = []
+    for base in [OUT, os.path.join(OUT, "services")]:
+        if not os.path.isdir(base): continue
+        for name in sorted(os.listdir(base)):
+            d = os.path.join(base, name)
+            idx = os.path.join(d, "index.html")
+            if os.path.isdir(d) and os.path.isfile(idx) and idx not in wanted:
+                stale.append(d)
+    if stale:
+        prune = "--prune" in sys.argv
+        for d in stale:
+            print(("  pruned stale page: " if prune else "  !! STALE PAGE (rerun with --prune): ")
+                  + os.path.relpath(d, OUT))
+            if prune:
+                os.remove(os.path.join(d, "index.html"))
+                if not os.listdir(d): os.rmdir(d)
 
     print(f"Built {len(pages)} pages into {OUT}")
     print(f"  {len(SERVICES)} service pages, {len(LOCATIONS)} location pages")
