@@ -101,6 +101,21 @@ def main():
         if len(h1) != 1: fail(f"{u}: {len(h1)} <h1> tags (want exactly 1)")
         elif not noindex: h1s.setdefault(text_of(h1[0]), []).append(u)
 
+        # --- images: a description has to match the photograph ----------------
+        # These are stock photographs, not DP Flooring job photos. An alt may
+        # RELATE an image to a town ("the kind of slab we coat in Danville, IL")
+        # but must never assert the photo was taken there.
+        TOWNS = ("Champaign", "Urbana", "Savoy", "Mahomet", "Rantoul", "Bloomington",
+                 "Normal", "Decatur", "Danville", "Monticello", "Tuscola", "Paxton",
+                 "Clinton", "Tolono", "Central Illinois", "Champaign County")
+        QUALIFIERS = ("the kind", "like the", "the finish", "the condition",
+                      "we install", "we coat", "we prepare", "we usually start", "goes into")
+        for alt in re.findall(r'<img[^>]*\balt="([^"]*)"', src):
+            a = html.unescape(alt)
+            if re.search(r"\b(in|near) (" + "|".join(TOWNS) + r")\b", a) and \
+               not any(q in a for q in QUALIFIERS):
+                fail(f"{u}: alt claims a stock photo was taken somewhere it was not: {a[:70]!r}")
+
         # --- images ----------------------------------------------------------
         for img in re.findall(r"<img\s[^>]*>", src):
             if 'alt="' not in img: fail(f"{u}: <img> with no alt attribute")

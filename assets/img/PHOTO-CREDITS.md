@@ -21,8 +21,11 @@ brand blue is safe for button fills and for body-size text on white.
 ## Client-owned photography
 
 - `photos/blue-flake-epoxy-garage-floor.jpg` - cropped from the client's own
-  marketing banner (the blue/gray flake garage). Used on the Monticello and
-  Champaign garage-coating pages.
+  marketing banner (the blue/gray flake garage). Used on the garage service page,
+  the gallery, and the garage section of every location page. Note this is
+  marketing artwork rather than a photograph of a completed job, so its alt says
+  "Modern garage finished with a blue and gray flake epoxy floor" and does not
+  place it anywhere.
 
 ## Stock photography - Pexels
 
@@ -34,16 +37,48 @@ quality 74-86 progressive JPEG.
 
 **These are reference photos of the floor systems, not DP Flooring job photos.**
 That distinction is deliberate and it is stated on the gallery page. Nothing on
-this site claims a pictured floor was installed by DP Flooring. As real jobs are
+this site claims a pictured floor was installed by DP Flooring.
+
+### Descriptions must match the photograph
+
+Every `alt` describes **what is actually in the frame**, verified against the
+image. Two rules hold, and `tools/audit.py` enforces the second:
+
+1. **No claim the photo does not support.** Earlier drafts said the flake
+   close-up was "gray, white and blue" (measured saturation is 5 — it is neutral
+   gray, no blue at all), that the basement shot showed a "seamless coated floor"
+   (it is warm tan tile), and that the steel shop building had a "freshly coated
+   concrete floor" (it is bare concrete). All corrected.
+2. **No stock photo asserts a location.** An alt may *relate* an image to a town
+   — "the kind of pole barn slab we coat around Mahomet, IL" — because that is
+   true. It may never say "Pole barn shop near Mahomet, IL", because the photo
+   was not taken there. The audit fails the build on the second form, so the
+   city still appears in the alt for SEO without the site claiming something
+   untrue.
+
+Four filenames were renamed for the same reason — they described the photo
+wrongly (`basement-epoxy-floor-urbana-il` → `finished-basement-lower-level`,
+`shop-warehouse-epoxy-floor-central-illinois` →
+`shop-building-bare-concrete-floor`, `high-gloss-epoxy-shop-floor` →
+`high-gloss-epoxy-hangar-floor` (it is an aircraft hangar),
+`polished-epoxy-parking-deck` → `parking-structure-gray-floor`). Three more
+dropped a city they could not support (`garage-floor-coating-champaign-il` →
+`garage-storage-cabinets-gray-floor`, `commercial-epoxy-floor-coating-bloomington-il`
+→ `commercial-epoxy-floor-coating`, `hero-epoxy-floor-champaign-il-*` →
+`hero-high-gloss-epoxy-warehouse-*`).
+
+**When you swap in a real job photo, update its alt to match** — and once it is
+genuinely your work in a named town, you can say so plainly. Add the town to the
+`QUALIFIERS` exemption only if the photo really was taken there. As real jobs are
 photographed, drop the new file in over the old one **using the same filename**
 and every page that references it updates at once - no HTML edit needed.
 
 ### Priority order for swapping in real job photos
 
-1. `photos/hero-epoxy-floor-champaign-il-2400.jpg` + `-1280.jpg` (homepage hero)
+1. `photos/hero-high-gloss-epoxy-warehouse-2400.jpg` + `-1280.jpg` (homepage hero)
 2. The six before/after pairs on `/gallery/` - these carry the most persuasive
    weight and are the most obviously generic
-3. `photos/garage-floor-coating-champaign-il.jpg` (garage service page)
+3. `photos/garage-storage-cabinets-gray-floor.jpg` (used on the Savoy page)
 4. `photos/epoxy-crew-installing-warehouse-floor.jpg` - replace with a real photo
    of Drayton and Dylan working; it is the About page's main image
 

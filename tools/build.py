@@ -70,7 +70,7 @@ NAV_MOBILE = NAV + [("Contact", "/contact/")]
 SERVICES = [
  dict(slug="garage-floor-epoxy", name="Garage Floor Epoxy", icon="home", type="Garage", pair_idx=3,
       img="blue-flake-epoxy-garage-floor.jpg",
-      alt="Residential garage in Champaign County, IL finished with a blue and gray flake epoxy floor",
+      alt="Modern garage finished with a blue and gray flake epoxy floor",
       title="Garage Floor Epoxy Champaign IL | Garage Floor Coating | DP Flooring",
       desc="Epoxy garage floor coating in Champaign-Urbana, Bloomington-Normal and Central Illinois. "
            "Diamond-ground prep, hot-tire resistant systems, flake and solid color finishes.",
@@ -107,8 +107,8 @@ SERVICES = [
                "Extras &mdash; non-slip aggregate, cove base at the walls, and a second clear coat"]),
 
  dict(slug="basement-floor-epoxy", name="Basement Floor Epoxy", icon="layers", type="Basement", pair_idx=2,
-      img="basement-epoxy-floor-urbana-il.jpg",
-      alt="Bright finished basement in Urbana, IL with a clean, seamless coated floor",
+      img="finished-basement-lower-level.jpg",
+      alt="Bright, finished basement living space &mdash; the kind of lower level an epoxy floor goes into",
       title="Basement Floor Epoxy | Champaign &amp; Bloomington IL | DP Flooring",
       desc="Basement floor epoxy coating across Central Illinois. Seals concrete dust, resists moisture "
            "and brightens the lower level. Moisture tested before we quote.",
@@ -147,8 +147,8 @@ SERVICES = [
 
  dict(slug="commercial-industrial-floor-coating", name="Commercial &amp; Industrial Floor Coating",
       icon="truck", type="Commercial / industrial", pair_idx=6,
-      img="commercial-epoxy-floor-coating-bloomington-il.jpg",
-      alt="Commercial building interior in Bloomington, IL with a freshly coated high-gloss epoxy floor",
+      img="commercial-epoxy-floor-coating.jpg",
+      alt="Warehouse interior with a freshly installed high-gloss epoxy floor",
       title="Commercial &amp; Industrial Floor Coating | Bloomington &amp; Decatur IL",
       desc="Commercial and industrial epoxy floor coatings in Central Illinois. Warehouses, shops, pole "
            "barns and production floors. High-build systems, line striping, off-hours installs.",
@@ -188,7 +188,7 @@ SERVICES = [
 
  dict(slug="flake-epoxy-flooring", name="Flake Epoxy Flooring", icon="grid", type="Flake epoxy", pair_idx=4,
       img="decorative-flake-epoxy-floor-finish.jpg",
-      alt="Close-up of a gray, white and blue full-broadcast flake epoxy floor finish",
+      alt="Close-up of a gray and white speckled floor finish, the look a full-broadcast flake system gives",
       title="Flake Epoxy Flooring | Garage &amp; Basement Floors | Illinois",
       desc="Full-broadcast flake epoxy flooring in Central Illinois. Custom color blends, built-in grip, "
            "hides slab imperfections, finished with a clear urethane topcoat.",
@@ -228,7 +228,7 @@ SERVICES = [
  dict(slug="metallic-epoxy-flooring", name="Metallic Epoxy Flooring", icon="sparkle",
       type="Metallic epoxy", pair_idx=5,
       img="metallic-epoxy-floor-finish.jpg",
-      alt="Large interior with a poured metallic epoxy floor in an amber blend and steel columns",
+      alt="Large interior with a poured amber metallic floor finish and dark steel columns",
       title="Metallic Epoxy Flooring | Showroom &amp; Garage Floors | Central Illinois",
       desc="Poured metallic epoxy floors in Central Illinois. Pigments move through the resin as it "
            "levels, so no two floors are alike. Showrooms, retail, basements and feature garages.",
@@ -266,7 +266,7 @@ SERVICES = [
  dict(slug="epoxy-floor-prep-and-repair", name="Epoxy Floor Prep &amp; Repair", icon="ruler",
       type="Existing epoxy floor that is failing", pair_idx=1,
       img="concrete-floor-prep-and-repair.jpg",
-      alt="Cracked, pitted and stained concrete slab in Central Illinois before grinding and repair",
+      alt="Cracked, pitted and stained concrete slab of the kind we grind and repair before coating",
       title="Epoxy Floor Prep &amp; Repair | Slab Prep | Central Illinois",
       desc="Slab prep and repair before an epoxy floor in Central Illinois: diamond grinding, shot "
            "blasting, crack chasing, spall repair and failed coating removal.",
@@ -390,40 +390,38 @@ FAQS = [
 
 PAIRS = [
  ("Warehouse floor", "Bare slab &rarr; high-build coating",
-  "before-bare-warehouse-slab.jpg", "Empty warehouse before coating, showing bare gray concrete",
-  "commercial-epoxy-floor-coating-bloomington-il.jpg", "The same style of warehouse after a high-gloss epoxy floor coating"),
- ("Shop &amp; hangar bay", "Dusty concrete &rarr; mirror-gloss finish",
-  "before-bare-shop-concrete-floor.jpg", "Service shop with dusty untreated concrete floor before coating",
-  "high-gloss-epoxy-shop-floor.jpg", "Hangar bay with a mirror-gloss white epoxy floor reflecting the aircraft above it"),
- ("Lower level &amp; basement", "Raw slab &rarr; sealed, bright floor",
+  "before-bare-warehouse-slab.jpg", "Empty warehouse with bare gray concrete and roof skylights, before coating",
+  "commercial-epoxy-floor-coating.jpg", "Warehouse interior with a high-gloss epoxy floor coating"),
+ ("Service bay &amp; large-span floors", "Untreated concrete &rarr; mirror-gloss finish",
+  "before-bare-shop-concrete-floor.jpg", "Vehicle service shop with a dusty, untreated concrete floor",
+  "high-gloss-epoxy-hangar-floor.jpg", "Aircraft hangar with a mirror-gloss white epoxy floor"),
+ ("Raw slab &amp; sealed floor", "Unfinished concrete &rarr; smooth sealed gray",
   "before-bare-basement-slab.jpg", "Unfinished basement with a raw concrete slab and exposed joists",
-  "polished-epoxy-parking-deck.jpg", "Lower level with a smooth, sealed, light gray coated floor"),
- ("Garage &amp; workshop", "Stained concrete &rarr; coated floor",
-  "before-worn-garage-concrete.jpg", "Workshop with worn and stained bare concrete floor",
-  "epoxy-garage-floor-interior.jpg", "Garage workshop with a clean coated gray floor and storage shelving"),
- ("Cracked &amp; pitted slab", "Repaired &rarr; full flake finish",
+  "parking-structure-gray-floor.jpg", "Smooth, light gray floor running through a large parking structure"),
+ ("Garage &amp; workshop", "Bare concrete &rarr; coated floor",
+  "before-worn-garage-concrete.jpg", "Bright workshop with a bare, untreated concrete floor",
+  "epoxy-garage-floor-interior.jpg", "Garage interior with a smooth gray floor and open storage shelving"),
+ ("Cracked &amp; pitted slab", "Damaged concrete &rarr; full flake finish",
   "concrete-floor-prep-and-repair.jpg", "Cracked, pitted and stained concrete slab before repair",
-  "decorative-flake-epoxy-floor-finish.jpg", "Gray and white full-broadcast flake epoxy finish"),
- ("Showroom &amp; feature floor", "Bare slab &rarr; poured metallic",
-  "before-bare-warehouse-slab.jpg", "Bare concrete slab in a large interior before a metallic epoxy pour",
-  "metallic-epoxy-floor-finish.jpg", "Poured metallic epoxy floor in an amber blend with visible movement and depth"),
+  "decorative-flake-epoxy-floor-finish.jpg", "Close-up of a gray and white speckled full-broadcast flake finish"),
+ ("Feature floor", "Bare slab &rarr; poured metallic",
+  "before-bare-warehouse-slab.jpg", "Bare concrete floor in a large open interior",
+  "metallic-epoxy-floor-finish.jpg", "Poured amber metallic floor finish with visible movement and depth"),
  ("Commercial deck", "Stained deck &rarr; coating with safety striping",
-  "before-stained-parking-deck.jpg", "Stained and worn commercial parking deck before coating",
-  "commercial-floor-coating-line-striping.jpg", "Close-up of a coated commercial floor with painted directional arrows and safety striping"),
+  "before-stained-parking-deck.jpg", "Stained, wet commercial parking deck before coating",
+  "commercial-floor-coating-line-striping.jpg", "Close-up of a coated commercial floor with painted directional arrows and a red safety stripe"),
 ]
 
 SHOTS = [
- ("blue-flake-epoxy-garage-floor.jpg", "Blue and gray flake epoxy in a residential garage",
-  "Residential garage in Champaign County, IL with a blue and gray flake epoxy floor"),
+ ("blue-flake-epoxy-garage-floor.jpg", "Blue and gray flake epoxy in a modern garage",
+  "Modern garage lit with blue accent lighting, finished with a blue and gray flake epoxy floor"),
  ("car-showroom-epoxy-floor.jpg", "Showroom floor under a high-gloss clear topcoat",
   "Car showroom with a high-gloss coated floor reflecting the vehicles on display"),
  ("showroom-epoxy-floor-graphics.jpg", "Coated floor with inlaid color graphics and striping",
-  "Coated showroom floor with black and red inlaid graphics"),
+  "Coated floor with black and red inlaid graphics running beside a ribbed metal wall"),
  ("metallic-epoxy-floor-finish.jpg", "Poured metallic epoxy in an amber blend",
-  "Large interior with a poured amber metallic epoxy floor and steel columns"),
+  "Large interior with a poured amber metallic floor finish and dark steel columns"),
 ]
-
-
 
 # ---- per-service extra sections: why epoxy here, how the install runs, FAQs --
 SERVICE_EXTRA = {
@@ -1106,8 +1104,8 @@ def page_home():
 
 <section class="hero">
   <div class="hero__media">
-    <img src="{IMG}/hero-epoxy-floor-champaign-il-1280.jpg"
-         srcset="{IMG}/hero-epoxy-floor-champaign-il-1280.jpg 1280w, {IMG}/hero-epoxy-floor-champaign-il-2400.jpg 2400w"
+    <img src="{IMG}/hero-high-gloss-epoxy-warehouse-1280.jpg"
+         srcset="{IMG}/hero-high-gloss-epoxy-warehouse-1280.jpg 1280w, {IMG}/hero-high-gloss-epoxy-warehouse-2400.jpg 2400w"
          sizes="100vw" width="2400" height="1350" fetchpriority="high" decoding="async"
          alt="Large commercial interior with a freshly installed high-gloss epoxy floor reflecting the overhead lights">
   </div>
@@ -1576,8 +1574,8 @@ def page_service(s):
 # ================================================================ LOCATIONS ==
 LOCATIONS = [
  dict(slug="epoxy-flooring-champaign-il", city="Champaign", county="Champaign County",
-      img="hero-epoxy-floor-champaign-il-1280.jpg",
-      alt="High-gloss epoxy floor coating installed in a commercial building in Champaign, IL",
+      img="hero-high-gloss-epoxy-warehouse-1280.jpg",
+      alt="Large commercial interior with a high-gloss epoxy floor &mdash; the finish we install on Champaign, IL floors",
       intro="Champaign is home base. {name} is owned and run by {owners}, and most of our jobs are inside "
             "a twenty-minute drive of here &mdash; which means when you have a question about your floor "
             "six months from now, we are not three hours away.",
@@ -1610,7 +1608,7 @@ LOCATIONS = [
 
  dict(slug="epoxy-flooring-urbana-il", city="Urbana", county="Champaign County",
       img="epoxy-garage-floor-interior.jpg",
-      alt="Detached garage in Urbana, IL with a clean coated gray epoxy floor and storage shelving",
+      alt="Garage interior with a smooth gray floor and storage shelving, like the detached garages we coat in Urbana, IL",
       intro="Urbana is about ten minutes from where we keep the equipment, which makes it one of the "
             "easiest towns in the county for us to schedule &mdash; small jobs included.",
       local="Urbana has an older housing stock than most of Champaign County, and that shows up in the "
@@ -1638,8 +1636,8 @@ LOCATIONS = [
       nearby=["Champaign", "St. Joseph", "Savoy", "Rantoul"]),
 
  dict(slug="epoxy-flooring-savoy-il", city="Savoy", county="Champaign County",
-      img="garage-floor-coating-champaign-il.jpg",
-      alt="Newer three-car garage in Savoy, IL finished with a light gray epoxy floor coating",
+      img="garage-storage-cabinets-gray-floor.jpg",
+      alt="Empty residential garage with storage cabinets and a smooth gray floor, like the newer slabs we coat in Savoy, IL",
       intro="Savoy sits ten minutes south of Champaign on Neil Street, and it is one of our favorite "
             "villages to work in &mdash; largely because of what the concrete under it looks like.",
       local="Savoy grew late and it grew fast, and almost all of that growth is post-1995. Prairie Fields, "
@@ -1667,8 +1665,8 @@ LOCATIONS = [
       nearby=["Champaign", "Tolono", "Urbana", "Monticello"]),
 
  dict(slug="epoxy-flooring-mahomet-il", city="Mahomet", county="Champaign County",
-      img="shop-warehouse-epoxy-floor-central-illinois.jpg",
-      alt="Pole barn shop near Mahomet, IL with a freshly coated concrete floor",
+      img="shop-building-bare-concrete-floor.jpg",
+      alt="Steel-sided shop building with a bare concrete floor &mdash; the kind of pole barn slab we coat around Mahomet, IL",
       intro="Mahomet is a straight fifteen-minute run west on I-74, and it has grown fast enough that we "
             "are out there most months of the year.",
       local="What sets Mahomet apart is the outbuildings. Lots here run considerably bigger than they do in "
@@ -1696,8 +1694,8 @@ LOCATIONS = [
       nearby=["Champaign", "Fisher", "Urbana", "Monticello"]),
 
  dict(slug="epoxy-flooring-rantoul-il", city="Rantoul", county="Champaign County",
-      img="high-gloss-epoxy-shop-floor.jpg",
-      alt="Large hangar-style building in Rantoul, IL with a high-gloss epoxy floor",
+      img="high-gloss-epoxy-hangar-floor.jpg",
+      alt="Aircraft hangar with a mirror-gloss white epoxy floor, the kind of large-span floor we coat in Rantoul, IL",
       intro="Rantoul is about twenty minutes north of Champaign on I-57, and it has a building stock unlike "
             "anywhere else in the county.",
       local="Because of the old Chanute Air Force Base, Rantoul carries far more hangar, warehouse and "
@@ -1722,8 +1720,8 @@ LOCATIONS = [
       nearby=["Paxton", "Champaign", "Gibson City", "Urbana"]),
 
  dict(slug="epoxy-flooring-bloomington-il", city="Bloomington", county="McLean County",
-      img="commercial-epoxy-floor-coating-bloomington-il.jpg",
-      alt="Commercial building in Bloomington, IL with a freshly coated high-gloss epoxy floor",
+      img="commercial-epoxy-floor-coating.jpg",
+      alt="Warehouse interior with a high-gloss epoxy floor, the kind of commercial coating we install in Bloomington, IL",
       intro="Bloomington is our second home market. It is roughly a fifty-minute drive up I-74 from "
             "Champaign County, and there is no trip charge for it &mdash; we quote and schedule McLean "
             "County exactly the way we do our own back yard.",
@@ -1751,8 +1749,8 @@ LOCATIONS = [
       nearby=["Normal", "Downs", "Le Roy", "Clinton"]),
 
  dict(slug="epoxy-flooring-normal-il", city="Normal", county="McLean County",
-      img="polished-epoxy-parking-deck.jpg",
-      alt="Coated concrete floor in a commercial lower level in Normal, IL",
+      img="parking-structure-gray-floor.jpg",
+      alt="Smooth, light gray floor running through a large parking structure, like the big floors we coat in Normal, IL",
       intro="Normal sits right against Bloomington, so we cover it on the same runs &mdash; and like the "
             "rest of McLean County, there is no trip charge to come out and quote.",
       local="Normal splits three ways for us. Around Illinois State University and Uptown, there is a steady "
@@ -1778,7 +1776,7 @@ LOCATIONS = [
 
  dict(slug="epoxy-flooring-decatur-il", city="Decatur", county="Macon County",
       img="metallic-epoxy-floor-finish.jpg",
-      alt="Large industrial interior in Decatur, IL with a poured metallic epoxy floor",
+      alt="Poured amber metallic floor finish in a large interior, the kind of feature floor we install in Decatur, IL",
       intro="Decatur is about fifty minutes southwest of Champaign, well inside our service area, and it is "
             "the most industrial market we work in.",
       local="Decatur's ag-processing and manufacturing base means the floors here are frequently large, "
@@ -1806,7 +1804,7 @@ LOCATIONS = [
 
  dict(slug="epoxy-flooring-danville-il", city="Danville", county="Vermilion County",
       img="before-bare-shop-concrete-floor.jpg",
-      alt="Shop building in Danville, IL with bare concrete ready for an epoxy floor coating",
+      alt="Vehicle service shop with a bare, untreated concrete floor &mdash; the condition we usually start from in Danville, IL",
       intro="Danville is a straight thirty-five-minute shot east on I-74, which puts the whole of Vermilion "
             "County comfortably inside our range.",
       local="Danville's industrial history left it with a lot of older shop and warehouse space, and those "
@@ -1832,7 +1830,7 @@ LOCATIONS = [
 
  dict(slug="epoxy-flooring-monticello-il", city="Monticello", county="Piatt County",
       img="blue-flake-epoxy-garage-floor.jpg",
-      alt="Residential garage near Monticello, IL finished with a blue and gray flake epoxy floor",
+      alt="Modern garage with a blue and gray flake epoxy floor, the finish we install on shops and garages around Monticello, IL",
       intro="Monticello is twenty-five minutes west of Champaign on I-72, and Piatt County is well inside "
             "the area we cover without a trip charge.",
       local="Work in Monticello skews rural, and that shapes what we quote. Between the acreages outside "
@@ -1859,7 +1857,7 @@ LOCATIONS = [
 
  dict(slug="epoxy-flooring-tuscola-il", city="Tuscola", county="Douglas County",
       img="showroom-epoxy-floor-graphics.jpg",
-      alt="Retail floor in Tuscola, IL finished with a coated epoxy surface and inlaid graphics",
+      alt="Coated floor with black and red inlaid graphics, the kind of retail finish we install in Tuscola, IL",
       intro="Tuscola sits about half an hour south of Champaign where I-57 meets US-36, and that crossroads "
             "position is a big part of what we get called out for.",
       local="Because of the interstate junction and Tanger Outlets, Tuscola punches well above its size on "
@@ -1885,8 +1883,8 @@ LOCATIONS = [
       nearby=["Arcola", "Villa Grove", "Arthur", "Tolono"]),
 
  dict(slug="epoxy-flooring-paxton-il", city="Paxton", county="Ford County",
-      img="shop-warehouse-epoxy-floor-central-illinois.jpg",
-      alt="Farm shop building near Paxton, IL with a coated concrete floor",
+      img="shop-building-bare-concrete-floor.jpg",
+      alt="Steel-sided farm shop with a bare concrete floor &mdash; the kind of slab we prepare and coat around Paxton, IL",
       intro="Paxton is around thirty-five minutes north of Champaign on I-57, and Ford County sits "
             "comfortably inside the fifty-mile radius we work.",
       local="Paxton is a county seat in the middle of some of the most productive farmland in Illinois, and "
@@ -1911,8 +1909,8 @@ LOCATIONS = [
       nearby=["Rantoul", "Gibson City", "Champaign", "Hoopeston"]),
 
  dict(slug="epoxy-flooring-clinton-il", city="Clinton", county="DeWitt County",
-      img="polished-epoxy-parking-deck.jpg",
-      alt="Coated concrete floor in a large building in Clinton, IL",
+      img="parking-structure-gray-floor.jpg",
+      alt="Smooth, light gray floor in a large parking structure, like the storage and shop buildings we coat around Clinton, IL",
       intro="Clinton is about forty-five minutes west of Champaign, roughly halfway between us and "
             "Bloomington, and DeWitt County is inside our service radius with no trip charge.",
       local="Clinton is a small county seat with a mix we do not see everywhere. There is the older housing "
@@ -1939,7 +1937,7 @@ LOCATIONS = [
 
  dict(slug="epoxy-flooring-tolono-il", city="Tolono", county="Champaign County",
       img="epoxy-garage-floor-interior.jpg",
-      alt="Garage in Tolono, IL with a clean coated concrete floor and workbench",
+      alt="Garage interior with a smooth gray floor and storage shelving, like the village garages we coat in Tolono, IL",
       intro="Tolono is fifteen minutes south of Champaign on US-45, which makes it one of the closest towns "
             "on this list and one of the easiest for us to fit into a week.",
       local="Tolono is a village of a few thousand surrounded immediately by farmland, and that combination "
@@ -2082,7 +2080,7 @@ def page_location(l):
       </div>
       <div class="split__media reveal">
         <img src="{IMG}/blue-flake-epoxy-garage-floor.jpg"
-             alt="Garage floor coating of the kind we install in {l['city']}, IL &ndash; blue and gray flake epoxy"
+             alt="Blue and gray flake epoxy garage floor, the finish we install on garages in {l['city']}, IL"
              width="1280" height="854" loading="lazy" decoding="async">
       </div>
     </div>
@@ -2313,7 +2311,7 @@ def page_about():
       </div>
       <div class="split__media split__media--tall reveal">
         <img src="{IMG}/applying-epoxy-floor-coating-roller.jpg"
-             alt="Installer pulling a fresh floor coating across a prepared slab with a long-handled squeegee"
+             alt="Applicator spreading a fresh yellow floor coating with a long-handled squeegee"
              width="900" height="1200" loading="lazy" decoding="async">
       </div>
     </div>
@@ -2473,8 +2471,8 @@ def page_area():
         </div>
       </div>
       <div class="split__media reveal">
-        <img src="{IMG}/high-gloss-epoxy-shop-floor.jpg"
-             alt="Large shop bay with a mirror-gloss epoxy floor"
+        <img src="{IMG}/high-gloss-epoxy-hangar-floor.jpg"
+             alt="Aircraft hangar with a mirror-gloss white epoxy floor"
              width="1280" height="854" loading="lazy" decoding="async">
       </div>
     </div>

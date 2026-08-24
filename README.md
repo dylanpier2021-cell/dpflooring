@@ -261,6 +261,8 @@ python3 tools/build.py . && python3 tools/audit.py .
 - a title over 70 chars, or a description outside 110–175
 - **any duplicate title, description or H1 across pages**
 - an `<img>` with no `alt`, or without `width`/`height`
+- an alt that claims a stock photo was taken in a named town (see
+  `assets/img/PHOTO-CREDITS.md` — descriptions must match the photograph)
 - invalid JSON-LD, a service or location page missing `LocalBusiness` or
   `Service` schema, or `/faq/` missing `FAQPage`
 - no click-to-call link in the header or the footer
