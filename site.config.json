@@ -1,0 +1,138 @@
+{
+  "_readme": "SINGLE SOURCE OF TRUTH for every value that repeats across the site. Edit here, then run: python3 tools/build.py . The HTML in this repo is generated - do not hand-edit it, your changes will be overwritten on the next build.",
+  "baseUrl": "https://www.dpflooringservices.com",
+  "_baseUrl_note": "ASSUMED domain - change this to the real one before launch. It is the only place the domain is written.",
+  "legalName": "DP Flooring Services LLC",
+  "brand": "DP Flooring Services",
+  "shortBrand": "DP Flooring",
+  "owners": [
+    "Drayton Potthast",
+    "Dylan Pierson"
+  ],
+  "tagline": "Built to last. Finished to impress.",
+  "phone": "(217) 417-5950",
+  "phoneE164": "+12174175950",
+  "email": "dpflooringservicesllc@gmail.com",
+  "basedIn": {
+    "county": "Champaign County",
+    "region": "IL",
+    "regionName": "Illinois",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 40.1164,
+    "lng": -88.2434
+  },
+  "serviceArea": {
+    "radiusMiles": 50,
+    "radiusMeters": 80467,
+    "phrase": "Champaign-Urbana, Bloomington-Normal and every town within 50+ miles",
+    "shortPhrase": "Champaign-Urbana, Bloomington-Normal & 50+ miles around",
+    "headline": [
+      "Champaign",
+      "Urbana",
+      "Savoy",
+      "Mahomet",
+      "Rantoul",
+      "Bloomington",
+      "Normal",
+      "Decatur",
+      "Danville",
+      "Monticello",
+      "Tuscola"
+    ],
+    "groups": [
+      {
+        "name": "Champaign County & right around it",
+        "towns": [
+          "Champaign",
+          "Urbana",
+          "Savoy",
+          "Mahomet",
+          "Rantoul",
+          "St. Joseph",
+          "Tolono",
+          "Philo",
+          "Sidney",
+          "Ogden",
+          "Thomasboro",
+          "Fisher",
+          "Gifford",
+          "Pesotum",
+          "Homer",
+          "Broadlands"
+        ]
+      },
+      {
+        "name": "Bloomington-Normal & McLean County",
+        "towns": [
+          "Bloomington",
+          "Normal",
+          "Downs",
+          "Le Roy",
+          "Hudson",
+          "Towanda",
+          "Lexington",
+          "Heyworth",
+          "Chenoa"
+        ]
+      },
+      {
+        "name": "Piatt, Douglas & Moultrie counties",
+        "towns": [
+          "Monticello",
+          "Tuscola",
+          "Bement",
+          "Cerro Gordo",
+          "Atwood",
+          "Arcola",
+          "Villa Grove",
+          "Arthur",
+          "Sullivan",
+          "Camargo"
+        ]
+      },
+      {
+        "name": "Decatur, Danville & the rest of Central Illinois",
+        "towns": [
+          "Decatur",
+          "Forsyth",
+          "Mt. Zion",
+          "Argenta",
+          "Maroa",
+          "Clinton",
+          "Farmer City",
+          "Danville",
+          "Tilton",
+          "Westville",
+          "Georgetown",
+          "Hoopeston",
+          "Paxton",
+          "Gibson City",
+          "Watseka"
+        ]
+      }
+    ]
+  },
+  "social": {
+    "_note": "ASSUMED handles - set each to \"\" to drop the icon from the footer, or paste the real profile URL.",
+    "facebook": "https://www.facebook.com/dpflooringservicesllc",
+    "instagram": "https://www.instagram.com/dpflooringservicesllc",
+    "googleBusinessProfile": "",
+    "_gbp_note": "Paste the Google Business Profile share link here once the profile is live. It then appears in the footer and in the LocalBusiness sameAs list. Keep the profile's name, phone and service area IDENTICAL to this file."
+  },
+  "form": {
+    "provider": "netlify",
+    "_provider_note": "\"netlify\" wires the form to Netlify Forms. See README.md for the Formspree / FormSubmit swap if the site is hosted elsewhere."
+  },
+  "copyrightYear": 2026,
+  "pricing": {
+    "_note": "Optional. Put a real installed price range here (e.g. \"$4.50 - $7.00 / sq ft\") and the service page swaps its 'what moves the price' copy for that headline figure. Leave a value as \"\" to keep the cost-drivers version, which is what ships by default.",
+    "garage-epoxy-floors": "",
+    "basement-floors": "",
+    "commercial-industrial-coatings": "",
+    "shop-warehouse-floors": "",
+    "decorative-flake-and-metallic-epoxy": "",
+    "floor-prep-and-repair": ""
+  }
+}

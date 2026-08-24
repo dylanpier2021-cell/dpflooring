@@ -1,0 +1,6 @@
+# DP Flooring Services LLC
+User-agent: *
+Allow: /
+Disallow: /contact/thank-you/
+
+Sitemap: https://www.dpflooringservices.com/sitemap.xml

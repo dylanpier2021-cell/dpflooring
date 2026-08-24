@@ -1,0 +1,48 @@
+# Netlify config for the DP Flooring Services static site.
+# There is no build step at deploy time - the repo root IS the site.
+# Regenerate the HTML locally with:  python3 tools/build.py .
+
+[build]
+  publish = "."
+  command = ""
+
+# Long-cache the static assets (they are content-stable), but let HTML
+# revalidate so copy edits go live the moment you redeploy.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# Security headers. HSTS is what pins browsers to HTTPS once the Netlify
+# certificate is live - do not enable it before the domain resolves.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# Force one canonical host so link equity does not split between the apex and
+# www. Uncomment once DNS points at Netlify and set the real domain.
+# [[redirects]]
+#   from = "https://dpflooringservices.com/*"
+#   to = "https://www.dpflooringservices.com/:splat"
+#   status = 301
+#   force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
