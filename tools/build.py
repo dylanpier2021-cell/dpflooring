@@ -263,18 +263,18 @@ SERVICES = [
                "Number of pigment colors and the complexity of the blend",
                "Clear urethane topcoats over the finished pour"]),
 
- dict(slug="concrete-floor-prep-and-repair", name="Concrete Floor Prep &amp; Repair", icon="ruler",
-      type="Prep / repair", pair_idx=1,
+ dict(slug="epoxy-floor-prep-and-repair", name="Epoxy Floor Prep &amp; Repair", icon="ruler",
+      type="Existing epoxy floor that is failing", pair_idx=1,
       img="concrete-floor-prep-and-repair.jpg",
       alt="Cracked, pitted and stained concrete slab in Central Illinois before grinding and repair",
-      title="Concrete Floor Prep &amp; Repair | Crack Repair | Central Illinois",
-      desc="Concrete floor preparation and repair in Central Illinois: diamond grinding, shot blasting, "
-           "crack chasing, spall and pit repair, and failed coating removal.",
-      h1="Concrete Floor Prep &amp; Repair",
-      sub_h2="The step that decides how long the floor lasts",
-      short="The part nobody sees, and the part everything else depends on. Cracks, pits, spalling, "
-            "failing old coatings and oil-soaked concrete all get dealt with before a drop of epoxy "
-            "goes down.",
+      title="Epoxy Floor Prep &amp; Repair | Slab Prep | Central Illinois",
+      desc="Slab prep and repair before an epoxy floor in Central Illinois: diamond grinding, shot "
+           "blasting, crack chasing, spall repair and failed coating removal.",
+      h1="Epoxy Floor Prep &amp; Repair",
+      sub_h2="The step that decides how long your epoxy floor lasts",
+      short="The part nobody sees, and the part your epoxy floor depends on entirely. Cracks, pits, "
+            "spalling, failing old coatings and oil-soaked concrete all get dealt with before a drop of "
+            "epoxy goes down.",
       long="Almost every failed epoxy floor we get called out to look at failed for the same reason: "
            "nobody prepped the concrete. Someone rolled a coating over a sealed, dusty or oily slab and the "
            "bond never had a chance to form. We mechanically profile every floor we touch &mdash; no acid "
@@ -289,16 +289,16 @@ SERVICES = [
             "finished floor within a season. Spalled and pitted areas get patched and re-leveled. Oil and "
             "grease are their own problem: they wick down into the slab, and heat or foot traffic pulls them "
             "back up through a fresh coating, so contaminated concrete gets degreased and tested before "
-            "anything else happens. Old failing coatings come off entirely. We also take this work on its "
-            "own, without a coating attached. If you have a slab that just needs the cracks stabilized "
-            "before you put down tile, racking or equipment &mdash; or you inherited a building with a "
-            "peeling floor and want it stripped back to bare concrete &mdash; call us for that too.",
+            "anything else happens, and old failing coatings come off entirely before we start. "
+            "Every prep job we do leads into one of our epoxy systems &mdash; that is the whole point of "
+            "it. We are not a concrete contractor who also sells coatings; we install epoxy floors, and "
+            "this is the day that decides whether yours lasts fifteen years or fifteen months.",
       bullets=["Diamond grinding and shot blasting with vacuum dust control",
                "Crack chasing and structural filling, not a skim coat over the top",
                "Spall, pit and edge repair with re-leveling where the slab needs it",
                "Removal of failed coatings &mdash; old paint, sealers and peeling epoxy",
                "Degreasing and testing so oil-contaminated concrete will take a bond",
-               "Available as standalone work, with or without a new coating after it"],
+               "Included in every epoxy floor we install &mdash; never quoted as an optional extra"],
       drivers=["Prep method &mdash; a diamond grind versus shot blasting a contaminated slab",
                "Linear feet of cracking and joints that need chasing and filling",
                "Square footage of spalling, pitting or delaminated surface to patch",
@@ -364,6 +364,25 @@ FAQS = [
  ("Is an epoxy floor slippery?",
   "<p>Clean and dry, it grips about like any smooth polished surface. Wet, it can get slick &mdash; which matters most in a garage in the winter, when you are tracking snow in off the car.</p>"
   "<p>The fix is easy: we broadcast a fine non-slip aggregate into the topcoat wherever you want it. Full flake floors already carry a bit of texture on their own. Just tell us where the floor gets wet and we will spec it that way.</p>"),
+ ("What is the difference between epoxy and polyaspartic?",
+  "<p>They are two different resin chemistries, and a lot of floors use both. <strong>Epoxy</strong> is "
+  "the workhorse: it builds thickness, it bonds superbly to prepared concrete, and it is what gives a "
+  "floor its body. Its weaknesses are that it ambers slightly under strong UV and it cures slowly in the "
+  "cold. <strong>Polyaspartic</strong> (a fast polyurea) cures in hours rather than days, stays clear "
+  "under UV, and tolerates lower temperatures &mdash; but it is thin, expensive, and has a working window "
+  "measured in minutes.</p>"
+  "<p>So the sensible build for most floors is an epoxy base for thickness and bond, with a polyaspartic "
+  "or urethane clear over the top for UV stability and abrasion resistance. Anyone selling you "
+  "'one-day polyaspartic' is trading cure speed for film build, which is a real trade-off, not a free "
+  "upgrade. We will tell you which combination your floor actually wants and why.</p>"),
+ ("How soon can you start?",
+  "<p>It depends on the season. Spring through fall is our busy stretch and we are typically booking two "
+  "to four weeks out; winter is usually quicker for heated shops, warehouses and basements, since "
+  "unheated garages need us to bring heat or wait for a warmer window.</p>"
+  "<p>What we can almost always do quickly is come and look. Estimates are usually within a few days of "
+  "the call, they are free, and there is no trip charge anywhere in our service area &mdash; so getting a "
+  "real number in your hands does not mean waiting for a slot on the schedule. Call "
+  "<a href=\"tel:{tel}\">{phone}</a> and we will tell you honestly where the calendar stands.</p>"),
  ("How do I take care of it?",
   "<p>Sweep or dust mop it, and wet mop with warm water and a mild cleaner when it needs it. Skip citrus and vinegar-based cleaners, and skip soap-based ones that leave a film and dull the gloss.</p>"
   "<p>Wipe up gasoline, brake fluid and battery acid rather than letting them sit. Put a scrap of plywood down before you set a floor jack or jack stand on it. That is genuinely the entire maintenance list &mdash; we leave a care sheet behind with it all written out.</p>"),
@@ -405,11 +424,305 @@ SHOTS = [
 ]
 
 
+
+# ---- per-service extra sections: why epoxy here, how the install runs, FAQs --
+SERVICE_EXTRA = {
+"garage-floor-epoxy": dict(
+  why_h="Why epoxy beats paint, tiles and roll-out mats",
+  why=["<strong>Garage floor paint</strong> is a one-part coating that sits on the surface. It looks fine "
+       "for a season, then hot tires lift it, jack stands gouge it, and it wears through in the traffic "
+       "lanes. Epoxy is a two-part system that cures by chemical reaction into a solid film several times "
+       "thicker, bonded into ground concrete.",
+       "<strong>Interlocking tiles and roll-out mats</strong> do not bond to anything &mdash; they sit on "
+       "top. Water, salt and oil run into the seams and sit against the slab underneath, which is exactly "
+       "the condition that causes spalling. You also get a seam every twelve inches to catch dirt.",
+       "<strong>Sealers</strong> are cheap and genuinely useful on a new slab, but they are thin, they do "
+       "not fill anything, and they need reapplying every few years. None of the three fixes cracked or "
+       "pitted concrete. An epoxy system repairs the slab first and then covers it seamlessly, which is "
+       "why it is the only one of the four that changes how the garage actually functions."],
+  steps=[("Free on-site quote",
+          "We measure, check the slab for moisture and damage, and bring physical flake and color samples "
+          "so you are not choosing off a screen. You get an itemized written number before we leave, and "
+          "there is no trip charge anywhere in our area."),
+         ("Grind and repair",
+          "The garage has to be empty. We diamond grind the whole slab with vacuum shrouds, chase and fill "
+          "every crack, patch the pits and rebuild the spalled apron by the overhead door. Dusty work, but "
+          "contained &mdash; and this is the day the floor's lifespan is decided."),
+         ("Base coat and flake",
+          "The pigmented base goes down and, if you chose flake, we broadcast chips into it by hand until "
+          "the surface reaches refusal. It is left overnight, then scraped back flat and vacuumed dead "
+          "clean the next morning."),
+         ("Clear topcoat and cure",
+          "One or two coats of clear urethane seal it, with non-slip aggregate broadcast in if you want it. "
+          "Walk on it the next morning, move shelving back after two or three days, park on it after about "
+          "a week. We leave a written care sheet with the exact dates.")],
+  faqs=[("How long will my garage be out of action?",
+         "<p>Plan on the garage being unusable for about a week, and completely empty for the first two "
+         "to three days. Prep and repair run on day one, coating and flake on day two. You can walk on it "
+         "the following morning, put shelving and boxes back after two or three days, and drive on it "
+         "after roughly seven. We give you the exact dates before we start rather than a rough guess.</p>"),
+        ("Do you coat the apron and the area under the door?",
+         "<p>Yes, up to the door line. We stop the coating at the inside edge of the overhead door seal "
+         "rather than running it out onto the driveway apron, because the outdoor slab is exposed to UV, "
+         "standing water and freeze-thaw, and a floor system designed for a heated interior does not "
+         "belong out there. The area under and just inside the door is usually the worst-damaged part of "
+         "a garage slab, and it gets rebuilt as part of the prep.</p>"),
+        ("Can you match a color to the house or my cabinets?",
+         "<p>Within reason, yes. Flake blends are mixed from stock chip colors, so we can get very close to "
+         "a cabinet color or pull a blend toward a particular tone, and we bring sample boards to the "
+         "estimate so you can hold them up against what you have. Solid-color base coats come in a fixed "
+         "range of standard colors. If you want something exact, tell us at the quote and we will be "
+         "straight about whether we can hit it.</p>")]),
+
+"basement-floor-epoxy": dict(
+  why_h="Why a basement slab is not a garage slab",
+  why=["The difference is <strong>water</strong>, and it is not the water you can see. A basement floor is "
+       "in permanent contact with damp soil on all six sides of the slab, and ground moisture moves upward "
+       "through concrete as vapor whether or not you have ever had a leak. That vapor has to go somewhere. "
+       "On bare concrete it evaporates off the surface and you never notice it, beyond the musty smell most "
+       "Central Illinois basements have.",
+       "Put a standard coating over it and you have sealed the exit. The vapor collects underneath, builds "
+       "pressure, and pushes the coating off in blisters &mdash; usually within a year, and there is "
+       "nothing you can do to a blistered floor except grind it off and start again.",
+       "That is why we test rather than guess. If the readings are low, a standard system is fine and costs "
+       "what a garage costs. If they are high, you need a moisture-mitigating primer or a vapor-tolerant "
+       "build, which costs more but actually survives. Either way you see the numbers before you see the "
+       "price, and you decide."],
+  steps=[("Quote and moisture test",
+          "We measure the space and run moisture testing on the slab &mdash; calcium chloride or relative "
+          "humidity probes depending on the floor. This happens before the quote, not after, because the "
+          "reading changes which system you need and therefore what it costs."),
+         ("Clear, grind and repair",
+          "The area has to be emptied. We diamond grind with vacuum shrouds, which matters more in a "
+          "basement than anywhere else because there is nowhere for dust to go. Cracks get chased and "
+          "filled, control joints get treated, and pitted areas get patched and leveled."),
+         ("Prime and base coat",
+          "Where the moisture readings call for it, a mitigating primer goes down first. Then the "
+          "pigmented base coat, and the flake broadcast if you chose one. Light colors are the usual "
+          "choice down here for the simple reason that basements are short on daylight."),
+         ("Topcoat, cove base and cure",
+          "Clear urethane seals the floor. If you want cove base &mdash; the coating turned up the wall a "
+          "few inches to form a seamless, mop-proof junction &mdash; this is when it goes in. Foot traffic "
+          "the next day, furniture after two or three.")],
+  faqs=[("My basement floods occasionally. Can it still be coated?",
+         "<p>Standing water from a failed sump pump or a heavy storm is a different problem from vapor "
+         "drive, and it needs solving first &mdash; a coating will survive getting wet, but it will not "
+         "fix drainage and it will not stop water coming in. Get the water managed, then coat the floor. "
+         "A sealed slab is genuinely easier to dry out and clean up after an event than bare concrete is, "
+         "so it helps afterward, but it is not the fix.</p>"),
+        ("Will it stop the musty smell?",
+         "<p>Usually it makes a real difference. A lot of basement smell is moisture evaporating out of "
+         "the slab and feeding mildew in whatever is sitting on it. Sealing the concrete cuts that off at "
+         "the source, and a seamless floor has nowhere for mildew to establish. If the smell is coming "
+         "from the walls, an unvented crawl space or damp stored belongings, the floor alone will not "
+         "solve it, and we will tell you that when we look.</p>"),
+        ("Can you coat around a finished basement?",
+         "<p>We need the floor completely clear, which in a finished basement means furniture out and "
+         "usually the baseboard off. We cannot coat under a fixed built-in or a partition wall. It is far "
+         "easier and cheaper to do the floor before the space is finished, so if you are planning a "
+         "basement build-out, coat the slab first and frame over it.</p>")]),
+
+"commercial-industrial-floor-coating": dict(
+  why_h="What actually destroys a commercial epoxy floor",
+  why=["<strong>Point loading, not general traffic.</strong> A forklift does not wear a floor out evenly. "
+       "It concentrates several thousand pounds onto four small contact patches and then turns them, which "
+       "shears a thin coating off a slab and chews out the edges of every control joint it crosses. That "
+       "is why we spec build thickness from your equipment rather than your square footage, and why joints "
+       "get a semi-rigid filler that supports the edge instead of a flexible caulk that lets it collapse.",
+       "<strong>Thermal shock.</strong> If you wash down with hot water, the floor expands and contracts "
+       "faster than the concrete under it. Standard epoxy does not tolerate that for long; a urethane "
+       "mortar or a cementitious urethane does. Tell us if you wash down and it changes the whole spec.",
+       "<strong>Contamination that was never removed.</strong> Oil and hydraulic fluid wick deep into a "
+       "slab. Grind the surface and it looks clean, then heat and traffic pull the contamination back up "
+       "and the coating releases in patches. That slab needs degreasing and shot blasting, not a grind."],
+  steps=[("Walkthrough and spec",
+          "We walk the floor with you and ask what actually happens on it: what drives on it, what gets "
+          "spilled, whether it gets washed down and how hot. Then we spec the system around that, take "
+          "moisture readings, and give you an itemized quote with the phasing plan in it."),
+         ("Phasing and scheduling",
+          "Almost nobody can hand over an empty building for a week. We break the floor into sections and "
+          "sequence them so there is always a route through for your people and equipment, and we work "
+          "overnight and at weekends where that is what it takes."),
+         ("Degrease, blast and repair",
+          "Contaminated areas get degreased and tested. We shot blast or heavily grind to drive a deep "
+          "profile into the concrete, then chase and fill cracks and rebuild control joints with a "
+          "semi-rigid filler that can carry a wheel load."),
+         ("Build coats, striping and topcoat",
+          "The system goes down to the specified thickness. Safety line striping, aisle marking and hazard "
+          "zones are built into the floor rather than painted on top to wear off, and non-slip aggregate "
+          "is broadcast wherever the floor gets wet.")],
+  faqs=[("Can you work without shutting us down?",
+         "<p>Yes, and it is how most of our commercial work runs. We section the floor, coat one area at a "
+         "time and keep a route open through the building, working overnight and at weekends where the "
+         "operation needs it. It takes longer overall than an empty building would and we price it "
+         "honestly, but it beats losing a week of production.</p>"),
+        ("How long before forklifts can run on it?",
+         "<p>Longer than for cars. Foot traffic is usually fine within 24 hours, light wheeled traffic "
+         "after two to three days, and full forklift and pallet-jack loading after about seven &mdash; "
+         "that is when the system has reached its full chemical and mechanical cure. Putting steel wheels "
+         "on a green floor leaves permanent tracking, so we give you dates in writing and we would rather "
+         "you waited an extra day than lost the surface.</p>"),
+        ("Do you do line striping and safety marking?",
+         "<p>Yes, and we build it into the floor rather than painting it on afterward. Aisle lines, "
+         "walkways, hazard hatching, equipment footprints and keep-clear zones all go in between the base "
+         "and the topcoat, so they are sealed under the clear and do not wear off under traffic the way "
+         "surface-applied striping does.</p>")]),
+
+"flake-epoxy-flooring": dict(
+  why_h="Full broadcast, partial broadcast, and why it matters",
+  why=["<strong>Full broadcast</strong> means we throw flake into the wet base coat until the floor "
+       "physically will not take another chip &mdash; the point installers call refusal. The base color "
+       "disappears entirely. You get the dense, uniform, granite-like look most people picture, a genuine "
+       "texture underfoot, and the most forgiving surface we install, because there is no continuous area "
+       "of solid color anywhere for a defect to show against.",
+       "<strong>Partial broadcast</strong> is a lighter, deliberately uneven scatter that leaves the base "
+       "color visible between the chips. It uses far less flake so it costs less, and on the right slab it "
+       "looks intentional and modern. On the wrong slab it is a compromise, because you are back to having "
+       "solid-color areas that show every trowel mark and patch.",
+       "The honest rule: <strong>if the concrete has been repaired, go full broadcast.</strong> If the slab "
+       "is a clean modern pour and you want to save some money or you actively prefer the lighter look, "
+       "partial is a real option. We will tell you which one your floor is at the estimate."],
+  steps=[("Pick the blend in person",
+          "We bring physical sample boards to the quote. Flake never looks the same on a screen as it does "
+          "on a floor &mdash; chip size, base color and lighting all change it &mdash; so choosing off "
+          "photographs is how people end up disappointed."),
+         ("Grind and repair the slab",
+          "Diamond grinding with vacuum dust control, then crack chasing, pit filling and spall repair. "
+          "Flake hides repairs well, but it hides them because the repairs were done properly, not instead "
+          "of doing them."),
+         ("Base coat and broadcast",
+          "The pigmented base goes down and we broadcast chips into it by hand, working wet and moving "
+          "fast, until the surface reaches refusal. Broadcasting by hand rather than with a hopper is what "
+          "keeps the coverage even into corners and along walls."),
+         ("Scrape, vacuum, seal",
+          "The next morning the floor is scraped back to knock off the chip edges standing proud, then "
+          "vacuumed completely clean. One or two coats of clear urethane go over it, with non-slip "
+          "aggregate broadcast in if the floor gets wet.")],
+  faqs=[("Does flake feel rough underfoot?",
+         "<p>Slightly textured rather than rough &mdash; think of a fine orange-peel. After scraping and "
+         "two coats of urethane it is comfortable in bare feet and easy to mop, while still giving you "
+         "noticeably more grip than a smooth coating when there is snowmelt or a spill on it. If you want "
+         "more grip than that, we broadcast a fine aggregate into the topcoat as well.</p>"),
+        ("Can I mix my own colors?",
+         "<p>Yes. Blends are mixed from stock chip colors, so you can go subtle with grays and whites, pull "
+         "it toward the blues in our logo, or run school or team colors through a rec room. We mix samples "
+         "and bring them out. The only advice we push is to look at a blend on a horizontal surface in the "
+         "actual room's lighting before committing &mdash; vertical sample boards under shop lights lie.</p>"),
+        ("How does flake compare to metallic on price?",
+         "<p>Flake sits in the middle: more than a solid color, less than metallic. It is also the better "
+         "buy for most working floors, because it hides wear and repairs, adds grip, and does not demand "
+         "the extra slab flatness a metallic pour does. Metallic is the right call when the floor is meant "
+         "to be looked at. Flake is the right call when the floor is meant to be used.</p>")]),
+
+"metallic-epoxy-flooring": dict(
+  why_h="What you are actually buying with a metallic floor",
+  why=["A metallic floor is not a product you pick from a chart, it is <strong>an outcome created live on "
+       "your slab</strong>. Reflective pigment is dispersed through clear resin, poured over a pigmented "
+       "base, and then moved &mdash; with rollers, brushes, a leaf blower, sometimes a torch &mdash; while "
+       "the material is still self-leveling. The pigment travels as it settles, and that travel is what "
+       "produces the veining, the clouding and the depth that makes people think it is stone.",
+       "The consequence is that <strong>nobody can promise you a specific pattern</strong>, including us. "
+       "We can show you sample panels of a blend and tell you honestly how it tends to behave, and the "
+       "finished floor will be recognizably that blend. It will not be identical to the panel, and if an "
+       "installer tells you otherwise they are either inexperienced or being loose with you.",
+       "It is also unforgiving. The working window is short, the pour has to stay wet edge to wet edge "
+       "across the entire room, and once the resin starts to gel the pattern is locked forever &mdash; "
+       "there is no touching up a metallic floor. That is why we run these ourselves rather than sending "
+       "a crew, and why we are honest that flake is the better buy for a hard-working floor."],
+  steps=[("Sample panels and honest expectations",
+          "We show you physical sample panels of the blends we run and talk through how each one behaves "
+          "&mdash; which move a lot, which stay tighter, which read darker in a room with little natural "
+          "light. We also tell you plainly what cannot be guaranteed."),
+         ("Extra slab preparation",
+          "A metallic pour is self-leveling, which means it finds and exaggerates every low spot. The slab "
+          "has to be genuinely flat and genuinely sound, so metallic jobs carry more grinding and more "
+          "patching than a flake floor of the same square footage."),
+         ("Base coat",
+          "A pigmented base goes down first and is allowed to cure. Its color shows through the metallic "
+          "layer and shifts the whole result, so this is part of the design rather than just a primer."),
+         ("The pour",
+          "The metallic layer is poured and worked across the whole room in one continuous session, "
+          "keeping a wet edge throughout. Once it gels it is finished. After it cures, two coats of clear "
+          "urethane go over the top for UV stability and scuff resistance.")],
+  faqs=[("Is metallic slippery?",
+         "<p>A metallic floor under clear urethane is smooth, and smooth plus wet is slick &mdash; more so "
+         "than flake, which has texture built in. For a showroom, lobby or finished basement that is "
+         "usually fine. For an entry that gets rain and snow walked into it, or anywhere with a wet "
+         "process, we broadcast a fine non-slip aggregate into the topcoat. It slightly softens the gloss "
+         "and it is worth it.</p>"),
+        ("Can you repair a metallic floor if it gets damaged?",
+         "<p>Not invisibly, and we would rather say so up front. Because the pattern was created live and "
+         "cannot be reproduced, a patched area will read as a patch. Deep gouges can be filled and the "
+         "area recoated, and scuffs in the urethane can often be buffed and a fresh clear coat applied "
+         "across the whole floor. But a metallic floor is a feature finish, and it should go in rooms "
+         "where it will be looked at rather than where things get dropped.</p>"),
+        ("How much longer does metallic take than flake?",
+         "<p>Usually a day or two more, mostly in prep rather than in the pour. The extra flattening and "
+         "patching a self-leveling layer demands takes time, the base coat has to cure before the metallic "
+         "goes over it, and the two urethane coats each need their own window. Budget on cure dates rather "
+         "than on install days &mdash; we will give you both in writing.</p>")]),
+
+"epoxy-floor-prep-and-repair": dict(
+  why_h="Why nearly every failed epoxy floor failed here",
+  why=["When somebody calls us about a floor that is peeling, we already know most of what we will find "
+       "before we arrive. <strong>Acid etching instead of grinding</strong> is the most common cause. "
+       "Etching is sold as a shortcut in every DIY kit: pour it on, rinse it off, coat it. It barely opens "
+       "the surface, it leaves a salt residue behind if it is not neutralized and rinsed perfectly, and it "
+       "does nothing at all to a slab that has been power-troweled hard or previously sealed.",
+       "<strong>Coating over contamination</strong> is second. Oil and transmission fluid wick down into "
+       "concrete over years. A grind makes the surface look clean while the contamination is still sitting "
+       "half an inch down, and the first warm week pulls it back up through the new coating.",
+       "<strong>Skimming cracks instead of chasing them</strong> is third. A crack that is filled flush "
+       "without being cut out will keep moving with the slab and telegraph straight back through the "
+       "finished floor, usually inside a season. And <strong>coating a wet slab</strong> is fourth: no "
+       "moisture test, vapor drive underneath, blisters by summer. All four are prep failures. None of "
+       "them are the epoxy's fault."],
+  steps=[("Assess and test",
+          "We look at what is actually on the slab &mdash; bare concrete, a sealer, a failing coating, "
+          "oil &mdash; and we moisture test. On a floor that has already failed once we want to know why, "
+          "because whatever caused it is still there."),
+         ("Strip and decontaminate",
+          "Failed coatings come off entirely rather than being coated over. Oil-contaminated areas get "
+          "degreased and re-tested. This is the step people skip and it is the reason they end up calling "
+          "somebody like us a second time."),
+         ("Profile the concrete",
+          "Diamond grinding with vacuum shrouds for most floors, shot blasting where the contamination or "
+          "the traffic runs deeper. We are opening the pores of the concrete so the epoxy can key into it "
+          "mechanically rather than just sitting on top."),
+         ("Repair, then coat",
+          "Cracks get chased out into a V and filled with structural resin. Spalled and pitted areas get "
+          "patched and re-leveled. Control joints get treated. Only then does the epoxy system go down "
+          "&mdash; and only then is it worth anything.")],
+  faqs=[("My epoxy floor is peeling. Can you fix it or does it all come off?",
+         "<p>It depends on how much of it has let go and why. If a small area has failed on an otherwise "
+         "well-bonded floor, we can cut back to sound material, re-profile that area and blend a repair in "
+         "&mdash; though on a solid color it will likely be visible. If the failure is widespread, or the "
+         "original prep was the problem, it all has to come off, because anything we put over a coating "
+         "that is already releasing will come up with it. We will tell you which one you have got, and we "
+         "will tell you straight.</p>"),
+        ("Is a DIY kit ever worth it?",
+         "<p>Honestly, on a brand-new, perfectly clean, bone-dry slab in a heated garage, a good kit "
+         "applied carefully will look decent for a few years. That describes very few real garages in "
+         "Central Illinois. The kits are thin, they are one-part or low-solids two-part, they rely on acid "
+         "etching, and they include nothing for crack or spall repair. The failure mode is not subtle "
+         "&mdash; it is hot tires taking the coating off in sheets &mdash; and stripping a failed DIY "
+         "floor costs more than doing it properly would have.</p>"),
+        ("How dusty is the grinding?",
+         "<p>Far less than you would expect. We run vacuum shrouds on the grinders connected to HEPA dust "
+         "extraction, which captures the great majority of it at the head. There will still be a fine film "
+         "to clean up and we do that ourselves before we leave. In a basement this matters more than "
+         "anywhere else, and it is one of the reasons we will not work without proper extraction.</p>")]),
+}
+for _s in SERVICES:
+    _s.update(SERVICE_EXTRA[_s["slug"]])
+
 for _s in SERVICES:
     _s["pair"] = PAIRS[_s["pair_idx"]]
 
-FLOOR_TYPES = ["Garage", "Basement", "Commercial / industrial", "Shop, warehouse or pole barn",
-               "Flake epoxy", "Metallic epoxy", "Prep / repair", "Not sure yet"]
+FLOOR_TYPES = ["Garage epoxy floor", "Basement epoxy floor",
+               "Commercial / industrial epoxy", "Shop, warehouse or pole barn epoxy",
+               "Flake epoxy", "Metallic epoxy",
+               "Existing epoxy floor that is failing", "Not sure yet"]
 
 # ------------------------------------------------------------------- helpers
 def fill(s):
@@ -423,8 +736,35 @@ def btn(label, href, kind="", icon=None, extra=""):
 def quote_btn(kind="", label="Get a Free Quote"):
     return btn(label, "/contact/", kind)
 
-def call_btn(kind="btn--ghostDark"):
-    return btn(f"Call {PHONE}", f"tel:{TEL}", kind, "phone")
+def call_btn(kind="btn--ghostDark", label=None):
+    return btn(label or f"Call {PHONE}", f"tel:{TEL}", kind, "phone")
+
+def call_primary(kind="btn--call"):
+    """The main call-to-action. Filled brand blue, oversized, number spelled out."""
+    return (f'<a class="btn {kind}" href="tel:{TEL}">{I["phone"]}'
+            f'<span class="num">{PHONE}</span></a>')
+
+def phone_cta(label="Talk to Drayton or Dylan"):
+    """Big tappable number block for hero and page headers."""
+    return (f'<a class="phone-cta" href="tel:{TEL}">'
+            f'<span class="phone-cta__icon">{I["phone"]}</span>'
+            f'<span><small>{label}</small><b>{PHONE}</b></span></a>')
+
+def call_strip(kicker="Fastest way to get a number", sub=None, note=None):
+    """Full-width call band. Goes on every page."""
+    sub = sub or ("Tell us the room and roughly how big it is. Most quotes get scheduled "
+                  "on the same call.")
+    note = note or ('Prefer to type it out? <a href="/contact/">Send the quote form instead</a> '
+                    f'or email <a href="mailto:{EMAIL}">{EMAIL}</a>.')
+    return f"""<section class="callstrip">
+  <div class="wrap">
+    <p class="kicker">{kicker}</p>
+    <a class="big" href="tel:{TEL}">{PHONE}</a>
+    <p class="sub">{sub}</p>
+    <p class="or">{note}</p>
+  </div>
+</section>
+"""
 
 def head(title, desc, path, image="/assets/img/og-image.jpg", schema=None):
     canon = BASE + path
@@ -487,7 +827,7 @@ def header(path):
     <span class="topbar__area">{I['pin']} Serving {AREA['shortPhrase']}</span>
     <span class="topbar__links">
       <a href="mailto:{EMAIL}">{I['mail']} {EMAIL}</a>
-      <a href="tel:{TEL}">{I['phone']} {PHONE}</a>
+      <a href="tel:{TEL}" style="color:#fff;font-weight:700">{I['phone']} {PHONE}</a>
     </span>
   </div>
 </div>
@@ -530,8 +870,8 @@ def cta_band(title="Ready for a floor that holds up?",
       <p>{body}</p>
     </div>
     <div class="btn-row">
-      {btn(primary, "/contact/")}
-      {btn(PHONE, "tel:" + TEL, "btn--ghostDark", "phone")}
+      {call_primary("btn--call")}
+      {btn(primary, "/contact/", "btn--ghostDark")}
     </div>
   </div>
 </section>
@@ -597,7 +937,7 @@ def footer():
 </footer>
 
 <div class="callbar">
-  <a class="btn btn--onDark" href="tel:{TEL}">{I['phone']}Call Now</a>
+  <a class="btn btn--onDark" href="tel:{TEL}" aria-label="Call {PHONE}">{I['phone']}<span class="num">{PHONE}</span></a>
   <a class="btn btn--ghostDark" href="/contact/">Free Quote</a>
 </div>
 
@@ -631,9 +971,12 @@ def pagehead(h1, sub, trail):
       <h1>{h1}</h1>
       <p class="lede">{sub}</p>
       <div class="btn-row">
-        {quote_btn("btn--onDark")}
-        {call_btn()}
+        {call_primary()}
+        {quote_btn("btn--ghostDark")}
       </div>
+      <p class="form-note" style="color:#9FADBF;margin:1rem 0 0;font-size:.92rem">
+        Free, on-site and itemized &mdash; and no trip charge anywhere we work.
+      </p>
     </div>
   </div>
 </section>
@@ -778,8 +1121,8 @@ def page_home():
         across <strong>Champaign County</strong> and <strong>Bloomington-Normal</strong> &mdash; any size, any type.
       </p>
       <div class="btn-row">
-        {quote_btn("btn--onDark btn--lg")}
-        {btn("Call " + PHONE, "tel:" + TEL, "btn--ghostDark btn--lg", "phone")}
+        {phone_cta("Call us now &mdash; free quote")}
+        {quote_btn("btn--ghostDark btn--lg", "Or request a quote")}
       </div>
       <div class="hero__trust">
         <ul>
@@ -814,10 +1157,12 @@ def page_home():
     </div>
     <div class="btn-row btn-row--center" style="margin-top:2.75rem">
       {btn("See all services", "/services/", "btn--ghost")}
-      {quote_btn()}
+      {quote_btn("btn--ghost")}
     </div>
   </div>
 </section>
+
+{call_strip()}
 
 <section class="section section--dark">
   <div class="wrap">
@@ -959,6 +1304,75 @@ def page_services():
   </div>
 </section>
 
+{call_strip("Not sure which one you need?",
+            "Describe the room and what happens in it. We can usually narrow it to one system on the "
+            "phone and give you a ballpark before we ever come out.")}
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Choosing a system</p>
+      <h2>Solid color, flake or metallic?</h2>
+      <p class="lede">Three finishes, three different jobs. The room usually decides it for you.</p>
+    </div>
+    <div class="wrap--narrow" style="padding:0;margin:0">
+      <p><strong>Solid color</strong> is the most economical finish and the least forgiving. It is a
+      mirror: every trowel mark, every filled crack and every low spot in the slab shows through it in
+      raking light. On a clean modern pour it looks sharp and costs the least of the three. On a
+      repaired forty-year-old garage slab it will advertise every repair you just paid for. We will tell
+      you honestly which of those your concrete is.</p>
+      <p><strong>Flake</strong> sits in the middle on price and is the right answer for most floors we
+      install. Vinyl chips broadcast into the base coat break the surface up visually, so slab
+      imperfections and repairs disappear; the chip edges leave a fine texture that gives noticeably
+      better grip when the floor is wet; and the blend is yours to choose. If your slab has been
+      repaired at all, this is the finish to pick.</p>
+      <p><strong>Metallic</strong> is the premium option and a genuine feature finish. Pigments move
+      through clear resin as it levels, producing depth and veining that reads like polished stone, and
+      no two floors are ever the same. It demands a flatter, sounder slab than flake does, it takes
+      longer, it costs more, and it cannot be invisibly repaired. Put it where the floor is meant to be
+      looked at &mdash; a showroom, a lobby, a finished basement, a feature garage &mdash; not where
+      things get dropped on it.</p>
+      <p>There is a fourth option nobody sells you, and it is worth naming: <strong>sometimes the answer
+      is not to coat it at all.</strong> A slab that is structurally failing, heaving, or breaking up
+      across a large area is not a candidate for epoxy &mdash; a coating is only ever as sound as the
+      concrete holding it, and putting a beautiful floor over a slab that is coming apart just means
+      paying twice. If that is what we find, we will say so at the estimate rather than after.</p>
+      <p>On top of the finish sits the <strong>system build</strong>, which is a separate decision driven
+      by use rather than looks. A residential garage and a warehouse running forklifts can carry the
+      identical flake blend and still need completely different thicknesses, resin chemistries and
+      topcoats underneath it. That part we spec for you after seeing the floor.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper2">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Every job, no exceptions</p>
+      <h2>What is included as standard</h2>
+      <p class="lede">These are not line items you have to ask for. They are the job.</p>
+    </div>
+    <ul class="features">
+      <li>{I['check_circle']}<div><b>Mechanical surface prep</b><span>Diamond grinding or shot blasting
+        with vacuum dust extraction. Never acid etching, on any floor, at any price.</span></div></li>
+      <li>{I['check_circle']}<div><b>Moisture testing before the quote</b><span>So the system matches
+        your slab, and so a number you have been given cannot change after we start.</span></div></li>
+      <li>{I['check_circle']}<div><b>Crack, pit and spall repair</b><span>Cracks chased out and filled
+        with structural resin, not skimmed. Pitted and spalled areas patched and re-leveled.</span></div></li>
+      <li>{I['check_circle']}<div><b>An itemized written quote</b><span>Prep, materials, install and
+        extras broken out separately, so you can see exactly what you are paying for.</span></div></li>
+      <li>{I['check_circle']}<div><b>Written cure dates</b><span>When you can walk on it, when furniture
+        can go back, and when you can park on it &mdash; for your floor, not from a brochure.</span></div></li>
+      <li>{I['check_circle']}<div><b>Clean-up and a care sheet</b><span>We leave the space cleaner than we
+        found it, with a one-page sheet on how to look after the floor.</span></div></li>
+    </ul>
+    <div class="btn-row btn-row--center" style="margin-top:2.75rem">
+      {call_primary()}
+      {quote_btn("btn--ghost")}
+    </div>
+  </div>
+</section>
+
 <section class="section section--dark section--tight">
   <div class="wrap">
     <div class="section-head">
@@ -988,6 +1402,11 @@ def page_service(s):
     bullets = "\n".join(f'            <li>{I["check"]}<span>{b}</span></li>' for b in s["bullets"])
     drivers = "\n".join(f'        <li>{I["check"]}<span>{d}</span></li>' for d in s["drivers"])
     pair = ba_html(s["pair"], lazy=False)
+    why_ps = "\n        ".join(f"<p>{x}</p>" for x in s["why"])
+    steps = "\n".join(f"""        <div class="step reveal">
+          <h3>{t}</h3>
+          <p>{d}</p>
+        </div>""" for t, d in s["steps"])
     price = CFG.get("pricing", {}).get(s["slug"], "")
     if price:
         price_block = (f'<p class="price-figure">{price}</p>'
@@ -1006,7 +1425,11 @@ def page_service(s):
         "offers": {"@type": "Offer", "priceCurrency": "USD",
                    "availability": "https://schema.org/InStock",
                    "url": BASE + "/contact/"}},
-        local_business()]
+        local_business(),
+        {"@context": "https://schema.org", "@type": "FAQPage",
+         "mainEntity": [{"@type": "Question", "name": plain(q),
+                         "acceptedAnswer": {"@type": "Answer", "text": plain(a)}}
+                        for q, a in s["faqs"]]}]
 
     return head(title, desc, path, schema=schema) + header("/services/") + f"""
 <section class="pagehead">
@@ -1017,8 +1440,8 @@ def page_service(s):
       <h1>{s['h1']}</h1>
       <p class="lede">{s['short']}</p>
       <div class="btn-row">
-        <a class="btn btn--onDark" href="/contact/?type={_q(plain(s['type']))}">Get a Free Quote</a>
-        {call_btn()}
+        {call_primary()}
+        <a class="btn btn--ghostDark" href="/contact/?type={_q(plain(s['type']))}">Or request a quote</a>
       </div>
     </div>
   </div>
@@ -1058,6 +1481,39 @@ def page_service(s):
   </div>
 </section>
 
+{call_strip(f"Questions about {plain(s['name']).lower()}?",
+            "One call and we can usually tell you what your slab needs, roughly what it costs, "
+            "and when we could get to it.")}
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Straight talk</p>
+      <h2>{s['why_h']}</h2>
+    </div>
+    <div class="wrap--narrow" style="padding:0;margin:0">
+        {why_ps}
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How the install runs</p>
+      <h2>Four steps, no surprises</h2>
+      <p class="lede">You will know the schedule, the price and the cure dates before we start grinding.</p>
+    </div>
+    <div class="grid grid--2 steps">
+{steps}
+    </div>
+    <div class="btn-row" style="margin-top:2.5rem">
+      {call_primary()}
+      <a class="btn btn--ghostDark" href="/contact/?type={_q(plain(s['type']))}">Request a quote</a>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="wrap">
     <div class="split">
@@ -1069,8 +1525,8 @@ def page_service(s):
 {drivers}
         </ul>
         <div class="btn-row" style="margin-top:1.5rem">
-          <a class="btn" href="/contact/?type={_q(plain(s['type']))}">Get my free quote</a>
-          {btn(PHONE, "tel:" + TEL, "btn--ghost", "phone")}
+          {call_primary()}
+          <a class="btn btn--ghost" href="/contact/?type={_q(plain(s['type']))}">Get my free quote</a>
         </div>
       </div>
       <div>
@@ -1084,6 +1540,19 @@ def page_service(s):
         <p style="margin-top:1.1rem"><a class="arrow-link" href="/service-area/">Full service area <span aria-hidden="true">&rarr;</span></a></p>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section section--paper2">
+  <div class="wrap wrap--narrow">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">Questions</p>
+      <h2>{plain(s['name'])} FAQs</h2>
+    </div>
+    {faq_html(s['faqs'])}
+    <p style="margin-top:1.5rem;text-align:center">
+      <a class="arrow-link" href="/faq/">All epoxy flooring FAQs <span aria-hidden="true">&rarr;</span></a>
+    </p>
   </div>
 </section>
 
@@ -1564,9 +2033,12 @@ def page_location(l):
       <h1>{l['h1']}</h1>
       <p class="lede">{intro}</p>
       <div class="btn-row">
-        {quote_btn("btn--onDark")}
-        {call_btn()}
+        {call_primary()}
+        {quote_btn("btn--ghostDark")}
       </div>
+      <p class="form-note" style="color:#9FADBF;margin:1rem 0 0;font-size:.92rem">
+        Free, on-site and itemized &mdash; and no trip charge anywhere we work.
+      </p>
     </div>
   </div>
 </section>
@@ -1585,8 +2057,8 @@ def page_location(l):
           {AREA['radiusMiles']}+ mile radius, so there is no trip charge to come out and quote your floor.
         </div>
         <div class="btn-row">
-          {quote_btn()}
-          {btn(PHONE, "tel:" + TEL, "btn--ghost", "phone")}
+          {call_primary()}
+          {quote_btn("btn--ghost")}
         </div>
       </div>
       <div class="split__media reveal">
@@ -1616,6 +2088,10 @@ def page_location(l):
     </div>
   </div>
 </section>
+
+{call_strip(f"Epoxy floor quote in {l['city']}?",
+            f"Call and tell us the room. We cover {l['county']} with no trip charge, and we can "
+            "usually say on the phone roughly what your slab will need.")}
 
 <section class="section section--paper2">
   <div class="wrap">
@@ -1754,6 +2230,69 @@ def page_about():
   </div>
 </section>
 
+{call_strip("Talk to an owner, not a call center",
+            "When you ring this number, one of the two people whose faces are on the truck picks it up.")}
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Epoxy, and only epoxy</p>
+      <h2>We do one thing on purpose</h2>
+    </div>
+    <div class="wrap--narrow" style="padding:0;margin:0">
+      <p>We are not a general flooring company that also sells coatings, and we are not a concrete
+      contractor with a sideline. <strong>{NAME} installs epoxy floors.</strong> That is the whole
+      business, and narrowing it that far was a deliberate decision rather than an accident of how we
+      started.</p>
+      <p>The reason is that epoxy is unforgiving in a way most trades are not. Almost everything that
+      determines whether a floor lasts fifteen years or fifteen months happens before the coating goes
+      down, and it happens in details that do not look like much at the time: whether the profile you
+      ground into the slab is actually right for the system you are installing, whether you moisture
+      tested or assumed, whether you chased that crack or skimmed it, whether the base coat was still
+      inside its window when the flake went into it. Get any of those wrong and the floor looks perfect
+      on handover and fails a year later, by which point somebody else has been paid and moved on.</p>
+      <p>Those judgements come from doing the same work over and over, not from doing five trades
+      adequately. Every floor we grind teaches us something about how a particular era of Central
+      Illinois concrete behaves &mdash; how a 1950s Urbana garage slab differs from a 2010 Savoy pour,
+      what a pole barn floor outside Mahomet does when nobody put a vapor barrier under it, which
+      Danville shop floors are holding forty years of oil. That knowledge is only worth anything if you
+      keep showing up to the same kind of job.</p>
+      <p>It also means we will tell you when epoxy is the wrong answer. If a slab is too far gone to be
+      worth coating, if your basement has a water problem that needs solving before anything goes on the
+      floor, or if what you actually want is a finish we do not install &mdash; we will say so and point
+      you somewhere useful. We would rather lose a job than take one we know will not hold up, because
+      in a market this size the floors we install are the advertising.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper2">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">What it is like to work with us</p>
+      <h2>No surprises, start to finish</h2>
+    </div>
+    <div class="grid grid--3 steps">
+      <div class="step reveal"><h3>You get a real number</h3>
+        <p>Itemized and in writing, broken out so you can see what the prep costs, what the system costs
+        and what any extras cost. Not a range, not a per-square-foot rate multiplied out on a phone
+        &mdash; an actual quote for your actual floor, after we have stood on it.</p></div>
+      <div class="step reveal"><h3>You get real dates</h3>
+        <p>Install days and cure dates, written down before we start. Cure times move with temperature and
+        humidity, so we would rather tell you to wait two extra days than watch tire marks press
+        permanently into a floor that was still green.</p></div>
+      <div class="step reveal"><h3>You get the space back clean</h3>
+        <p>Grinding is dusty and we run vacuum shrouds and HEPA extraction to keep it contained. Whatever
+        film is left, we clean up ourselves. Your driveway, shop or basement should look better when we
+        pull out than it did when we pulled in.</p></div>
+    </div>
+    <div class="btn-row btn-row--center" style="margin-top:2.5rem">
+      {call_primary()}
+      {quote_btn("btn--ghost")}
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="wrap">
     <div class="split split--flip">
@@ -1768,8 +2307,8 @@ def page_about():
         who will actually be standing on it Thursday telling you &mdash; and it means there is nobody to
         point at but us if something is not right.</p>
         <div class="btn-row" style="margin-top:1.75rem">
-          {quote_btn()}
-          {btn(PHONE, "tel:" + TEL, "btn--ghost", "phone")}
+          {call_primary()}
+          {quote_btn("btn--ghost")}
         </div>
       </div>
       <div class="split__media split__media--tall reveal">
@@ -1865,8 +2404,45 @@ def page_area():
     </div>
 {chr(10).join(groups)}
     <div class="btn-row" style="margin-top:2.5rem">
-      {quote_btn()}
-      {btn("Don&rsquo;t see your town? Call " + PHONE, "tel:" + TEL, "btn--ghost", "phone")}
+      {call_primary()}
+      {quote_btn("btn--ghost", "Don&rsquo;t see your town? Ask us")}
+    </div>
+  </div>
+</section>
+
+{call_strip("Not sure if you are in range?",
+            "Call and ask. The radius is a guideline, not a fence &mdash; we say yes far more often "
+            "than we say no.")}
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Around the region</p>
+      <h2>What changes from one county to the next</h2>
+    </div>
+    <div class="wrap--narrow" style="padding:0;margin:0">
+      <p><strong>Champaign County</strong> is home, and it gives us the widest spread of slab conditions
+      anywhere we work. Older Urbana and the pre-war streets of Champaign bring thin mid-century garage
+      concrete that needs genuine crack and apron repair before anything is coated. Savoy, Tolono and the
+      newer southwest Champaign subdivisions are modern pours that mostly want a grind. Mahomet adds
+      acreages with pole barns and detached shops, which bring the moisture question with them. Rantoul
+      adds hangar and institutional square footage on a scale the county otherwise does not have.</p>
+      <p><strong>McLean County</strong> &mdash; Bloomington and Normal &mdash; is roughly fifty minutes
+      up I-74 and we treat it as a home market: same pricing, same scheduling, no trip charge. The work
+      skews more commercial than Champaign County does, and the residential side splits sharply between
+      the historic neighborhoods with their old detached garages and the newer subdivisions with large
+      attached three-car spaces on clean concrete.</p>
+      <p><strong>Piatt, Douglas, Ford and DeWitt counties</strong> are our rural belt: Monticello,
+      Tuscola, Paxton and Clinton, plus the towns around them. A large share of the square footage out
+      here is machine sheds, grain-operation shops and equipment buildings rather than house garages.
+      Those slabs are frequently poured without a vapor barrier, so moisture testing is not a formality
+      &mdash; it decides the system. The per-foot rate drops as the floor gets bigger, which often
+      surprises people who have only priced a two-car garage.</p>
+      <p><strong>Macon and Vermilion counties</strong> &mdash; Decatur and Danville &mdash; are the most
+      industrial markets we serve. Ag processing, manufacturing and older shop and warehouse stock mean
+      heavier builds, shot blasting rather than grinding, degreasing on slabs that have absorbed decades
+      of oil, and line striping where traffic needs marking. Both also have excellent older housing
+      stock, which means detached garages on original concrete that reward doing the prep properly.</p>
     </div>
   </div>
 </section>
@@ -1882,6 +2458,16 @@ def page_area():
         have a question about a spot near the overhead door two months later. We can, and we do.</p>
         <p>Working close to home also means we schedule honestly. We are not stacking jobs across half the
         state and hoping the weather cooperates &mdash; if we tell you Tuesday, we mean Tuesday.</p>
+        <p>It matters more with epoxy than with most trades, for a boring logistical reason: a coating
+        has a cure window, and cure windows do not care about traffic. If a floor needs its topcoat
+        eighteen hours after the base went down, somebody has to be standing on it eighteen hours later.
+        A crew running four counties away has every incentive to stretch that window to fit the drive.
+        We do not, because we are twenty minutes from most of our jobs and an hour from the furthest.</p>
+        <p>The other half of it is the part nobody thinks about until they need it. A floor occasionally
+        wants a look a few months on &mdash; a question about a mark near the door, a scuff somebody
+        wants advice on, a second building the same owner has decided to do. Being close enough that
+        swinging by is not a half-day expedition is what turns a job into a customer, and in a market
+        this size that is most of how we get the next one.</p>
         <div class="btn-row" style="margin-top:1.75rem">
           {btn("Get a Free Quote", "/contact/", "btn--onDark")}
         </div>
@@ -1956,6 +2542,78 @@ def page_gallery():
   </div>
 </section>
 
+{call_strip("Want to see samples in person?",
+            "Photographs of epoxy are useful for showing what prep does. They are almost useless for "
+            "choosing a color. We bring the real thing to the estimate.")}
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How to read these</p>
+      <h2>What you are actually looking at</h2>
+    </div>
+    <div class="wrap--narrow" style="padding:0;margin:0">
+      <p>Every comparison above shows the same thing from a different angle: a slab in the condition we
+      typically find it, and the finish that goes over that kind of slab once it has been ground,
+      repaired and coated. The interesting half is the left one.</p>
+      <p>Look at what the &ldquo;before&rdquo; images have in common. Cracking that runs the length of
+      the bay. Spalling where the surface has flaked away, almost always worst near an overhead door
+      where snow and road salt collect. Dark staining in the parking positions where oil has soaked in
+      over years. Open control joints with crumbling edges. A dull, chalky, porous surface that shed
+      concrete dust onto everything stored on it. None of those are unusual and none of them are
+      disqualifying &mdash; but every one of them has to be dealt with before a coating goes on, and
+      every one of them is what somebody skips when a price looks too good.</p>
+      <p>The &ldquo;after&rdquo; half is the easy part to sell and the least interesting part to
+      explain. A high-gloss floor reflects light, so the building gets visibly brighter without another
+      fixture going in. A seamless floor has nowhere for dust or spills to hide, so it mops instead of
+      being swept and re-swept. And a sealed floor stops absorbing everything that lands on it, which is
+      the difference between wiping up a spill and living with it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper2">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Finishes explained</p>
+      <h2>Why two floors in the same blend look different</h2>
+    </div>
+    <div class="wrap--narrow" style="padding:0;margin:0">
+      <p><strong>Chip size and density change everything.</strong> The same color blend broadcast at full
+      refusal reads as dense and granite-like; scattered lightly over a visible base color it reads as
+      modern and sparse. A quarter-inch chip and a full-inch chip in identical colors produce
+      substantially different floors. Neither is better &mdash; but you cannot tell them apart from a
+      photograph, which is why we bring boards.</p>
+      <p><strong>Base color shows through metallic.</strong> A metallic pour is semi-translucent, so the
+      pigmented coat underneath shifts the entire result. The same metallic blend over a black base and
+      over a pearl base are two different floors. This is part of the design, not a primer choice.</p>
+      <p><strong>Lighting decides the rest.</strong> Epoxy is glossy, and gloss is mostly a reflection of
+      whatever is above it. A floor under warm domestic bulbs, a floor under shop fluorescents and a
+      floor under a row of south-facing windows will not look the same in any of the three. This is the
+      single most common reason people are surprised by a finished floor, and it is why we ask you to
+      look at samples flat on the ground, in the room they are going into, in the light you will
+      actually have.</p>
+      <p><strong>And the slab underneath still shows.</strong> Gloss exaggerates flatness. On a
+      dead-flat modern pour a high-gloss finish looks like glass; on an older slab with gentle waves in
+      it, the same finish will pick up those waves in raking light. Flake hides this well. Solid color
+      and metallic do not. We will tell you at the estimate which one your concrete can carry.</p>
+    </div>
+    <p style="margin-top:1.5rem"><strong>One thing you will not see in any epoxy gallery, ours
+    included: the fourth year.</strong> Every coating looks superb on handover day, which is when the
+    photographs get taken. What separates a floor that still looks like this in a decade from one that
+    is lifting by the next winter happened days earlier, under the coating, where a camera cannot go.
+    That is why so much of this site is about grinding, moisture readings and crack repair rather than
+    color charts &mdash; it is the only part of the job worth judging an installer on, and it is the
+    only part you cannot see in a picture. Ask any installer you are considering how they prepare a slab
+    and what they do when a moisture test comes back high &mdash; the answer tells you more than a
+    hundred photographs of finished floors will.</p>
+    <div class="btn-row btn-row--center" style="margin-top:2.5rem">
+      {call_primary()}
+      {quote_btn("btn--ghost", "Book a free estimate")}
+    </div>
+  </div>
+</section>
+
 {cta_band("Want your floor in this gallery?",
           "Book a free on-site quote and we will show you samples of every finish above &mdash; "
           "flake blends, metallic pours and solid colors, in person rather than on a screen.")}
@@ -1989,16 +2647,9 @@ def page_faq():
   </div>
 </section>
 
-<section class="section section--dark section--tight">
-  <div class="wrap wrap--narrow" style="text-align:center">
-    <h2 style="font-size:clamp(1.5rem,3vw,2.1rem)">Still have a question?</h2>
-    <p class="lede">Call and ask. We would rather spend ten minutes on the phone than have you guess.</p>
-    <div class="btn-row btn-row--center" style="margin-top:1.75rem">
-      {btn("Call " + PHONE, "tel:" + TEL, "btn--onDark", "phone")}
-      {btn("Email us", "mailto:" + EMAIL, "btn--ghostDark", "mail")}
-    </div>
-  </div>
-</section>
+{call_strip("Still have a question?",
+            "Call and ask. We would far rather spend ten minutes on the phone than have you guess "
+            "&mdash; and there is no obligation attached to a phone call.")}
 
 {cta_band()}
 </main>
@@ -2166,6 +2817,72 @@ def page_contact():
     </div>
   </div>
 </section>
+
+{call_strip("Rather just talk it through?",
+            "Most people find it faster. Two minutes on the phone usually tells us more than a form "
+            "does, and we can often give you a ballpark on the spot.")}
+
+<section class="section">
+  <div class="wrap">
+    <div class="split split--wide-text">
+      <div>
+        <p class="eyebrow">Before you call</p>
+        <h2>Four things that make the quote faster</h2>
+        <p>None of these are required &mdash; call us with none of them and we will still come out. But
+        if you have them to hand, we can usually give you a realistic ballpark before we ever get in the
+        truck.</p>
+        <ul class="checks">
+          <li>{I['check']}<span><strong>Rough dimensions.</strong> Length and width in feet is plenty.
+          A standard two-car garage is around 400&ndash;500 square feet, a three-car around
+          650&ndash;750. Pacing it out is close enough for a ballpark.</span></li>
+          <li>{I['check']}<span><strong>The age of the slab, roughly.</strong> Even &ldquo;it is the
+          original garage from when the house was built in the sixties&rdquo; tells us a great deal about
+          what prep to expect.</span></li>
+          <li>{I['check']}<span><strong>A photo or two of the concrete.</strong> Text or email them.
+          Cracking, spalling near the door, dark oil staining and any existing coating are the four
+          things that move a price, and all four show up in a phone picture.</span></li>
+          <li>{I['check']}<span><strong>Whether anything has been put on it before.</strong> Paint, a
+          sealer, a DIY kit, or a previous epoxy job that is now letting go. An existing coating changes
+          the prep entirely, and it is far better to know now than on the morning.</span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow">What it costs to find out</p>
+        <h2>Nothing, anywhere we work</h2>
+        <p>Every estimate is free, on-site and carries no obligation. There is <strong>no trip
+        charge</strong> anywhere in the {AREA['radiusMiles']}+ mile service area &mdash; not to Danville,
+        not to Decatur, not to Bloomington-Normal. If you are inside roughly a
+        {AREA['radiusMiles']}-mile drive of Champaign, coming out to look costs you nothing.</p>
+        <p>On the visit we measure properly, check the slab for moisture and damage, look at your
+        control joints and your door threshold, and bring physical flake and metallic samples so you are
+        choosing off real boards rather than a screen. You get an itemized written quote &mdash; prep,
+        materials, install and extras broken out separately &mdash; so you can see exactly what you are
+        paying for and compare it honestly against anyone else you are talking to.</p>
+        <p>Then it is entirely your call. We do not do pressure, we do not do exploding
+        &ldquo;today-only&rdquo; pricing, and we will not phone you repeatedly afterward. If the number
+        works, call us back. If it does not, no hard feelings.</p>
+        <div class="local-note">
+          <strong>One straight answer up front:</strong> we will not quote a floor over the phone.
+          A number given without seeing the slab is a guess, and the only way it can go is up once we
+          arrive &mdash; which helps nobody. The visit is free precisely so that the number can be real.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper2">
+  <div class="wrap wrap--narrow">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">Questions</p>
+      <h2>Asked on most first calls</h2>
+    </div>
+    {faq_html(FAQS[:3])}
+    <p style="margin-top:1.5rem;text-align:center">
+      <a class="arrow-link" href="/faq/">All epoxy flooring FAQs <span aria-hidden="true">&rarr;</span></a>
+    </p>
+  </div>
+</section>
 </main>
 """ + footer()
 
@@ -2195,6 +2912,10 @@ def page_thanks():
     </div>
   </div>
 </section>
+
+{call_strip("In a hurry?",
+            "If you would rather not wait for the callback, ring us directly &mdash; one of the owners "
+            "picks up.")}
 
 <section class="section section--paper2 section--tight">
   <div class="wrap wrap--narrow">
@@ -2230,12 +2951,15 @@ def page_404():
 {links}
       </ul>
       <div class="btn-row btn-row--center">
-        {quote_btn()}
-        {btn("Call " + PHONE, "tel:" + TEL, "btn--ghost", "phone")}
+        {call_primary()}
+        {quote_btn("btn--ghost")}
       </div>
     </div>
   </div>
 </section>
+
+{call_strip("Looking for an epoxy floor quote?",
+            "That is what this site is for. Call and we will get you a real number.")}
 </main>
 """ + footer()
 

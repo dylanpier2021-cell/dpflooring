@@ -4,6 +4,11 @@ Static, dependency-free marketing site for **DP Flooring Services LLC**
 (Drayton Potthast & Dylan Pierson) — epoxy flooring across Champaign County,
 Bloomington-Normal and 50+ miles of Central Illinois.
 
+**Epoxy only.** The site offers no other flooring or concrete service, and
+`tools/audit.py` fails the build if a page ever mentions one. Slab prep and
+repair is presented as the first day of an epoxy install, not as standalone
+concrete work — because that is what it is.
+
 - **29 pages**: home, services hub + 6 service pages, 14 location pages, about,
   service area, gallery, FAQ, contact, thank-you, 404
 - No framework, no build step at deploy time, no runtime JavaScript dependency
@@ -88,7 +93,7 @@ H1, in the opening paragraph and in at least one image `alt`, an embedded Google
 Map centered on that city, and `LocalBusiness` + `Service` schema with
 `areaServed` set to that city and county.
 
-Every location page runs **1,070–1,190 words** of genuinely different copy —
+Every location page runs **1,150–1,270 words** of genuinely different copy —
 named neighborhoods and subdivisions, local landmarks, the actual era and
 condition of the concrete in that town, and what that means for the quote. None
 of it survives a find-and-replace of the city name, which is the only test that
@@ -119,14 +124,17 @@ pages:
 ```
 /services/garage-floor-epoxy/                    /services/flake-epoxy-flooring/
 /services/basement-floor-epoxy/                  /services/metallic-epoxy-flooring/
-/services/commercial-industrial-floor-coating/   /services/concrete-floor-prep-and-repair/
+/services/commercial-industrial-floor-coating/   /services/epoxy-floor-prep-and-repair/
 ```
 
-Each runs 700–730 words of its own copy, carries `LocalBusiness` + `Service`
-schema, and links out to **all 14** location pages. Shop, warehouse and pole barn
-work lives inside the commercial & industrial page rather than on its own page —
-it is the same system, the same prep and the same crew, and splitting it would
-have created two pages competing for the same searches.
+Each runs 1,180–1,480 words of its own copy, carries `LocalBusiness` + `Service`
+schema, and links out to **all 14** location pages. Each also carries its own
+`FAQPage` block of three service-specific questions, a "why this, not that"
+section, and a four-step install walkthrough.
+
+Shop, warehouse and pole barn work lives inside the commercial & industrial page
+rather than on its own page — same system, same prep, same crew, and splitting it
+would have created two pages competing for the same searches.
 
 `/services/` remains as a hub that links to all six.
 
@@ -153,7 +161,27 @@ missing.
 
 ---
 
-## 3. Technical basics
+## 3. Call-first design
+
+The phone is the primary conversion, not the form — a contractor's customer is
+usually standing in the room they want quoted, holding a phone. Every page is
+built around that:
+
+- **The hero leads with the number**, in a large tappable block, with the quote
+  form demoted to the secondary button.
+- **A full-width call strip** carrying the number at `clamp(2.4rem, 8vw, 4.2rem)`
+  sits mid-page on every page, placed where intent peaks (after the services grid
+  on the home page, after the garage section on a location page, after the
+  before/after on a service page).
+- **The header call button is filled brand blue** at every breakpoint, with a
+  slow pulse ring that respects `prefers-reduced-motion`.
+- **The sticky mobile bar spells the number out** rather than saying "Call Now".
+- **Every in-body button row puts the phone first** and the form second.
+
+The audit fails any page with fewer than five `tel:` links or no call strip.
+Current minimum is 6 (the 404); content pages carry 9–14.
+
+## 4. Technical basics
 
 **Speed.** All 22 photos are cropped to their display slot and re-encoded as
 progressive JPEG at quality 74–86 — 4.3 MB across the whole library, versus
@@ -196,7 +224,7 @@ apart. To finish the job:
 
 ---
 
-## 4. The quote form
+## 5. The quote form
 
 `/contact/` posts to **Netlify Forms** (`data-netlify="true"`, honeypot field,
 redirect to `/contact/thank-you/`). It needs no backend and no API key, but it
@@ -221,7 +249,7 @@ or submissions will pile up in the dashboard unseen.
 
 ---
 
-## 5. Verifying a build
+## 6. Verifying a build
 
 ```bash
 python3 tools/build.py . && python3 tools/audit.py .
@@ -236,16 +264,20 @@ python3 tools/build.py . && python3 tools/audit.py .
 - invalid JSON-LD, a service or location page missing `LocalBusiness` or
   `Service` schema, or `/faq/` missing `FAQPage`
 - no click-to-call link in the header or the footer
-- a service or location page under 500 words
+- any indexable page under 1,000 words
 - **a hole in the service ↔ location linking matrix**
+- a page with no call strip, or fewer than five click-to-call links
+- any mention of a non-epoxy service (polished concrete, tile, hardwood, vinyl)
 - a broken internal link, a missing asset, an unrendered template placeholder
 - an indexable page absent from `sitemap.xml`, or a `noindex` page present in it
 
-Current state: **29 pages, 0 failures, 0 warnings.**
+Current state: **29 pages, 0 failures, 0 warnings.** Every indexable page is
+1,000+ words; the two exempt pages are `404.html` and the thank-you page, both
+`noindex`.
 
 ---
 
-## 6. Before launch — the short list
+## 7. Before launch — the short list
 
 - [ ] Set the real domain in `site.config.json` → `baseUrl`, rebuild
 - [ ] Point DNS at the host; confirm the certificate is live; **then** uncomment

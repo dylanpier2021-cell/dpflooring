@@ -22,7 +22,7 @@ ROOT = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else \
        os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKIP_DIRS = {".git", "tools", "assets", "node_modules"}
 
-MIN_WORDS = 500          # service + location pages
+MIN_WORDS = 1000         # every indexable page (noindex utility pages are exempt)
 TITLE_MAX = 70
 DESC_MIN, DESC_MAX = 110, 175
 
@@ -135,9 +135,21 @@ def main():
             fail(f"{u}: unrendered placeholder {m}")
 
         # --- word count -------------------------------------------------------
-        if u in svc_urls or u in loc_urls:
+        if not noindex:
             w = body_words(src)
             if w < MIN_WORDS: fail(f"{u}: {w} words (want {MIN_WORDS}+)")
+
+        # --- call-first: the phone has to be impossible to miss ---------------
+        if not re.search(r'<section class="callstrip">', src):
+            fail(f"{u}: no full-width call strip")
+        n_tel = len(re.findall(r'href="tel:', src))
+        if n_tel < 5: fail(f"{u}: only {n_tel} click-to-call links (want 5+)")
+
+        # --- epoxy only -------------------------------------------------------
+        for term in ("polished concrete", "carpet installation", "tile installation",
+                     "hardwood floor", "vinyl plank"):
+            if re.search(term, src, re.I):
+                fail(f"{u}: mentions non-epoxy service {term!r}")
 
         for h in re.findall(r'(?:href|src)="(/[^"#?]*)', src):
             (all_assets if re.search(r"\.(png|jpe?g|svg|css|js|ico|webmanifest|xml|txt)$", h)

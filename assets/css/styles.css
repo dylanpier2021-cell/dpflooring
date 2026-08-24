@@ -251,11 +251,19 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0; }
 
 .header__call {
   display: inline-flex; align-items: center; gap: .5rem; margin-left: auto;
-  font-family: var(--font-display); font-weight: 700; font-size: .92rem; white-space: nowrap;
-  color: #fff; text-decoration: none; padding: .6rem .85rem;
-  border: 1px solid var(--ink-line-2); border-radius: 10px; background: rgba(255,255,255,.05);
+  font-family: var(--font-display); font-weight: 800; font-size: .98rem; white-space: nowrap;
+  color: #fff; text-decoration: none; padding: .66rem 1rem; letter-spacing: -.01em;
+  border: 0; border-radius: 10px; background: var(--accent);
+  box-shadow: 0 8px 22px -8px var(--accent-glow);
+  animation: callpulse 3.2s var(--ease) infinite;
 }
-.header__call svg { width: 16px; height: 16px; color: var(--accent-lift); }
+.header__call:hover { background: var(--accent-lift); color: #fff; animation: none; }
+.header__call svg { width: 17px; height: 17px; color: #fff; }
+@keyframes callpulse {
+  0%, 78%, 100% { box-shadow: 0 8px 22px -8px var(--accent-glow); }
+  86%           { box-shadow: 0 8px 22px -8px var(--accent-glow), 0 0 0 6px rgba(0,80,240,.22); }
+}
+@media (prefers-reduced-motion: reduce) { .header__call { animation: none; } }
 .header__call span { display: none; }
 @media (min-width: 460px) { .header__call span { display: inline; } }
 @media (min-width: 1000px) { .header__call { margin-left: .5rem; order: 3; } }
@@ -788,3 +796,72 @@ body { padding-bottom: 0; }
   margin: 1.75rem 0; font-size: 1rem;
 }
 .section--dark .local-note { background: rgba(0,80,240,.14); }
+
+
+/* ================================================= 19. Call-first treatments */
+/* The phone is the primary conversion on this site - a contractor's customer is
+   usually standing in the room they want quoted. Everything here exists to make
+   the number the loudest thing on the page. */
+
+.btn--call {
+  --btn-bg: var(--accent); --btn-fg: #fff;
+  font-size: 1.2rem; font-weight: 800; padding: 1.15rem 1.9rem;
+  box-shadow: 0 16px 38px -12px var(--accent-glow);
+}
+.btn--call svg { width: 1.2em; height: 1.2em; }
+.btn--call:hover { --btn-bg: var(--accent-lift); }
+.btn--call .num { letter-spacing: -.015em; }
+
+/* big tappable number under the hero headline */
+.phone-cta {
+  display: inline-flex; align-items: center; gap: .9rem; text-decoration: none;
+  padding: .9rem 1.5rem .9rem 1.1rem; border-radius: var(--radius-lg);
+  background: rgba(0,80,240,.16); border: 1.5px solid rgba(77,139,255,.5);
+  backdrop-filter: blur(8px); transition: background-color .2s var(--ease), transform .2s var(--ease);
+}
+.phone-cta:hover { background: rgba(0,80,240,.30); transform: translateY(-2px); }
+.phone-cta__icon {
+  width: 46px; height: 46px; flex: none; border-radius: 50%;
+  background: var(--accent); display: grid; place-items: center;
+}
+.phone-cta__icon svg { width: 21px; height: 21px; color: #fff; }
+.phone-cta small {
+  display: block; font-size: .72rem; letter-spacing: .13em; text-transform: uppercase;
+  color: #9FC0F0; font-weight: 700; margin-bottom: .1rem;
+}
+.phone-cta b {
+  display: block; font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(1.4rem, 3.4vw, 1.85rem); color: #fff; letter-spacing: -.025em; line-height: 1;
+}
+
+/* full-width call strip, dropped between sections on every page */
+.callstrip {
+  background: linear-gradient(122deg, #041033 0%, #0043CE 46%, #0050F0 100%);
+  color: #fff; text-align: center; position: relative; overflow: hidden; isolation: isolate;
+}
+.callstrip::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: .32;
+  background: radial-gradient(620px 250px at 50% -30%, #7FB0FF, transparent 68%);
+}
+.callstrip .wrap { padding-block: clamp(2.5rem, 5.5vw, 3.75rem); }
+.callstrip p.kicker {
+  font-family: var(--font-display); font-weight: 700; font-size: .8rem;
+  letter-spacing: .16em; text-transform: uppercase; color: #BBD6FF; margin: 0 0 .7rem;
+}
+.callstrip a.big {
+  display: inline-block; text-decoration: none; color: #fff;
+  font-family: var(--font-display); font-weight: 800; letter-spacing: -.035em;
+  font-size: clamp(2.4rem, 8vw, 4.2rem); line-height: 1;
+  transition: transform .2s var(--ease);
+}
+.callstrip a.big:hover { transform: scale(1.03); color: #fff; }
+.callstrip .sub { color: #D6E6FF; margin: .9rem 0 0; font-size: 1.04rem; }
+.callstrip .or {
+  margin: 1.5rem 0 0; font-size: .95rem; color: #BBD6FF;
+}
+.callstrip .or a { color: #fff; font-weight: 650; }
+
+/* sticky mobile bar now shows the actual number */
+.callbar { grid-template-columns: 1.4fr 1fr; }
+.callbar .btn--onDark { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; }
+.callbar .btn--onDark .num { white-space: nowrap; }
