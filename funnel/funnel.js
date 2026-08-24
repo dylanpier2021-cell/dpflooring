@@ -71,8 +71,8 @@ const PRICING = {
 
 const BUSINESS = {
   name:  "DP Flooring Services LLC",
-  phone: "(217) 417-5950",
-  tel:   "+12174175950",
+  phone: "(217) 372-7770",
+  tel:   "+12173727770",
   email: "dpflooringservicesllc@gmail.com"
 };
 

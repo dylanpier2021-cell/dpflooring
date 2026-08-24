@@ -213,8 +213,8 @@ apart. To finish the job:
 1. Create the profile as a **service-area business** (you travel to customers),
    which hides the street address and instead lists the towns you serve.
 2. Make the profile match `site.config.json` **character for character**:
-   `DP Flooring Services LLC` and `(217) 417-5950`. Not "DP Flooring", not
-   "217-417-5950". Inconsistent NAP is the most common reason a local business
+   `DP Flooring Services LLC` and `(217) 372-7770`. Not "DP Flooring", not
+   "217-372-7770". Inconsistent NAP is the most common reason a local business
    fails to rank for its own name.
 3. Set the profile's service areas from the `serviceArea.groups` list.
 4. Paste the profile's share link into `social.googleBusinessProfile` in

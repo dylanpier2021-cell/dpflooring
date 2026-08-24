@@ -1063,7 +1063,7 @@ def page_home():
     path = "/"
     title = "Epoxy Flooring Champaign IL &amp; Bloomington | DP Flooring Services"
     desc = ("Durable, high-gloss epoxy floors in Champaign-Urbana, Bloomington-Normal and Central "
-            "Illinois. Garages, basements, shops, commercial. Free quotes - (217) 417-5950.")
+            f"Illinois. Garages, basements, shops, commercial. Free quotes - {PHONE}.")
 
     cards = "\n".join(f"""      <article class="card reveal">
         <div class="card__media">
@@ -2658,7 +2658,7 @@ def page_contact():
     path = "/contact/"
     trail = [("Home", "/"), ("Free Quote", None)]
     title = "Free Epoxy Flooring Quote | Champaign &amp; Bloomington IL"
-    desc = ("Get a free, itemized epoxy flooring quote. Call (217) 417-5950 or send the form - garages, "
+    desc = (f"Get a free, itemized epoxy flooring quote. Call {PHONE} or send the form - garages, "
             "basements, shops, warehouses and commercial floors across Central Illinois.")
 
     options = "\n".join(f'              <option value="{t}">{t}</option>' for t in FLOOR_TYPES)
@@ -2932,7 +2932,7 @@ def page_404():
     path = "/404.html"
     html = head("Page not found | " + NAME,
                 "That page does not exist. Head back to the DP Flooring Services home page, or call "
-                "(217) 417-5950 for a free epoxy flooring quote.", path)
+                f"{PHONE} for a free epoxy flooring quote.", path)
     html = html.replace('<meta name="robots" content="index, follow, max-image-preview:large">',
                         '<meta name="robots" content="noindex, follow">')
     links = "\n".join(f'        <li><a href="{h}">{l}</a></li>' for l, h in NAV_MOBILE)
