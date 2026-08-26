@@ -134,5 +134,134 @@
     "shop-warehouse-floors": "",
     "decorative-flake-and-metallic-epoxy": "",
     "floor-prep-and-repair": ""
-  }
+  },
+  "finishes": [
+    {
+      "slug": "flake",
+      "name": "Flake",
+      "price": "$7",
+      "blurb": "Durable, slip-resistant, and it hides dirt between cleanings.",
+      "img": "decorative-flake-epoxy-floor-finish.jpg",
+      "alt": "Close-up of a gray and white speckled full-broadcast flake floor finish"
+    },
+    {
+      "slug": "solid",
+      "name": "Solid Color",
+      "price": "$6",
+      "blurb": "Clean and uniform. The most economical way to seal a slab.",
+      "img": "high-gloss-epoxy-hangar-floor.jpg",
+      "alt": "Smooth, high-gloss solid color floor reflecting the lights above it"
+    },
+    {
+      "slug": "metallic",
+      "name": "Metallic",
+      "price": "$12",
+      "blurb": "Swirled and high-gloss. No two floors come out alike.",
+      "img": "metallic-epoxy-floor-finish.jpg",
+      "alt": "Poured amber metallic floor finish with visible movement and depth"
+    }
+  ],
+  "_finishes_note": "Prices shown on /colors-and-finishes/ as a typical per-sq-ft figure. HEADS UP: funnel/funnel.js prices metallic at $9-$12, so the $12 here is the TOP of that range rather than a typical number. Pick one and make them agree before launch.",
+  "colors": {
+    "flake": [
+      {
+        "name": "Carbon",
+        "file": "flake-carbon.jpg",
+        "note": "Near-black with a fine grey fleck. The darkest blend we stock."
+      },
+      {
+        "name": "Obsidian",
+        "file": "flake-obsidian.jpg",
+        "note": "Deep brown-grey. Warmer and softer than the name suggests."
+      },
+      {
+        "name": "Nightfall",
+        "file": "flake-nightfall.jpg",
+        "note": "Dark charcoal. Reads almost solid from standing height."
+      },
+      {
+        "name": "Denim",
+        "file": "flake-denim.jpg",
+        "note": "Blue with grey and white chips. The only true blue in the range."
+      },
+      {
+        "name": "Wombat",
+        "file": "flake-wombat.jpg",
+        "note": "Even mid-grey, quiet contrast. Safe anywhere."
+      },
+      {
+        "name": "Domino",
+        "file": "flake-domino.jpg",
+        "note": "Classic black-and-white mix that reads mid-grey overall."
+      },
+      {
+        "name": "Pumice",
+        "file": "flake-pumice.jpg",
+        "note": "Mid greige, slightly warm, low contrast."
+      },
+      {
+        "name": "Saddle Tan",
+        "file": "flake-saddle-tan.jpg",
+        "note": "True tan with cream and brown chips. Warm underfoot."
+      },
+      {
+        "name": "Gravel",
+        "file": "flake-gravel.jpg",
+        "note": "Light grey with a tight, even speckle."
+      },
+      {
+        "name": "Creekbed",
+        "file": "flake-creekbed.jpg",
+        "note": "Warm tan and grey together. Hides tracked-in dirt well."
+      },
+      {
+        "name": "Cabin Fever",
+        "file": "flake-cabin-fever.jpg",
+        "note": "Light greige, warm and cool chips mixed."
+      },
+      {
+        "name": "Tidal Wave",
+        "file": "flake-tidal-wave.jpg",
+        "note": "Light silver-grey with high chip contrast."
+      },
+      {
+        "name": "Claystone",
+        "file": "flake-claystone.jpg",
+        "note": "Warm off-white with soft grey chips."
+      },
+      {
+        "name": "Schist",
+        "file": "flake-schist.jpg",
+        "note": "Pale cool grey. The lightest neutral we stock."
+      },
+      {
+        "name": "Desert",
+        "file": "flake-desert.jpg",
+        "note": "Light sand. The brightest warm blend we stock."
+      }
+    ],
+    "metallic": [
+      {
+        "name": "Ocean Blue",
+        "file": "metallic-ocean-blue.jpg",
+        "note": "Deep blue with teal movement and pearl veining."
+      },
+      {
+        "name": "Silver Storm",
+        "file": "metallic-silver-storm.jpg",
+        "note": "Charcoal through to bright silver. Dramatic under directional light."
+      },
+      {
+        "name": "Copper Bronze",
+        "file": "metallic-copper-bronze.jpg",
+        "note": "Warm copper over dark bronze. Reads like polished metal."
+      },
+      {
+        "name": "Black & Gold",
+        "file": "metallic-black-and-gold.jpg",
+        "note": "Black base with gold veining. The boldest floor we pour."
+      }
+    ]
+  },
+  "_colors_note": "FLAKE swatches are the client's own product photos (supplied Aug 26 2026), ordered dark -> light. METALLIC swatches are still rendered colour REPRESENTATIONS, not photos of installed floors, and the page says so. Replace any file in assets/img/colors/ using the same filename and the page updates itself."
 }

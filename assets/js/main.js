@@ -96,6 +96,114 @@
     }, 3000);
   }
 
+
+  /* ------------------------------------------------ gallery filter + lightbox */
+  var grid = doc.getElementById("galleryGrid");
+  if (grid) {
+    var tiles = Array.prototype.slice.call(grid.querySelectorAll(".gtile"));
+    var empty = doc.getElementById("galleryEmpty");
+
+    // --- filtering ---------------------------------------------------------
+    Array.prototype.forEach.call(doc.querySelectorAll(".ftab"), function (tab) {
+      tab.addEventListener("click", function () {
+        var want = tab.dataset.filter;
+        Array.prototype.forEach.call(doc.querySelectorAll(".ftab"), function (t) {
+          var on = t === tab;
+          t.classList.toggle("is-active", on);
+          t.setAttribute("aria-pressed", String(on));
+        });
+        var shown = 0;
+        tiles.forEach(function (tile) {
+          var cats = (tile.dataset.cats || "").split(/\s+/);
+          var show = want === "all" || cats.indexOf(want) !== -1;
+          tile.hidden = !show;
+          if (show) shown++;
+        });
+        if (empty) empty.hidden = shown !== 0;
+      });
+    });
+
+    // --- lightbox ----------------------------------------------------------
+    var lb    = doc.getElementById("lightbox");
+    var lbImg = doc.getElementById("lightboxImg");
+    var lbCap = doc.getElementById("lightboxCap");
+    var lastFocus = null;
+    var order = [];           // rebuilt on open so it follows the active filter
+    var at = 0;
+
+    function visibleButtons() {
+      return tiles.filter(function (t) { return !t.hidden; })
+                  .map(function (t) { return t.querySelector(".gtile__btn"); });
+    }
+
+    function paint() {
+      var b = order[at];
+      if (!b) return;
+      lbImg.src = b.dataset.full;
+      // The tile's own alt already describes the photograph accurately - reuse
+      // it rather than inventing a second description of the same image.
+      lbImg.alt = b.querySelector("img").alt;
+      lbCap.innerHTML = b.dataset.caption || "";
+    }
+
+    function openLb(btn) {
+      order = visibleButtons();
+      at = Math.max(0, order.indexOf(btn));
+      lastFocus = btn;
+      lb.hidden = false;
+      doc.body.classList.add("lb-open");
+      paint();
+      lb.querySelector("[data-lb-close]").focus();
+    }
+
+    function closeLb() {
+      lb.hidden = true;
+      doc.body.classList.remove("lb-open");
+      lbImg.src = "";
+      if (lastFocus) lastFocus.focus();
+    }
+
+    function step(n) {
+      if (!order.length) return;
+      at = (at + n + order.length) % order.length;
+      paint();
+    }
+
+    grid.addEventListener("click", function (e) {
+      var btn = e.target.closest(".gtile__btn");
+      if (btn) openLb(btn);
+    });
+
+    lb.addEventListener("click", function (e) {
+      if (e.target.closest("[data-lb-close]") || e.target === lb) closeLb();
+      else if (e.target.closest("[data-lb-prev]")) step(-1);
+      else if (e.target.closest("[data-lb-next]")) step(1);
+    });
+
+    doc.addEventListener("keydown", function (e) {
+      if (lb.hidden) return;
+      if (e.key === "Escape") closeLb();
+      else if (e.key === "ArrowLeft") step(-1);
+      else if (e.key === "ArrowRight") step(1);
+      else if (e.key === "Tab") {           // keep focus inside the dialog
+        var f = lb.querySelectorAll("button");
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && doc.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && doc.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    // swipe between images on touch
+    var x0 = null;
+    lb.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 55) step(dx < 0 ? 1 : -1);
+      x0 = null;
+    }, { passive: true });
+  }
+
   /* ------------------------------------------------------- quote form helper */
   var form = doc.querySelector("form[data-validate]");
   if (form) {

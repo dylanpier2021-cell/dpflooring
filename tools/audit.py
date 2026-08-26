@@ -122,6 +122,7 @@ def main():
 
         # --- images ----------------------------------------------------------
         for img in re.findall(r"<img\s[^>]*>", src):
+            if "data-template" in img: continue      # filled in by JS at runtime
             if 'alt="' not in img: fail(f"{u}: <img> with no alt attribute")
             elif re.search(r'alt=""', img) and "aria-hidden" not in img:
                 warn(f"{u}: <img> with empty alt (fine only if decorative)")

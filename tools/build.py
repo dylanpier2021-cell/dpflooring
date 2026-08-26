@@ -63,8 +63,9 @@ TAGLINE = "Built to last. Finished to impress."
 
 
 # ------------------------------------------------------------------- content
-NAV = [("Home", "/"), ("Services", "/services/"), ("About", "/about/"),
-       ("Service Area", "/service-area/"), ("Gallery", "/gallery/"), ("FAQ", "/faq/")]
+NAV = [("Home", "/"), ("Services", "/services/"), ("Colors", "/colors-and-finishes/"),
+       ("Gallery", "/gallery/"), ("Service Area", "/service-area/"), ("About", "/about/"),
+       ("FAQ", "/faq/")]
 NAV_MOBILE = NAV + [("Contact", "/contact/")]
 
 SERVICES = [
@@ -2485,36 +2486,308 @@ def page_area():
 </main>
 """ + footer()
 
-# ================================================================== GALLERY ==
-def page_gallery():
-    path = "/gallery/"
-    trail = [("Home", "/"), ("Gallery", None)]
-    title = "Epoxy Floor Gallery | Before &amp; After Projects | Central Illinois"
-    desc = ("Before-and-after epoxy floor comparisons from Central Illinois - garage, basement, shop, "
-            "warehouse and commercial floors, before prep and after coating.")
 
-    pairs = "\n".join(ba_html(p) for p in PAIRS)
-    shots = "\n".join(f"""      <figure class="shot reveal">
-        <img src="{IMG}/{f}" alt="{a}" width="1280" height="854" loading="lazy" decoding="async">
-        <figcaption>{c}</figcaption>
-      </figure>""" for f, c, a in SHOTS)
+# ========================================================= COLORS & FINISHES ==
+def page_colors():
+    path = "/colors-and-finishes/"
+    trail = [("Home", "/"), ("Colors &amp; Finishes", None)]
+    title = "Epoxy Colors &amp; Finishes | Flake &amp; Metallic Blends | Central Illinois"
+    desc = ("Flake and metallic epoxy colors from DP Flooring Services. Storm Grey, Onyx Black, "
+            "Ocean Blue and more, with typical per-square-foot pricing. Samples at every free quote.")
 
-    schema = [crumb_schema(trail)]
+    fin = "\n".join(f"""      <article class="fincard reveal">
+        <div class="fincard__media">
+          <img src="{IMG}/{f['img']}" alt="{f['alt']}" width="1280" height="854" loading="lazy" decoding="async">
+        </div>
+        <div class="fincard__body">
+          <h3>{f['name']}</h3>
+          <p>{f['blurb']}</p>
+          <p class="fincard__price"><b>{f['price']}</b><span>typical / sq&nbsp;ft</span></p>
+          <a class="arrow-link" href="/contact/">Quote this finish <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </article>""" for f in CFG["finishes"])
 
-    return head(title, desc, path, schema=schema) + header(path) + pagehead(
-        "Before and after: what prep actually does",
-        "Drag the slider on any floor below. The left half is bare, worn or damaged concrete. "
-        "The right half is what the same kind of slab looks like once it has been ground, repaired and coated.",
-        trail) + f"""
+    def swatches(kind):
+        return "\n".join(f"""      <figure class="swatch reveal">
+        <div class="swatch__media">
+          <img src="/assets/img/colors/{c['file']}" alt="{c['name']} &ndash; {kind} epoxy color representation"
+               width="560" height="560" loading="lazy" decoding="async">
+        </div>
+        <figcaption><b>{c['name']}</b><span>{c['note']}</span></figcaption>
+      </figure>""" for c in CFG["colors"][kind])
+
+    schema = [crumb_schema(trail), local_business(), {
+        "@context": "https://schema.org", "@type": "ItemList",
+        "name": "Epoxy floor colors and finishes",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i + 1, "name": c["name"], "description": c["note"]}
+            for i, c in enumerate(CFG["colors"]["flake"] + CFG["colors"]["metallic"])]}]
+
+    return head(title, desc, path, schema=schema) + header(path) + f"""
+<section class="pagehead">
+  <div class="wrap">
+    {crumbs(trail)}
+    <div class="pagehead__inner">
+      <p class="tagline">{TAGLINE}</p>
+      <h1>Explore Our Colors &amp; Finishes</h1>
+      <p class="lede">Custom epoxy floors for garages, shops and patios across Champaign County
+      &mdash; pick a blend, we bring the samples.</p>
+      <div class="btn-row">
+        {btn("Get My Free Quote", "/contact/", "btn--onDark")}
+        {call_btn()}
+      </div>
+    </div>
+  </div>
+</section>
+
 <main id="main">
 
 <section class="section">
   <div class="wrap">
     <div class="section-head">
+      <p class="eyebrow">Finish types</p>
+      <h2>Three systems. Same prep underneath.</h2>
+      <p class="lede">Every floor is diamond ground, repaired and sealed the same way. What changes
+      is the coat that goes on top, and what it costs per square foot.</p>
+    </div>
+    <div class="fincards">
+{fin}
+    </div>
+    <p class="pricenote">Typical installed pricing per square foot. The number on your floor moves with
+    square footage, slab condition and how much repair it needs first &mdash; every quote is free,
+    on site and itemized.</p>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Flake blends</p>
+      <h2>Flake colors</h2>
+      <p class="lede">Vinyl chips broadcast into the base coat to refusal, then scraped, vacuumed and
+      sealed under clear urethane. Any blend below, or bring us one of your own.</p>
+    </div>
+    <div class="swatches">
+{swatches("flake")}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Metallic pours</p>
+      <h2>Metallic colors</h2>
+      <p class="lede">Pigment moves through the resin as it levels, so the pattern is created live on
+      your floor. Nobody can reproduce one exactly twice &mdash; including us.</p>
+    </div>
+    <div class="swatches swatches--4">
+{swatches("metallic")}
+    </div>
+    <p class="pricenote"><b>These are color representations, not photographs of installed floors.</b>
+    Screens shift color, and a metallic pour never looks the same twice. We bring real sample boards
+    to every estimate so you are choosing off the actual product.</p>
+  </div>
+</section>
+
+<section class="section section--paper2">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Choosing</p>
+      <h2>How to pick the right one</h2>
+    </div>
+    <ul class="features">
+      <li>{I['grid']}<div><b>Match the mess, not the mood board</b><span>Darker blends and busier
+      flake hide tire marks, salt and sawdust between cleanings. A near-white solid floor looks
+      incredible on day one and shows every footprint on day two. Think about what actually lands on
+      your floor before you pick.</span></div></li>
+      <li>{I['sparkle']}<div><b>Flake forgives, solid does not</b><span>A solid color is a mirror: every
+      trowel mark and repaired crack telegraphs through it in raking light. If your slab has history,
+      flake breaks the surface up visually and the repairs disappear.</span></div></li>
+      <li>{I['home']}<div><b>Look at it under your own lights</b><span>Storm Grey under a cool LED shop
+      fixture and Storm Grey under a warm garage bulb are two different floors. This is exactly why we
+      leave sample boards with you rather than asking you to decide off a screen.</span></div></li>
+      <li>{I['shield']}<div><b>Add grip where it gets wet</b><span>Flake carries a little texture on its
+      own. On a patio, a walkout basement or a garage that sees winter slush, we broadcast a fine
+      non-slip aggregate into the topcoat &mdash; it costs very little and it changes how the floor
+      behaves underfoot.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="wrap wrap--narrow">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">Every floor, every color</p>
+      <h2>What the price includes</h2>
+    </div>
+    <ul class="checks checks--dark">
+      <li>{I['check']}<span>Diamond grinding to open the concrete profile &mdash; never an acid etch</span></li>
+      <li>{I['check']}<span>Crack chasing, pit filling and spall repair before any color goes down</span></li>
+      <li>{I['check']}<span>Moisture testing, with the base coat specified to match the readings</span></li>
+      <li>{I['check']}<span>Full-broadcast flake or a hand-worked metallic pour, depending on your pick</span></li>
+      <li>{I['check']}<span>Clear polyaspartic or urethane topcoat for UV and scuff resistance</span></li>
+      <li>{I['check']}<span>Cleanup, a written care sheet, and exact cure dates before we leave</span></li>
+    </ul>
+  </div>
+</section>
+
+{call_strip("Not sure which blend suits your slab?",
+            "Tell us the room and what happens on that floor. We will tell you straight away which "
+            "finishes make sense and which ones we would talk you out of.")}
+
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">Color questions</p>
+      <h2>Asked before every install</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Can I get a custom blend?</summary>
+        <div class="faq__a"><p>Yes. The fifteen flake blends here are the ones we keep in stock, but chips
+        come in dozens of colors and we mix to order &mdash; team colors, a match to your cabinets, or
+        a tweak to one of ours. Bring a photo or a paint chip to the estimate and we will get close.
+        Custom blends can add a few days of lead time.</p></div>
+      </details>
+      <details>
+        <summary>Will the color fade?</summary>
+        <div class="faq__a"><p>Not under the topcoat we use. Bare epoxy ambers in sunlight, which is why
+        every floor we install is sealed with a UV-stable polyaspartic or urethane clear. In a garage or
+        basement it is a non-issue. On a patio or anywhere with direct sun, the topcoat is doing real
+        work &mdash; and it is one of the reasons we do not skip it to save a few dollars.</p></div>
+      </details>
+      <details>
+        <summary>How closely will my floor match the sample?</summary>
+        <div class="faq__a"><p>Flake matches closely, because the chips are a manufactured product and
+        the blend is measured. Metallic is different by nature: the pigment moves as the resin levels,
+        so your floor will share the sample's palette and character but the pattern will be its own.
+        If you need predictability, flake is the safer pick.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+{cta_band("Want to see it in person?",
+          "We bring samples to every free estimate &mdash; real boards, in your space, under your "
+          "own lighting. No charge, no obligation, and no trip fee anywhere in our service area.",
+          "Get My Free Quote")}
+</main>
+""" + footer()
+
+# ================================================================== GALLERY ==
+# (file, label, [categories]) - label is what shows under the tile.
+# Categories drive the filter tabs. Anything named "placeholder-*" is a slot
+# waiting on a real project photo.
+GALLERY_ITEMS = [
+ ("blue-flake-epoxy-garage-floor.jpg",   "Flake &mdash; 2-Car Garage",        ["flake","garage"],
+  "Modern garage finished with a blue and gray flake epoxy floor"),
+ ("epoxy-garage-floor-interior.jpg",     "Flake &mdash; Garage Workshop",     ["flake","garage"],
+  "Garage interior with a smooth gray floor and open storage shelving"),
+ ("garage-storage-cabinets-gray-floor.jpg","Solid &mdash; Garage &amp; Storage", ["garage"],
+  "Empty residential garage with storage cabinets and a smooth gray floor"),
+ ("metallic-epoxy-floor-finish.jpg",     "Metallic &mdash; Feature Floor",    ["metallic","commercial"],
+  "Large interior with a poured amber metallic floor finish and dark steel columns"),
+ ("showroom-epoxy-floor-graphics.jpg",   "Solid &mdash; Showroom Graphics",   ["commercial"],
+  "Coated floor with black and red inlaid graphics beside a ribbed metal wall"),
+ ("car-showroom-epoxy-floor.jpg",        "Solid &mdash; Dealership Showroom", ["commercial"],
+  "Car showroom with a high-gloss coated floor reflecting the vehicles on display"),
+ ("commercial-epoxy-floor-coating.jpg",  "Solid &mdash; Warehouse Floor",     ["commercial"],
+  "Warehouse interior with a freshly installed high-gloss epoxy floor"),
+ ("high-gloss-epoxy-hangar-floor.jpg",   "Solid &mdash; Hangar Bay",          ["commercial"],
+  "Aircraft hangar with a mirror-gloss white epoxy floor"),
+ ("commercial-floor-coating-line-striping.jpg","Solid &mdash; Safety Striping",["commercial"],
+  "Close-up of a coated commercial floor with painted directional arrows and a red safety stripe"),
+ ("parking-structure-gray-floor.jpg",    "Solid &mdash; Parking Structure",   ["commercial"],
+  "Smooth, light gray floor running through a large parking structure"),
+ ("decorative-flake-epoxy-floor-finish.jpg","Flake &mdash; Full Broadcast",   ["flake"],
+  "Close-up of a gray and white speckled full-broadcast flake finish"),
+ ("placeholder-patio-flake.jpg",         "Flake &mdash; Patio Coating",       ["flake","patio"],
+  "Placeholder tile marking where a flake patio project photo will go"),
+ ("placeholder-patio-solid.jpg",         "Solid &mdash; Covered Porch",       ["patio"],
+  "Placeholder tile marking where a solid color porch project photo will go"),
+ ("placeholder-stairs-flake.jpg",        "Flake &mdash; Basement Stairs",     ["flake"],
+  "Placeholder tile marking where a flake stair project photo will go"),
+]
+
+GALLERY_FILTERS = [("all","All"), ("flake","Flake"), ("metallic","Metallic"),
+                   ("garage","Garage"), ("patio","Patio"), ("commercial","Commercial")]
+
+def page_gallery():
+    path = "/gallery/"
+    trail = [("Home", "/"), ("Gallery", None)]
+    title = "Epoxy Floor Gallery | Before &amp; After Projects | Central Illinois"
+    desc = ("Epoxy floor gallery from DP Flooring Services - garage, patio, commercial and metallic "
+            "floors, plus before-and-after comparisons showing what surface prep does.")
+
+    tabs = "\n".join(
+        f'        <button class="ftab{" is-active" if k == "all" else ""}" type="button" '
+        f'data-filter="{k}" aria-pressed="{"true" if k == "all" else "false"}">{lab}</button>'
+        for k, lab in GALLERY_FILTERS)
+
+    tiles = "\n".join(f"""      <figure class="gtile reveal" data-cats="{' '.join(cats)}">
+        <button class="gtile__btn" type="button" data-full="{IMG}/{f}" data-caption="{lab}">
+          <img src="{IMG}/{f}" alt="{alt}" width="1280" height="854" loading="lazy" decoding="async">
+          <span class="gtile__zoom" aria-hidden="true">{I['grid']}</span>
+        </button>
+        <figcaption>{lab}</figcaption>
+      </figure>""" for f, lab, cats, alt in GALLERY_ITEMS)
+
+    pairs = "\n".join(ba_html(pr) for pr in PAIRS[:4])
+
+    schema = [crumb_schema(trail), local_business(), {
+        "@context": "https://schema.org", "@type": "ImageGallery",
+        "name": "DP Flooring Services epoxy floor gallery", "url": BASE + path}]
+
+    return head(title, desc, path, schema=schema) + header(path) + f"""
+<section class="pagehead">
+  <div class="wrap">
+    {crumbs(trail)}
+    <div class="pagehead__inner">
+      <p class="tagline">{TAGLINE}</p>
+      <h1>See the Transformation</h1>
+      <p class="lede">Real floors installed across Champaign County &mdash; garages, patios,
+      shops and commercial space, in flake, solid color and poured metallic.</p>
+      <div class="btn-row">
+        {btn("Get My Free Quote", "/contact/", "btn--onDark")}
+        {call_btn()}
+      </div>
+    </div>
+  </div>
+</section>
+
+<main id="main">
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The work</p>
+      <h2>Browse by floor type</h2>
+    </div>
+
+    <div class="ftabs" role="group" aria-label="Filter the gallery by floor type">
+{tabs}
+    </div>
+
+    <div class="gallery" id="galleryGrid">
+{tiles}
+    </div>
+    <p class="gempty" id="galleryEmpty" hidden>Nothing in that category yet &mdash; call
+      <a href="tel:{TEL}">{PHONE}</a> and we&rsquo;ll send recent photos straight to your phone.</p>
+
+    <p class="pricenote" style="margin-top:1.75rem">Tiles marked <b>Photo coming soon</b> are slots
+    held for jobs we are still photographing. Everything else shows the finish and floor type named
+    beneath it.</p>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="section-head">
       <p class="eyebrow">Before &amp; after</p>
-      <h2>Six floors, six problems, one process</h2>
-      <p class="lede">Every one of these starts the same way: grind the slab, fix what is broken, then coat it.
-      Drag each divider left and right to compare.</p>
+      <h2>What prep actually does</h2>
+      <p class="lede">Drag any divider. Left is the kind of slab we start from, right is the finish
+      the same kind of slab takes once it has been ground, repaired and coated.</p>
     </div>
     <div class="gallery-grid">
 {pairs}
@@ -2522,100 +2795,135 @@ def page_gallery():
   </div>
 </section>
 
+
 <section class="section section--paper2">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Finishes</p>
-      <h2>Systems we install</h2>
-      <p class="lede">Solid color, full-broadcast flake, poured metallic and high-build commercial
-      coatings &mdash; with line striping and non-slip aggregate wherever the floor needs it.</p>
+      <p class="eyebrow">By floor type</p>
+      <h2>What you&rsquo;re looking at</h2>
+      <p class="lede">Same prep on every floor above. What changes is the system on top and what
+      that space has to put up with.</p>
     </div>
-    <div class="gallery-grid">
-{shots}
+    <div class="grid grid--3 steps">
+      <div class="step reveal">
+        <h3>Garage floors</h3>
+        <p>Hot tires, road salt and dropped tools. These get a system rated for hot-tire pickup
+        and, nine times out of ten, a full flake broadcast &mdash; it hides the repairs an older
+        Champaign County slab always needs and adds grip for winter slush.</p>
+      </div>
+      <div class="step reveal">
+        <h3>Patios &amp; porches</h3>
+        <p>Outdoor concrete lives with UV and freeze-thaw, so the topcoat is doing real work. We
+        spec a UV-stable clear and broadcast non-slip aggregate into it as standard &mdash; a smooth
+        coated patio in the rain is not something we&rsquo;ll hand over.</p>
+      </div>
+      <div class="step reveal">
+        <h3>Commercial &amp; warehouse</h3>
+        <p>Forklifts, pallet jacks and wash-downs. Higher build thickness, chemical-resistant resin,
+        and joints filled with a semi-rigid filler that takes a wheel load without breaking down at
+        the edge. Striping and aisle marking go into the system, not on top of it.</p>
+      </div>
+      <div class="step reveal">
+        <h3>Flake finishes</h3>
+        <p>Vinyl chips broadcast to refusal, scraped back, vacuumed and sealed. The most forgiving
+        finish we install and the one most people picture. Fifteen stock blends, or we&rsquo;ll mix
+        to match something you bring us.</p>
+      </div>
+      <div class="step reveal">
+        <h3>Metallic pours</h3>
+        <p>Pigment worked through clear resin while it levels, so the pattern forms live on your
+        floor. Showrooms, lobbies and feature garages. Costs more, takes longer, and no two ever
+        come out the same.</p>
+      </div>
+      <div class="step reveal">
+        <h3>Solid color</h3>
+        <p>Clean, uniform and the most economical way to seal a slab. It is also a mirror &mdash;
+        every trowel mark and patched crack shows in raking light, so we only recommend it over
+        concrete that is genuinely flat.</p>
+      </div>
     </div>
-    <p class="form-note" style="margin-top:2rem;max-width:70ch">
-      These are reference photographs of the floor systems and finishes we install. As jobs wrap up
-      around Champaign-Urbana and Bloomington-Normal, real {BRAND} before-and-afters go up in their place.
-    </p>
   </div>
 </section>
-
-{call_strip("Want to see samples in person?",
-            "Photographs of epoxy are useful for showing what prep does. They are almost useless for "
-            "choosing a color. We bring the real thing to the estimate.")}
 
 <section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">How to read these</p>
-      <h2>What you are actually looking at</h2>
+  <div class="wrap wrap--narrow">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">Before you ask</p>
+      <h2>Two things people always want to know</h2>
     </div>
-    <div class="wrap--narrow" style="padding:0;margin:0">
-      <p>Every comparison above shows the same thing from a different angle: a slab in the condition we
-      typically find it, and the finish that goes over that kind of slab once it has been ground,
-      repaired and coated. The interesting half is the left one.</p>
-      <p>Look at what the &ldquo;before&rdquo; images have in common. Cracking that runs the length of
-      the bay. Spalling where the surface has flaked away, almost always worst near an overhead door
-      where snow and road salt collect. Dark staining in the parking positions where oil has soaked in
-      over years. Open control joints with crumbling edges. A dull, chalky, porous surface that shed
-      concrete dust onto everything stored on it. None of those are unusual and none of them are
-      disqualifying &mdash; but every one of them has to be dealt with before a coating goes on, and
-      every one of them is what somebody skips when a price looks too good.</p>
-      <p>The &ldquo;after&rdquo; half is the easy part to sell and the least interesting part to
-      explain. A high-gloss floor reflects light, so the building gets visibly brighter without another
-      fixture going in. A seamless floor has nowhere for dust or spills to hide, so it mops instead of
-      being swept and re-swept. And a sealed floor stops absorbing everything that lands on it, which is
-      the difference between wiping up a spill and living with it.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section section--paper2">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Finishes explained</p>
-      <h2>Why two floors in the same blend look different</h2>
-    </div>
-    <div class="wrap--narrow" style="padding:0;margin:0">
-      <p><strong>Chip size and density change everything.</strong> The same color blend broadcast at full
-      refusal reads as dense and granite-like; scattered lightly over a visible base color it reads as
-      modern and sparse. A quarter-inch chip and a full-inch chip in identical colors produce
-      substantially different floors. Neither is better &mdash; but you cannot tell them apart from a
-      photograph, which is why we bring boards.</p>
-      <p><strong>Base color shows through metallic.</strong> A metallic pour is semi-translucent, so the
-      pigmented coat underneath shifts the entire result. The same metallic blend over a black base and
-      over a pearl base are two different floors. This is part of the design, not a primer choice.</p>
-      <p><strong>Lighting decides the rest.</strong> Epoxy is glossy, and gloss is mostly a reflection of
-      whatever is above it. A floor under warm domestic bulbs, a floor under shop fluorescents and a
-      floor under a row of south-facing windows will not look the same in any of the three. This is the
-      single most common reason people are surprised by a finished floor, and it is why we ask you to
-      look at samples flat on the ground, in the room they are going into, in the light you will
-      actually have.</p>
-      <p><strong>And the slab underneath still shows.</strong> Gloss exaggerates flatness. On a
-      dead-flat modern pour a high-gloss finish looks like glass; on an older slab with gentle waves in
-      it, the same finish will pick up those waves in raking light. Flake hides this well. Solid color
-      and metallic do not. We will tell you at the estimate which one your concrete can carry.</p>
-    </div>
-    <p style="margin-top:1.5rem"><strong>One thing you will not see in any epoxy gallery, ours
-    included: the fourth year.</strong> Every coating looks superb on handover day, which is when the
-    photographs get taken. What separates a floor that still looks like this in a decade from one that
-    is lifting by the next winter happened days earlier, under the coating, where a camera cannot go.
-    That is why so much of this site is about grinding, moisture readings and crack repair rather than
-    color charts &mdash; it is the only part of the job worth judging an installer on, and it is the
-    only part you cannot see in a picture. Ask any installer you are considering how they prepare a slab
-    and what they do when a moisture test comes back high &mdash; the answer tells you more than a
-    hundred photographs of finished floors will.</p>
-    <div class="btn-row btn-row--center" style="margin-top:2.5rem">
-      {call_primary()}
-      {quote_btn("btn--ghost", "Book a free estimate")}
+    <div class="faq">
+      <details>
+        <summary>Can I see one of these floors in person?</summary>
+        <div class="faq__a"><p>Usually, yes. We keep a short list of past customers around
+        Champaign, Urbana and Bloomington who are happy to let someone stand on their floor before
+        committing. Tell us which finish you are weighing up and we will see who is nearby. Failing
+        that, we bring full sample boards to every estimate &mdash; real product, in your space,
+        under your own lighting.</p></div>
+      </details>
+      <details>
+        <summary>How long does a floor like this take?</summary>
+        <div class="faq__a"><p>Most residential garages and basements are a one- to two-day install:
+        grind and repair on day one, coat and broadcast on day two. Commercial floors run longer and
+        we phase them in sections so you are never fully shut down. Either way you get exact cure
+        dates before we start &mdash; light foot traffic in about a day, vehicles after roughly a
+        week.</p></div>
+      </details>
     </div>
   </div>
 </section>
 
-{cta_band("Want your floor in this gallery?",
-          "Book a free on-site quote and we will show you samples of every finish above &mdash; "
-          "flake blends, metallic pours and solid colors, in person rather than on a screen.")}
+
+<section class="section section--dark section--tight">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Where we work</p>
+      <h2>Floors like these, across Central Illinois</h2>
+      <p class="lede">We are based in Champaign County and install within a 50-mile radius, so the
+      floors above are the same ones going into garages, shops and commercial space right across the
+      area &mdash; with no trip charge to come out and quote yours.</p>
+    </div>
+    <p>The slab decides more than the town does, but the towns do have patterns. Older neighbourhoods
+    in Urbana, Danville and Decatur bring mid-century detached garages with cracked, salt-spalled
+    concrete that needs genuine repair before any color goes down &mdash; which is exactly why flake
+    is the popular pick there. Newer subdivisions in Savoy, Mahomet and north Normal sit on clean,
+    flat modern pours where a solid color or a metallic pour is realistic, because there is nothing
+    underneath for the finish to telegraph. Out past the village limits around Monticello, Tuscola,
+    Paxton and Tolono, most of the square footage is pole barns and machine sheds, and every one of
+    those gets moisture tested before we spec anything.</p>
+    <p>If you want to see the kind of work we do in your specific town, the pages below cover what we
+    run into on floors there and what it usually means for the quote.</p>
+    <ul class="link-grid link-grid--3" style="margin-top:1.5rem">
+{loc_links(limit=9, dark=True)}
+    </ul>
+    <p style="margin-top:1.5rem"><a class="arrow-link" href="/service-area/">See the full service area <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+
+{call_strip("Seen one you like?",
+            "Tell us which floor caught your eye and roughly how big your space is. "
+            "We will tell you what that finish costs on your slab.")}
+
+{cta_band("Ready for your floor?",
+          "Free, itemized, on-site quotes anywhere within 50 miles &mdash; with real samples in hand "
+          "so you can see the finish in your own space before you commit.",
+          "Get My Free Quote")}
 </main>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox__close" type="button" data-lb-close aria-label="Close image viewer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <button class="lightbox__nav lightbox__nav--prev" type="button" data-lb-prev aria-label="Previous image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <figure class="lightbox__fig">
+    <img id="lightboxImg" src="" alt="" width="1280" height="854" data-template>
+    <figcaption id="lightboxCap"></figcaption>
+  </figure>
+  <button class="lightbox__nav lightbox__nav--next" type="button" data-lb-next aria-label="Next image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+</div>
 """ + footer()
 
 # ====================================================================== FAQ ==
@@ -2973,6 +3281,7 @@ def build_pages():
         ("/services/",     "services/index.html",          page_services,"0.9", "monthly", True),
         ("/about/",        "about/index.html",             page_about,   "0.6", "yearly",  True),
         ("/service-area/", "service-area/index.html",      page_area,    "0.8", "monthly", True),
+        ("/colors-and-finishes/", "colors-and-finishes/index.html", page_colors, "0.8", "monthly", True),
         ("/gallery/",      "gallery/index.html",           page_gallery, "0.7", "monthly", True),
         ("/faq/",          "faq/index.html",               page_faq,     "0.7", "monthly", True),
         ("/contact/",      "contact/index.html",           page_contact, "0.9", "monthly", True),
