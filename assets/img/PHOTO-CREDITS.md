@@ -27,6 +27,53 @@ brand blue is safe for button fills and for body-size text on white.
   "Modern garage finished with a blue and gray flake epoxy floor" and does not
   place it anywhere.
 
+
+## AI-generated reference images (added Aug 26 2026)
+
+Thirteen images were generated with **OpenArt (GPT Image 2)** to fill gaps the
+stock library could not cover. They are **renderings, not photographs of
+completed DP Flooring jobs**, and nothing on the site claims otherwise.
+
+| File | What it shows |
+| --- | --- |
+| `colors/metallic-ocean-blue.jpg` | Metallic pour, deep blue + teal + pearl |
+| `colors/metallic-silver-storm.jpg` | Metallic pour, charcoal through bright silver |
+| `colors/metallic-copper-bronze.jpg` | Metallic pour, copper over dark bronze |
+| `colors/metallic-black-and-gold.jpg` | Metallic pour, gold veining on a black base |
+| `photos/patio-flake-covered-porch.jpg` | Covered porch, grey/white flake, dusk |
+| `photos/patio-flake-open-patio.jpg` | Open patio slab, tan/brown flake |
+| `photos/stairs-flake-front-steps.jpg` | Front entry steps, dark grey flake |
+| `photos/basement-flake-floor.jpg` | Finished basement, light grey flake |
+| `photos/shop-flake-epoxy-floor.jpg` | Shop / pole barn, dark grey flake |
+| `photos/metallic-epoxy-garage-floor.jpg` | Garage, blue/silver metallic |
+| `photos/metallic-epoxy-lobby-floor.jpg` | Office lobby, charcoal/silver metallic |
+| `photos/before-bare-garage-slab.jpg` | Two-car garage, cracked bare concrete |
+| `photos/after-flake-garage-floor.jpg` | **The same garage**, flake floor installed |
+
+The last two are a genuine matched pair: the "after" was produced image-to-image
+from the "before", so the room, camera angle and lighting are unchanged and only
+the floor differs. Verified numerically — the upper half of the frame differs by
+3.0 mean RGB, the lower half by 25.7.
+
+Each swatch was colour-verified after generation rather than trusted: Ocean Blue
+measures blue, Copper Bronze warm, Silver Storm neutral, and Black & Gold shows
+warm gold veining (187,153,96) over a black base (6,7,9).
+
+### Client-supplied job photos
+
+`photos/dp-job-garage-floor-1.jpg`, `-2.jpg`, `-3.jpg` are **real completed DP
+Flooring jobs**, supplied by the client Aug 26 2026 (originals `2.webp`,
+`4.webp`, `10.webp`). They are portrait originals, centre-cropped to the 3:2 the
+gallery grid uses with the crop biased low so the floor survives. These are the
+only images in the gallery captioned as completed work, and they carry the
+"Completed Garage" label for exactly that reason.
+
+### Flake swatches
+
+The 15 files in `colors/flake-*.jpg` are the client's own product swatches
+(supplied Aug 26 2026), ordered dark to light in `site.config.json`. Their
+descriptions were written from measured centre-crop colour data.
+
 ## Stock photography - Pexels
 
 Everything else in `photos/` is from **Pexels**, under the

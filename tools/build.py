@@ -390,6 +390,9 @@ FAQS = [
 ]
 
 PAIRS = [
+ ("Two-car garage", "Cracked bare slab &rarr; flake epoxy floor",
+  "before-bare-garage-slab.jpg", "Empty two-car garage with a cracked, stained bare concrete floor before coating",
+  "after-flake-garage-floor.jpg", "The same garage after a gray and white flake epoxy floor was installed"),
  ("Warehouse floor", "Bare slab &rarr; high-build coating",
   "before-bare-warehouse-slab.jpg", "Empty warehouse with bare gray concrete and roof skylights, before coating",
   "commercial-epoxy-floor-coating.jpg", "Warehouse interior with a high-gloss epoxy floor coating"),
@@ -2510,7 +2513,7 @@ def page_colors():
     def swatches(kind):
         return "\n".join(f"""      <figure class="swatch reveal">
         <div class="swatch__media">
-          <img src="/assets/img/colors/{c['file']}" alt="{c['name']} &ndash; {kind} epoxy color representation"
+          <img src="/assets/img/colors/{c['file']}" alt="{c['name']} &ndash; {kind} epoxy colour swatch"
                width="560" height="560" loading="lazy" decoding="async">
         </div>
         <figcaption><b>{c['name']}</b><span>{c['note']}</span></figcaption>
@@ -2584,9 +2587,10 @@ def page_colors():
     <div class="swatches swatches--4">
 {swatches("metallic")}
     </div>
-    <p class="pricenote"><b>These are color representations, not photographs of installed floors.</b>
-    Screens shift color, and a metallic pour never looks the same twice. We bring real sample boards
-    to every estimate so you are choosing off the actual product.</p>
+    <p class="pricenote"><b>Metallic swatches are rendered colour references, not photographs of
+    installed floors.</b> A metallic pour never looks the same twice and screens shift colour either
+    way, so treat these as the palette rather than the exact result. We bring real sample boards to
+    every estimate so you are choosing off the actual product.</p>
   </div>
 </section>
 
@@ -2680,12 +2684,39 @@ def page_colors():
 # Categories drive the filter tabs. Anything named "placeholder-*" is a slot
 # waiting on a real project photo.
 GALLERY_ITEMS = [
+ # --- the client's own completed jobs -------------------------------------
+ ("dp-job-garage-floor-1.jpg",           "Flake &mdash; Completed Garage",    ["flake","garage"],
+  "Completed residential garage floor installed by DP Flooring Services"),
+ ("dp-job-garage-floor-2.jpg",           "Flake &mdash; Completed Garage",    ["flake","garage"],
+  "Finished garage floor with a flake epoxy coating, installed by DP Flooring Services"),
+ ("dp-job-garage-floor-3.jpg",           "Flake &mdash; Completed Garage",    ["flake","garage"],
+  "Coated garage floor on a completed DP Flooring Services job"),
+ # --- garages ---------------------------------------------------------------
  ("blue-flake-epoxy-garage-floor.jpg",   "Flake &mdash; 2-Car Garage",        ["flake","garage"],
   "Modern garage finished with a blue and gray flake epoxy floor"),
+ ("metallic-epoxy-garage-floor.jpg",     "Metallic &mdash; Feature Garage",   ["metallic","garage"],
+  "Residential garage with a deep blue and silver metallic epoxy floor under accent lighting"),
  ("epoxy-garage-floor-interior.jpg",     "Flake &mdash; Garage Workshop",     ["flake","garage"],
   "Garage interior with a smooth gray floor and open storage shelving"),
  ("garage-storage-cabinets-gray-floor.jpg","Solid &mdash; Garage &amp; Storage", ["garage"],
   "Empty residential garage with storage cabinets and a smooth gray floor"),
+ # --- patios & steps --------------------------------------------------------
+ ("patio-flake-covered-porch.jpg",       "Flake &mdash; Covered Porch",       ["flake","patio"],
+  "Covered back porch at dusk with a gray and white flake epoxy floor"),
+ ("patio-flake-open-patio.jpg",          "Flake &mdash; Backyard Patio",      ["flake","patio"],
+  "Open backyard patio slab coated in tan and brown flake epoxy"),
+ ("stairs-flake-front-steps.jpg",        "Flake &mdash; Front Entry Steps",   ["flake","patio"],
+  "Exterior concrete front entry steps coated in dark gray flake epoxy"),
+ # --- interiors -------------------------------------------------------------
+ ("basement-flake-floor.jpg",            "Flake &mdash; Finished Basement",   ["flake"],
+  "Finished residential basement with a light gray and white flake epoxy floor"),
+ ("shop-flake-epoxy-floor.jpg",          "Flake &mdash; Shop &amp; Pole Barn",["flake","commercial"],
+  "Workshop interior with a dark gray flake epoxy floor running the length of the building"),
+ ("decorative-flake-epoxy-floor-finish.jpg","Flake &mdash; Full Broadcast",   ["flake"],
+  "Close-up of a gray and white speckled full-broadcast flake finish"),
+ # --- commercial ------------------------------------------------------------
+ ("metallic-epoxy-lobby-floor.jpg",      "Metallic &mdash; Office Lobby",     ["metallic","commercial"],
+  "Commercial office lobby with a charcoal and silver metallic epoxy floor"),
  ("metallic-epoxy-floor-finish.jpg",     "Metallic &mdash; Feature Floor",    ["metallic","commercial"],
   "Large interior with a poured amber metallic floor finish and dark steel columns"),
  ("showroom-epoxy-floor-graphics.jpg",   "Solid &mdash; Showroom Graphics",   ["commercial"],
@@ -2700,14 +2731,6 @@ GALLERY_ITEMS = [
   "Close-up of a coated commercial floor with painted directional arrows and a red safety stripe"),
  ("parking-structure-gray-floor.jpg",    "Solid &mdash; Parking Structure",   ["commercial"],
   "Smooth, light gray floor running through a large parking structure"),
- ("decorative-flake-epoxy-floor-finish.jpg","Flake &mdash; Full Broadcast",   ["flake"],
-  "Close-up of a gray and white speckled full-broadcast flake finish"),
- ("placeholder-patio-flake.jpg",         "Flake &mdash; Patio Coating",       ["flake","patio"],
-  "Placeholder tile marking where a flake patio project photo will go"),
- ("placeholder-patio-solid.jpg",         "Solid &mdash; Covered Porch",       ["patio"],
-  "Placeholder tile marking where a solid color porch project photo will go"),
- ("placeholder-stairs-flake.jpg",        "Flake &mdash; Basement Stairs",     ["flake"],
-  "Placeholder tile marking where a flake stair project photo will go"),
 ]
 
 GALLERY_FILTERS = [("all","All"), ("flake","Flake"), ("metallic","Metallic"),
@@ -2775,9 +2798,9 @@ def page_gallery():
     <p class="gempty" id="galleryEmpty" hidden>Nothing in that category yet &mdash; call
       <a href="tel:{TEL}">{PHONE}</a> and we&rsquo;ll send recent photos straight to your phone.</p>
 
-    <p class="pricenote" style="margin-top:1.75rem">Tiles marked <b>Photo coming soon</b> are slots
-    held for jobs we are still photographing. Everything else shows the finish and floor type named
-    beneath it.</p>
+    <p class="pricenote" style="margin-top:1.75rem">Tiles labelled <b>Completed Garage</b> are our own
+    finished jobs. The rest are reference images of the systems and finishes we install, captioned by
+    floor type &mdash; we swap them for real project photography as each job is shot.</p>
   </div>
 </section>
 
