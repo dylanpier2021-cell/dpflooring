@@ -993,3 +993,117 @@ body { padding-bottom: 0; }
 .lightbox__nav--next { right: .6rem; }
 @media (min-width: 800px) { .lightbox__nav--prev { left: 1.5rem; } .lightbox__nav--next { right: 1.5rem; } }
 body.lb-open { overflow: hidden; }
+
+/* ================================= 20. Review / feedback utility pages == */
+/* Standalone pages for QR codes and text-to-review campaigns. No site header,
+   footer or call strip - /review has to fit one screen without scrolling. */
+
+.util {
+  min-height: 100svh;
+  background:
+    radial-gradient(900px 420px at 50% -10%, rgba(0,80,240,.30), transparent 62%),
+    var(--ink);
+  color: #fff;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 1.5rem var(--gut) 1.25rem;
+}
+.util--center { justify-content: center; }
+.util__card { width: 100%; max-width: 460px; text-align: center; margin: auto 0; }
+.util__card--form { max-width: 520px; margin: 0 auto; padding-block: .5rem 2rem; }
+.util__logo { width: 150px; height: auto; margin: 0 auto 1.5rem; background: none; }
+.util h1 {
+  color: #fff; font-size: clamp(1.75rem, 7vw, 2.5rem); margin-bottom: .5rem; letter-spacing: -.025em;
+}
+.util__sub { color: #B8C6DC; font-size: clamp(1rem, 3.4vw, 1.12rem); margin-bottom: 1.75rem; }
+.util__hint { color: #7E8FA8; font-size: .82rem; margin: 1rem 0 0; }
+.util__hint a { color: var(--accent-lift); }
+.util__foot {
+  margin-top: auto; padding-top: 2rem; text-align: center;
+  color: #6E7F98; font-size: .8rem; line-height: 1.6;
+}
+.util__foot p { margin: 0 0 .2rem; }
+.util__foot b { color: #A7B6CE; font-family: var(--font-display); }
+.util__foot a { color: #8CA3C2; text-decoration: none; }
+.util__foot a:hover { color: #fff; text-decoration: underline; }
+
+/* --- stars --- */
+.stars { display: flex; justify-content: center; gap: .35rem; }
+@media (min-width: 420px) { .stars { gap: .6rem; } }
+.star {
+  background: none; border: 0; padding: .25rem; cursor: pointer; line-height: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .14s var(--ease);
+}
+.star svg {
+  width: clamp(44px, 15vw, 66px); height: clamp(44px, 15vw, 66px);
+  fill: none; stroke: #46587A; stroke-width: 1.4;
+  transition: fill .16s var(--ease), stroke .16s var(--ease), filter .16s var(--ease);
+}
+/* fill this star and every one before it */
+.stars.is-lit .star.is-on svg,
+.star:focus-visible svg {
+  fill: var(--gold, #F5B33C); stroke: var(--gold, #F5B33C);
+  filter: drop-shadow(0 4px 14px rgba(245,179,60,.45));
+}
+.star.is-on { transform: translateY(-2px); }
+.star:active { transform: scale(.92); }
+.star:focus-visible { outline: 3px solid var(--accent-lift); outline-offset: 4px; border-radius: 10px; }
+.stars.is-sent .star { pointer-events: none; }
+
+/* --- rating pill on /feedback --- */
+.ratingpill {
+  display: inline-block; margin: 0 0 1rem;
+  background: rgba(0,80,240,.20); border: 1px solid rgba(77,139,255,.45);
+  color: #C6DCFF; border-radius: 999px; padding: .4rem 1rem;
+  font-size: .84rem; font-weight: 600;
+}
+.ratingpill b { color: #fff; }
+
+/* --- form --- */
+#feedbackForm { text-align: left; margin-top: 1.5rem; }
+.ufield { margin-bottom: 1.1rem; }
+.ufield label {
+  display: block; font-family: var(--font-display); font-weight: 700;
+  font-size: .92rem; margin-bottom: .4rem; color: #E2E9F3;
+}
+.ufield .req { color: var(--accent-lift); }
+.ufield .opt { font-weight: 500; color: #7E8FA8; font-size: .8rem; }
+.ufield input, .ufield textarea {
+  width: 100%; font: inherit; font-size: 1.02rem; color: #fff;
+  padding: .85rem .95rem; border-radius: var(--radius);
+  background: rgba(255,255,255,.05); border: 2px solid var(--ink-line-2);
+  -webkit-appearance: none; appearance: none;
+  transition: border-color .16s var(--ease), background-color .16s var(--ease), box-shadow .16s var(--ease);
+}
+.ufield textarea { min-height: 110px; resize: vertical; line-height: 1.55; }
+.ufield input::placeholder, .ufield textarea::placeholder { color: #66788F; }
+.ufield input:focus, .ufield textarea:focus {
+  outline: none; border-color: var(--accent-lift); background: rgba(255,255,255,.09);
+  box-shadow: 0 0 0 4px rgba(0,80,240,.18);
+}
+.ufield .uerr { display: none; color: #FF9E9E; font-size: .85rem; margin-top: .3rem; font-weight: 600; }
+.ufield.is-invalid input, .ufield.is-invalid textarea { border-color: #FF7A7A; }
+.ufield.is-invalid .uerr { display: block; }
+
+.ubtn {
+  width: 100%; margin-top: .5rem;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; line-height: 1;
+  padding: 1.15rem 1.5rem; border: 0; border-radius: var(--radius);
+  background: var(--accent); color: #fff; cursor: pointer;
+  box-shadow: 0 12px 30px -10px var(--accent-glow);
+  transition: background-color .18s var(--ease), transform .14s var(--ease);
+}
+.ubtn:hover { background: var(--accent-deep); transform: translateY(-2px); }
+.ubtn:active { transform: translateY(0); }
+.ubtn[disabled] { opacity: .6; pointer-events: none; }
+
+/* --- thank-you state --- */
+.util .thanks { text-align: center; padding-top: 1rem; }
+.util .thanks h2 { color: #fff; font-size: clamp(1.5rem, 6vw, 2rem); margin-bottom: .5rem; }
+.util .thanks p { color: #B8C6DC; }
+.util .thanks__tick {
+  width: 72px; height: 72px; margin: 0 auto 1.35rem; border-radius: 50%;
+  background: rgba(18,168,112,.14); border: 2px solid rgba(18,168,112,.5);
+  display: grid; place-items: center; color: #2BD69A;
+}
+.util .thanks__tick svg { width: 32px; height: 32px; }

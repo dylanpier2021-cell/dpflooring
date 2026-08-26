@@ -145,10 +145,11 @@ def main():
         if u == "/faq/" and "FAQPage" not in types: fail(f"{u}: missing FAQPage schema")
 
         # --- click-to-call, in both header and footer -------------------------
-        hdr = re.search(r"<header class=\"header\">.*?</header>", src, re.S)
-        ftr = re.search(r'<footer class="footer">.*?</footer>', src, re.S)
-        if not (hdr and 'href="tel:' in hdr.group(0)): fail(f"{u}: no click-to-call in header")
-        if not (ftr and 'href="tel:' in ftr.group(0)): fail(f"{u}: no click-to-call in footer")
+        if not noindex:
+            hdr = re.search(r"<header class=\"header\">.*?</header>", src, re.S)
+            ftr = re.search(r'<footer class="footer">.*?</footer>', src, re.S)
+            if not (hdr and 'href="tel:' in hdr.group(0)): fail(f"{u}: no click-to-call in header")
+            if not (ftr and 'href="tel:' in ftr.group(0)): fail(f"{u}: no click-to-call in footer")
 
         # --- unrendered template placeholders ---------------------------------
         for m in re.findall(r"\{[A-Za-z_][A-Za-z0-9_\[\]'\"]*\}", src):
@@ -160,10 +161,17 @@ def main():
             if w < MIN_WORDS: fail(f"{u}: {w} words (want {MIN_WORDS}+)")
 
         # --- call-first: the phone has to be impossible to miss ---------------
-        if not re.search(r'<section class="callstrip">', src):
-            fail(f"{u}: no full-width call strip")
-        n_tel = len(re.findall(r'href="tel:', src))
-        if n_tel < 5: fail(f"{u}: only {n_tel} click-to-call links (want 5+)")
+        # Indexable marketing pages only. The noindex utility pages (/review,
+        # /feedback, thank-you, 404) are single-purpose and a call strip would
+        # get in the way - /review has to fit one screen with no scrolling.
+        if not noindex:
+            if not re.search(r'<section class="callstrip">', src):
+                fail(f"{u}: no full-width call strip")
+            n_tel = len(re.findall(r'href="tel:', src))
+            if n_tel < 5: fail(f"{u}: only {n_tel} click-to-call links (want 5+)")
+        else:
+            if 'href="tel:' not in src:
+                fail(f"{u}: utility page with no click-to-call at all")
 
         # --- epoxy only -------------------------------------------------------
         for term in ("polished concrete", "carpet installation", "tile installation",

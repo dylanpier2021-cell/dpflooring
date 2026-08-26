@@ -118,8 +118,9 @@
     "_note": "ASSUMED handles - set each to \"\" to drop the icon from the footer, or paste the real profile URL.",
     "facebook": "https://www.facebook.com/dpflooringservicesllc",
     "instagram": "https://www.instagram.com/dpflooringservicesllc",
-    "googleBusinessProfile": "",
-    "_gbp_note": "Paste the Google Business Profile share link here once the profile is live. It then appears in the footer and in the LocalBusiness sameAs list. Keep the profile's name, phone and service area IDENTICAL to this file."
+    "googleBusinessProfile": "https://g.page/r/CVHIlSKH-U8uECE",
+    "_gbp_note": "googleReviewUrl was supplied by the client for the /review page. googleBusinessProfile is INFERRED from it by dropping /review - g.page/r/<id> is the profile short link. Verify it opens your profile before relying on it in the footer and schema.",
+    "googleReviewUrl": "https://g.page/r/CVHIlSKH-U8uECE/review"
   },
   "form": {
     "provider": "netlify",

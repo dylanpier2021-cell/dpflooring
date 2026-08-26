@@ -3294,6 +3294,136 @@ def page_404():
 
 
 
+# =========================================================== REVIEW / FEEDBACK ==
+# Two standalone utility pages for QR codes and text-to-review campaigns.
+# Deliberately noindex and deliberately outside the normal page shell: /review
+# has to fit one screen with no scrolling, which the site header, footer and
+# call strip would make impossible.
+
+def util_head(title, desc, path, extra_css=""):
+    """Minimal <head> for the utility pages - same tokens and fonts, no chrome."""
+    h = head(title, desc, path)
+    h = h.replace('<meta name="robots" content="index, follow, max-image-preview:large">',
+                  '<meta name="robots" content="noindex, nofollow">')
+    return h
+
+def util_footer():
+    return f"""  <footer class="util__foot">
+    <p><b>{NAME}</b></p>
+    <p>
+      <a href="tel:{TEL}">{PHONE}</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="mailto:{EMAIL}">{EMAIL}</a>
+    </p>
+    <p>{CFG['basedIn']['county']}, {CFG['basedIn']['regionName']}</p>
+  </footer>
+"""
+
+def star_svg(i):
+    return (f'<button class="star" type="button" data-rating="{i}" '
+            f'aria-label="{i} star{"s" if i > 1 else ""} out of 5">'
+            '<svg viewBox="0 0 24 24" aria-hidden="true">'
+            '<path d="M12 2.6l2.95 5.98 6.6.96-4.77 4.65 1.12 6.57L12 17.66l-5.9 3.1 1.13-6.57L2.46 9.54l6.6-.96z"/>'
+            '</svg></button>')
+
+def page_review():
+    path = "/review/"
+    stars = "\n        ".join(star_svg(i) for i in range(1, 6))
+    return util_head("How was your experience? | " + NAME,
+                     "Tell DP Flooring Services how your epoxy floor install went.",
+                     path) + f"""
+<main class="util util--center" id="main">
+  <div class="util__card">
+    <img class="util__logo" src="/assets/img/logo-full-ondark.png"
+         alt="{NAME}" width="420" height="450">
+
+    <h1>How Was Your Experience?</h1>
+    <p class="util__sub">Tap a star to let us know.</p>
+
+    <div class="stars" id="stars" role="group" aria-label="Rate your experience from 1 to 5 stars">
+        {stars}
+    </div>
+
+    <p class="util__hint" id="starHint">1 = poor &middot; 5 = excellent</p>
+  </div>
+{util_footer()}
+</main>
+
+<script>
+  window.DP_REVIEW_URL = "{CFG['social']['googleReviewUrl']}";
+</script>
+<script src="/assets/js/review.js" defer></script>
+</body>
+</html>
+"""
+
+def page_feedback():
+    path = "/feedback/"
+    return util_head("We&rsquo;d love to make this right | " + NAME,
+                     "Tell DP Flooring Services what went wrong. Goes straight to the owners.",
+                     path) + f"""
+<main class="util" id="main">
+  <div class="util__card util__card--form">
+    <img class="util__logo" src="/assets/img/logo-full-ondark.png"
+         alt="{NAME}" width="420" height="450">
+
+    <p class="ratingpill" id="ratingPill" hidden></p>
+
+    <h1>We&rsquo;d Love to Make This Right</h1>
+    <p class="util__sub">Your feedback goes straight to our team, not posted publicly.
+    Tell us what happened.</p>
+
+    <form id="feedbackForm" novalidate>
+      <div class="ufield">
+        <label for="fbName">Your name <span class="req">*</span></label>
+        <input id="fbName" name="name" type="text" autocomplete="name" required placeholder="First and last">
+        <span class="uerr" data-msg="Please tell us your name."></span>
+      </div>
+
+      <div class="ufield">
+        <label for="fbPhone">Phone <span class="req">*</span></label>
+        <input id="fbPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required
+               placeholder="(217) 555-0134">
+        <span class="uerr" data-msg="Enter a 10-digit US phone number so we can reach you."></span>
+      </div>
+
+      <div class="ufield">
+        <label for="fbWhat">What happened? <span class="req">*</span></label>
+        <textarea id="fbWhat" name="what_happened" required
+                  placeholder="Tell us what went wrong, in as much or as little detail as you want."></textarea>
+        <span class="uerr" data-msg="Please tell us what happened."></span>
+      </div>
+
+      <div class="ufield">
+        <label for="fbFix">How can we make it right? <span class="opt">optional</span></label>
+        <textarea id="fbFix" name="how_to_fix"
+                  placeholder="If there is something specific that would fix this, tell us and we will try."></textarea>
+        <span class="uerr"></span>
+      </div>
+
+      <button class="ubtn" type="submit" id="fbSubmit">Send Feedback</button>
+      <p class="util__hint">Goes to Drayton and Dylan directly. Never posted publicly.</p>
+    </form>
+
+    <div class="thanks" id="fbThanks" hidden>
+      <div class="thanks__tick" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+             stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2>Thank you</h2>
+      <p>We take this seriously and someone will reach out to you personally within 24 hours.</p>
+      <p class="util__hint">Need us sooner? Call <a href="tel:{TEL}">{PHONE}</a>.</p>
+    </div>
+  </div>
+{util_footer()}
+</main>
+
+<script src="/assets/js/review.js" defer></script>
+</body>
+</html>
+"""
+
+
 # ====================================================== SITEMAP / MAIN LOOP ==
 from datetime import date as _date
 
@@ -3310,6 +3440,8 @@ def build_pages():
         ("/contact/",      "contact/index.html",           page_contact, "0.9", "monthly", True),
         ("/contact/thank-you/", "contact/thank-you/index.html", page_thanks, None, None, False),
         ("/404.html",      "404.html",                     page_404,     None, None, False),
+        ("/review/",       "review/index.html",            page_review,   None, None, False),
+        ("/feedback/",     "feedback/index.html",          page_feedback, None, None, False),
     ]
     for svc in SERVICES:
         pages.append((f"/services/{svc['slug']}/", f"services/{svc['slug']}/index.html",
