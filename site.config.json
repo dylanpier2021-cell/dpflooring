@@ -272,5 +272,9 @@
     "_googleSiteVerification_note": "OPTIONAL alternative route. If you verify with Search Console's 'HTML tag' method instead of DNS, paste ONLY the content token here (not the whole tag) and rebuild - it renders into every page's <head>. Google issues a DIFFERENT token per method, so the DNS value above will NOT work here.",
     "bingSiteVerification": "",
     "_bingSiteVerification_note": "Bing Webmaster Tools msvalidate.01 token, if you verify by meta tag rather than importing from Google. Leave empty to omit."
+  },
+  "integrations": {
+    "leadConnectorWidgetId": "6a90603d9f17bc64b3a053a6",
+    "_leadConnector_note": "GoHighLevel / LeadConnector chat widget. Set to \"\" to remove it from all 32 pages in one edit. It is deliberately NOT on /review/ or /feedback/ - those are one-screen utility pages and a chat bubble would cover the stars - nor on the standalone funnel/, which has its own conversion path."
   }
 }

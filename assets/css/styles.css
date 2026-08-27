@@ -1107,3 +1107,25 @@ body.lb-open { overflow: hidden; }
   display: grid; place-items: center; color: #2BD69A;
 }
 .util .thanks__tick svg { width: 32px; height: 32px; }
+
+/* ============================ 21. LeadConnector chat widget positioning == */
+/* On phones the site already has a fixed bottom bar (.callbar, ~68px tall).
+   The LeadConnector bubble also parks bottom-right, so without this it lands
+   on top of the Call Now / Free Quote buttons - the two things we most need
+   tappable. Lift it clear.
+
+   The widget renders into a shadow root, so only the HOST element is
+   styleable from here; these are the hosts LeadConnector is known to use.
+   VERIFY ON A REAL PHONE after the widget goes live - if the bubble still
+   overlaps, inspect it, find the outermost element, and add its selector to
+   this list. */
+@media (max-width: 779px) {
+  chat-widget,
+  #lc_text-widget,
+  [id^="lc_text"],
+  .lc_text-widget,
+  #chat-widget-container {
+    bottom: calc(78px + env(safe-area-inset-bottom)) !important;
+    z-index: 89 !important;   /* below .callbar (90) so the bar always wins */
+  }
+}

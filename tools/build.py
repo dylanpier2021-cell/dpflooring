@@ -885,6 +885,22 @@ def cta_band(title="Ready for a floor that holds up?",
 </section>
 """
 
+
+def lc_widget():
+    """LeadConnector (GoHighLevel) chat widget.
+
+    Kept verbatim as the vendor supplied it - no async/defer added, because a
+    third-party loader is not worth second-guessing. Sitting last in <body>
+    means the document is already parsed by the time it runs.
+    Returns "" when the id is blank, so one config edit removes it everywhere.
+    """
+    wid = CFG.get("integrations", {}).get("leadConnectorWidgetId", "")
+    if not wid:
+        return ""
+    return ('<script src="https://widgets.leadconnectorhq.com/loader.js" '
+            'data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" '
+            f'data-widget-id="{wid}" data-source="WEB_USER"></script>\n')
+
 def footer():
     socials = ""
     for net, label in (("facebook", "Facebook"), ("instagram", "Instagram"),
@@ -950,7 +966,7 @@ def footer():
 </div>
 
 <script src="/assets/js/main.js" defer></script>
-</body>
+{lc_widget()}</body>
 </html>
 """
 

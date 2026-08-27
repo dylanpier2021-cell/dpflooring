@@ -1,3 +1,7 @@
+# NOTE (Aug 27 2026): this site is deployed on VERCEL, not Netlify, so nothing
+# in this file is currently applied. The live header config is vercel.json.
+# Kept only in case the site is ever moved to Netlify.
+
 # Netlify config for the DP Flooring Services static site.
 # There is no build step at deploy time - the repo root IS the site.
 # Regenerate the HTML locally with:  python3 tools/build.py .
