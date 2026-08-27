@@ -1,17 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "_comment": [
-    "HEADERS ONLY - deliberately no routing directives.",
-    "This site deploys on Vercel, so netlify.toml is inert: the security",
-    "headers it declares were never actually served. Vercel supplies HSTS on",
-    "its own; these are the rest.",
-    "No cleanUrls / trailingSlash here on purpose. The live URLs already",
-    "resolve correctly and those keys change routing, which is not worth",
-    "risking on a production site to gain nothing.",
-    "No Content-Security-Policy either: the pages load the LeadConnector chat",
-    "widget, Google Maps embeds and Google Fonts, and a CSP written without",
-    "testing would break one of them. Add one deliberately if you want it."
-  ],
   "headers": [
     {
       "source": "/(.*)",
