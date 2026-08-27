@@ -770,6 +770,12 @@ def call_strip(kicker="Fastest way to get a number", sub=None, note=None):
 
 def head(title, desc, path, image="/assets/img/og-image.jpg", schema=None):
     canon = BASE + path
+    _v = CFG.get("verification", {})
+    verify = ""
+    if _v.get("googleSiteVerification"):
+        verify += f'\n<meta name="google-site-verification" content="{_v["googleSiteVerification"]}">'
+    if _v.get("bingSiteVerification"):
+        verify += f'\n<meta name="msvalidate.01" content="{_v["bingSiteVerification"]}">' 
     ld = ""
     if schema:
         for block in (schema if isinstance(schema, list) else [schema]):
@@ -785,7 +791,7 @@ def head(title, desc, path, image="/assets/img/og-image.jpg", schema=None):
 <meta name="theme-color" content="#0E1116">
 <meta name="format-detection" content="telephone=yes">
 <meta name="author" content="{NAME}">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="index, follow, max-image-preview:large">{verify}
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{NAME}">

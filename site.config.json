@@ -264,5 +264,13 @@
       }
     ]
   },
-  "_colors_note": "FLAKE swatches are the client's own product photos (supplied Aug 26 2026), ordered dark -> light. METALLIC swatches are still rendered colour REPRESENTATIONS, not photos of installed floors, and the page says so. Replace any file in assets/img/colors/ using the same filename and the page updates itself."
+  "_colors_note": "FLAKE swatches are the client's own product photos (supplied Aug 26 2026), ordered dark -> light. METALLIC swatches are still rendered colour REPRESENTATIONS, not photos of installed floors, and the page says so. Replace any file in assets/img/colors/ using the same filename and the page updates itself.",
+  "verification": {
+    "googleDnsTxt": "google-site-verification=PVEuODtcJr65iMmLelE3F4t1rHAK1OfUMTJRlECTk1A",
+    "_googleDnsTxt_note": "Supplied Aug 27 2026 for a Google Search Console DOMAIN property. This is a DNS TXT record - it is added at Vercel (the nameservers for this domain), NOT in this repo. Stored here only so it is not lost. See SEARCH-CONSOLE.md.",
+    "googleSiteVerification": "",
+    "_googleSiteVerification_note": "OPTIONAL alternative route. If you verify with Search Console's 'HTML tag' method instead of DNS, paste ONLY the content token here (not the whole tag) and rebuild - it renders into every page's <head>. Google issues a DIFFERENT token per method, so the DNS value above will NOT work here.",
+    "bingSiteVerification": "",
+    "_bingSiteVerification_note": "Bing Webmaster Tools msvalidate.01 token, if you verify by meta tag rather than importing from Google. Leave empty to omit."
+  }
 }
