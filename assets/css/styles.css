@@ -625,8 +625,51 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0; }
 .field.is-invalid input, .field.is-invalid select, .field.is-invalid textarea { border-color: #C42B2B; background: #FEF5F5; }
 .field.is-invalid .err { display: block; }
 
+/* SMS consent checkboxes - both optional. Required by carriers (A2P 10DLC)
+   to be visible on the page that collects the number, with the consent wording
+   and the policy links unobscured. */
+.consent { margin-top: 1.6rem; display: grid; gap: .9rem; }
+.consent__row {
+  display: grid; grid-template-columns: auto 1fr; gap: .75rem;
+  align-items: start; cursor: pointer;
+  font-size: .9rem; line-height: 1.55; color: var(--text-2);
+}
+.consent__row input[type="checkbox"] {
+  width: 1.15rem; height: 1.15rem; margin: .16rem 0 0; flex: none;
+  accent-color: var(--accent); cursor: pointer;
+}
+.consent__row strong { color: var(--text); font-weight: 700; }
+.consent__row:hover { color: var(--text); }
+
 .form-foot { margin-top: 1.6rem; display: flex; flex-direction: column; gap: 1rem; }
 .form-note { font-size: .875rem; color: var(--text-2); }
+.form-legal { font-size: .875rem; color: var(--text-2); text-align: center; margin: 0; }
+.form-legal a { font-weight: 600; }
+.form-legal span { margin: 0 .5rem; color: var(--line); }
+
+/* Legal pages (privacy policy, terms) - long-form prose, single column. */
+.legal { max-width: 46rem; }
+.legal h2 {
+  font-size: clamp(1.3rem, 2.6vw, 1.7rem); margin: 2.6rem 0 .85rem;
+  padding-top: 2.6rem; border-top: 1px solid var(--line);
+}
+.legal > h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.legal h3 { font-size: 1.05rem; margin: 1.7rem 0 .6rem; }
+.legal p, .legal li { color: var(--text-2); line-height: 1.75; }
+.legal p { margin: 0 0 1rem; }
+.legal ul { margin: 0 0 1.2rem; padding-left: 1.3rem; display: grid; gap: .6rem; }
+.legal li::marker { color: var(--accent); }
+.legal strong { color: var(--text); }
+.legal .legal__updated {
+  font-size: .88rem; color: var(--text-2); margin-bottom: 2.2rem;
+  padding-bottom: 1.6rem; border-bottom: 1px solid var(--line);
+}
+.legal__callout {
+  background: var(--paper-2); border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius); padding: 1.15rem 1.3rem; margin: 0 0 1.4rem;
+}
+.legal__callout p:last-child { margin-bottom: 0; }
 .hp { position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; }
 
 .contact-cards { display: grid; gap: 1rem; }

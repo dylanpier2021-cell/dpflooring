@@ -26,7 +26,16 @@ ROOT = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else \
 # only produce false failures.
 SKIP_DIRS = {".git", "tools", "assets", "node_modules", "funnel"}
 
-MIN_WORDS = 1000         # every indexable page (noindex utility pages are exempt)
+MIN_WORDS = 350          # every indexable page (noindex utility pages are exempt)
+# Was 1000. That gate was the reason every page carried three paragraphs where one
+# would do - the copy was written up to the number. 350 still catches a genuinely
+# thin page while leaving room for copy someone can actually scan.
+
+# Indexable, but not marketing pages. A privacy policy is meant to be found and
+# read (carriers reviewing an SMS campaign have to reach it), so it stays in the
+# sitemap - but padding it to 1000 words or dropping a "call us now" strip in the
+# middle of it would make it worse, not better.
+LEGAL_PAGES = {"/privacy-policy/", "/terms-and-conditions/"}
 TITLE_MAX = 70
 DESC_MIN, DESC_MAX = 110, 175
 
@@ -156,7 +165,8 @@ def main():
             fail(f"{u}: unrendered placeholder {m}")
 
         # --- word count -------------------------------------------------------
-        if not noindex:
+        legal = u in LEGAL_PAGES
+        if not noindex and not legal:
             w = body_words(src)
             if w < MIN_WORDS: fail(f"{u}: {w} words (want {MIN_WORDS}+)")
 
@@ -164,7 +174,7 @@ def main():
         # Indexable marketing pages only. The noindex utility pages (/review,
         # /feedback, thank-you, 404) are single-purpose and a call strip would
         # get in the way - /review has to fit one screen with no scrolling.
-        if not noindex:
+        if not noindex and not legal:
             if not re.search(r'<section class="callstrip">', src):
                 fail(f"{u}: no full-width call strip")
             n_tel = len(re.findall(r'href="tel:', src))

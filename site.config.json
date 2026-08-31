@@ -126,6 +126,14 @@
     "provider": "netlify",
     "_provider_note": "\"netlify\" wires the form to Netlify Forms. See README.md for the Formspree / FormSubmit swap if the site is hosted elsewhere."
   },
+  "legal": {
+    "lastUpdated": "August 31, 2026",
+    "_lastUpdated_note": "Shown at the top of /privacy-policy/ and /terms-and-conditions/. Bump this whenever either page's wording changes.",
+    "smsDescription": "quote confirmations, appointment scheduling and reminders, job-progress updates, and answers to questions you send us",
+    "_smsDescription_note": "The A2P 10DLC 'use case' sentence - what a person who opts in should expect to receive. Must match the campaign description registered with the carriers.",
+    "smsMarketingDescription": "seasonal offers, promotions, and news about services we have added",
+    "messageFrequency": "message frequency varies"
+  },
   "copyrightYear": 2026,
   "pricing": {
     "_note": "Optional. Put a real installed price range here (e.g. \"$4.50 - $7.00 / sq ft\") and the service page swaps its 'what moves the price' copy for that headline figure. Leave a value as \"\" to keep the cost-drivers version, which is what ships by default.",
