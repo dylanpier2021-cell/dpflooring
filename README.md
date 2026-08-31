@@ -236,7 +236,7 @@ message. Client-side validation and US phone formatting are progressive
 enhancements; the form still submits with JavaScript off.
 
 After the first deploy, go to **Netlify → Forms → quote → Settings → Form
-notifications** and add an email notification to `dpflooringservicesllc@gmail.com`,
+notifications** and add an email notification to `info@dpflooringservices.com`,
 or submissions will pile up in the dashboard unseen.
 
 **Hosting somewhere else?** Set `form.provider` to anything other than
@@ -245,7 +245,7 @@ or submissions will pile up in the dashboard unseen.
 
 - **Formspree** — `action="https://formspree.io/f/YOUR_ID"`, add
   `<input type="hidden" name="_next" value="https://.../contact/thank-you/">`
-- **FormSubmit** — `action="https://formsubmit.co/dpflooringservicesllc@gmail.com"`
+- **FormSubmit** — `action="https://formsubmit.co/info@dpflooringservices.com"`
 
 ---
 
