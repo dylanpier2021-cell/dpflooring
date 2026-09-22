@@ -111,6 +111,7 @@ a { color: var(--accent-deep); }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: #4BD9A0; box-shadow: 0 0 0 4px rgba(75,217,160,.2); }
 .hero h1 { font-size: clamp(1.85rem, 7.2vw, 2.9rem); margin-bottom: .6rem; }
 .hl { color: var(--accent-lift); display: block; }
+.hl--big { font-size: 1.55em; line-height: 1; color: var(--gold); }
 .hero__sub { color: #C9D4E6; font-size: 1rem; max-width: 34rem; margin: 0 auto 1.1rem; }
 .hero__ticks { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.1rem; font-size: .88rem; font-weight: 600; color: #E3EAF6; }
 .hero__ticks li { display: inline-flex; align-items: center; gap: .35rem; }

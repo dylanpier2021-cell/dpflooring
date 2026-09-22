@@ -1,4 +1,4 @@
-# DP Flooring Services — Free Quote Funnel (`/free-quote/`)
+# DP Flooring Services — 50% Off for Champaign County funnel (`/champaign-county-50-off/`)
 
 The landing page for Meta (Facebook / Instagram) ads. The visitor designs their
 floor in 7 tapped steps, leaves their details, and we call them to book an
@@ -36,7 +36,7 @@ colors` (comma-separated, or `"Undecided"`)`, condition, timeline`, plus
 
 ## Ad URL
 
-`https://www.dpflooringservices.com/free-quote/?utm_source=facebook&utm_medium=paid&utm_campaign=...`
+`https://www.dpflooringservices.com/champaign-county-50-off/?utm_source=facebook&utm_medium=paid&utm_campaign=...`
 
 The page is `noindex` so it doesn't compete with the main site in Google, and
 `tools/build.py` knows to leave the folder alone.
