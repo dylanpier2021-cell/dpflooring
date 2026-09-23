@@ -48,8 +48,8 @@
   --gut: 1.25rem;
   --nav-h: 66px;
 
-  --font-display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Libre Franklin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   --ease: cubic-bezier(.22,.61,.36,1);
 }
@@ -1172,3 +1172,146 @@ body.lb-open { overflow: hidden; }
     z-index: 89 !important;   /* below .callbar (90) so the bar always wins */
   }
 }
+
+
+/* ==========================================================================
+   21. Sept 2026 style refresh
+   Same navy + blue palette, calmer treatment: readable type, square-ish
+   corners, flat buttons, no glows, gradients, glass or pulsing. Kept as one
+   override block so the change is easy to see and to roll back.
+   ========================================================================== */
+:root {
+  --radius: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --shadow-1: 0 1px 2px rgba(15,23,42,.06);
+  --shadow-2: 0 2px 10px rgba(15,23,42,.10);
+  --shadow-glow: none;
+}
+body { font-size: 1.125rem; line-height: 1.65; }
+h1, h2, h3, h4 { font-weight: 700; letter-spacing: -.01em; line-height: 1.15; }
+h1 { font-size: clamp(2.1rem, 5.2vw, 3.4rem); }
+h2 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); }
+h3 { font-size: clamp(1.15rem, 2vw, 1.3rem); letter-spacing: 0; }
+strong { font-weight: 600; }
+
+/* section labels: plain small caps, no decorative dash */
+.eyebrow { font-family: var(--font-body); font-weight: 600; font-size: .85rem; letter-spacing: .08em; gap: 0; }
+.eyebrow::before { display: none; }
+.tagline { display: none; }
+.lede { font-size: clamp(1.1rem, 1.6vw, 1.22rem); }
+
+/* buttons: flat, firm, no lift or glow */
+.btn { font-family: var(--font-body); font-weight: 600; font-size: 1.05rem; letter-spacing: 0;
+  border-radius: var(--radius); box-shadow: none; border-width: 1.5px; padding: .95rem 1.6rem; }
+.btn:hover { transform: none; box-shadow: none; --btn-bg: var(--accent-deep); }
+.btn--ghost:hover { background: var(--paper-2); }
+.btn--ghostDark { backdrop-filter: none; --btn-bg: transparent; border-color: rgba(255,255,255,.45); }
+.btn--ghostDark:hover { background: rgba(255,255,255,.08); }
+.btn--sm { border-radius: var(--radius); }
+.btn--call { font-weight: 700; box-shadow: none; }
+.arrow-link { font-family: var(--font-body); font-weight: 600; }
+
+/* header */
+.header { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--ink); }
+.header.is-stuck { background: var(--ink); box-shadow: 0 1px 0 var(--ink-line); }
+.brand__name { font-weight: 700; letter-spacing: 0; }
+.nav a { font-family: var(--font-body); font-weight: 600; font-size: 1rem; border-radius: 0; }
+.nav a:hover { background: none; color: #fff; text-decoration: underline; text-underline-offset: .5em; }
+.nav a[aria-current="page"] { background: none; color: #fff; box-shadow: inset 0 -2px 0 var(--accent-lift); }
+.header__call { font-family: var(--font-body); font-weight: 700; border-radius: var(--radius);
+  box-shadow: none; animation: none; }
+.nav-toggle { border-radius: var(--radius); }
+.mobile-nav a { font-family: var(--font-body); font-weight: 600; }
+
+/* hero: plain dark overlay, no gradient text, no pill badge */
+.hero::after { background: linear-gradient(90deg, rgba(7,18,41,.92) 0%, rgba(7,18,41,.78) 55%, rgba(7,18,41,.55) 100%); }
+.hero h1 .hl { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--accent-lift); }
+.hero__sub { color: #D5DCE6; }
+.hero__badge { background: none; border: 0; border-radius: 0; padding: 0; color: #B8C4D4;
+  font-size: .95rem; font-weight: 600; letter-spacing: .02em; }
+.hero__badge .dot { display: none; }
+.hero__trust b { font-family: var(--font-body); font-weight: 600; font-size: 1rem; }
+.hero__trust span { font-size: .92rem; }
+.pagehead::before { background: none; }
+.pagehead p { font-size: clamp(1.08rem, 1.8vw, 1.2rem); }
+.trustbar b { font-family: var(--font-body); font-weight: 600; }
+
+/* phone block under the hero headline */
+.phone-cta { border-radius: var(--radius); backdrop-filter: none; background: rgba(255,255,255,.06);
+  border: 1.5px solid rgba(255,255,255,.3); }
+.phone-cta:hover { transform: none; background: rgba(255,255,255,.1); }
+.phone-cta small { letter-spacing: .06em; color: #B8C4D4; }
+.phone-cta b { font-weight: 700; letter-spacing: 0; }
+
+/* cards and media: quiet borders, no hover jump */
+.card, .fincard { border-radius: var(--radius-lg); }
+.card:hover, .fincard:hover { transform: none; box-shadow: var(--shadow-2); }
+.card:hover .card__media img, .fincard:hover .fincard__media img, .shot:hover img { transform: none; }
+.card__tag, .ba__label { border-radius: 4px; backdrop-filter: none; font-family: var(--font-body); letter-spacing: .06em; }
+.shot, .ba, .map-embed, .split__media img { border-radius: var(--radius-lg); }
+.split__media img { box-shadow: none; }
+.split__media::after { display: none; }
+.stat-strip { border-radius: var(--radius); backdrop-filter: none; background: rgba(7,18,41,.92); }
+.stat-strip b { font-family: var(--font-body); font-weight: 700; }
+.stat-strip span { letter-spacing: .04em; }
+.shot figcaption { font-family: var(--font-body); font-weight: 600; }
+.step::before { font-family: var(--font-body); font-weight: 700; font-size: 1.35rem; }
+.features b, .ba__caption b, .contact-card b, .link-card, .faq summary, .field label, .price-panel .price-figure {
+  font-family: var(--font-body); }
+.features b { font-weight: 600; font-size: 1.05rem; }
+.faq summary { font-weight: 600; letter-spacing: 0; }
+.link-card { font-weight: 600; }
+.link-card:hover, a.contact-card:hover { transform: none; }
+.chip { border-radius: 4px; }
+.contact-card, .contact-card__icon, .link-card, .form-card, .price-panel { border-radius: var(--radius-lg); }
+.form-card { box-shadow: none; }
+.field input, .field select, .field textarea { border-radius: var(--radius); background: var(--paper); }
+.field label { font-weight: 600; }
+
+/* call strip + CTA band: solid brand blue instead of gradients and glow */
+.callstrip, .cta-band { background: var(--accent-deep); }
+.callstrip::before, .cta-band::before { display: none; }
+.callstrip p.kicker { font-family: var(--font-body); letter-spacing: .08em; }
+.callstrip a.big { font-family: var(--font-body); font-weight: 700; letter-spacing: 0; }
+.callstrip a.big:hover { transform: none; text-decoration: underline; }
+.cta-band .btn { box-shadow: none; }
+
+/* footer */
+.footer h4 { font-family: var(--font-body); letter-spacing: .08em; }
+.socials a { border-radius: var(--radius); }
+.callbar { backdrop-filter: none; background: var(--ink); }
+
+
+/* ============================================ 22. 50% off offer popup */
+.offer { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 1rem; }
+.offer[hidden] { display: none; }
+.offer__backdrop { position: absolute; inset: 0; background: rgba(7,18,41,.72); }
+.offer__panel { position: relative; width: 100%; max-width: 440px; background: var(--paper);
+  border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  animation: offerIn .25s var(--ease) both; }
+@keyframes offerIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.offer__top { background: var(--ink); color: #fff; padding: 1.6rem 1.5rem 1.35rem; text-align: center; }
+.offer__top small { display: block; font-weight: 600; font-size: .85rem; letter-spacing: .08em;
+  text-transform: uppercase; color: #B8C4D4; margin-bottom: .35rem; }
+.offer__top b { display: block; font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2.6rem, 11vw, 3.4rem); line-height: 1; color: #fff; }
+.offer__top span { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; margin-top: .35rem; }
+.offer__body { padding: 1.35rem 1.5rem 1.5rem; text-align: center; }
+.offer__body p { color: var(--text-2); font-size: 1.02rem; margin-bottom: 1.1rem; }
+.offer__body .btn { width: 100%; }
+.offer__no { display: inline-block; margin-top: .85rem; background: none; border: 0; padding: .3rem;
+  font: inherit; font-size: .95rem; color: var(--text-2); text-decoration: underline; cursor: pointer; }
+.offer__x { position: absolute; top: .55rem; right: .55rem; width: 38px; height: 38px; border: 0;
+  background: transparent; color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; border-radius: var(--radius); }
+.offer__x:hover { background: rgba(255,255,255,.1); }
+/* slim reminder bar after the popup is closed */
+.offerbar { display: block; background: var(--accent-deep); color: #fff; text-align: center;
+  font-weight: 600; font-size: .98rem; padding: .6rem 1rem; text-decoration: none; }
+.offerbar:hover { color: #fff; background: var(--accent); }
+.offerbar u { text-underline-offset: .2em; }
+@media (prefers-reduced-motion: reduce) { .offer__panel { animation: none; } }
+
+/* the hero repeated the trust bar right under it - show it once */
+.hero__trust { display: none; }
+.hero .btn-row { margin-bottom: 0; }

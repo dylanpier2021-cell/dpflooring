@@ -292,3 +292,70 @@
     window.fbq("track", "Lead", { content_name: "Contact form quote request" });
   }
 })();
+
+/* ------------------------------------------------------ 50% off offer
+   A slim bar at the top of every page, plus a one-time popup a few seconds
+   in (or at 40% scroll). Once closed, the popup stays away for 3 days. */
+(function () {
+  "use strict";
+  var OFFER_URL = "/champaign-county-50-off/?utm_source=website&utm_medium=";
+  var doc = document;
+  if (/^\/(champaign-county-50-off|contact\/thank-you)\//.test(location.pathname)) return;
+
+  var bar = doc.createElement("a");
+  bar.className = "offerbar";
+  bar.href = OFFER_URL + "topbar";
+  bar.innerHTML = "50% off epoxy floors for Champaign County &mdash; <u>claim your spot</u>";
+  doc.body.insertBefore(bar, doc.body.firstChild);
+
+  var KEY = "dp_offer_closed";
+  var closedAt = 0;
+  try { closedAt = Number(localStorage.getItem(KEY)) || 0; } catch (e) {}
+  if (Date.now() - closedAt < 3 * 24 * 3600 * 1000) return;
+
+  var wrap = doc.createElement("div");
+  wrap.className = "offer";
+  wrap.hidden = true;
+  wrap.innerHTML =
+    '<div class="offer__backdrop" data-offer-close></div>' +
+    '<div class="offer__panel" role="dialog" aria-modal="true" aria-labelledby="offerTitle">' +
+      '<button class="offer__x" type="button" data-offer-close aria-label="Close">&times;</button>' +
+      '<div class="offer__top"><small>Champaign County homeowners</small>' +
+        '<b id="offerTitle">50% Off</b><span>Your new epoxy floor</span></div>' +
+      '<div class="offer__body">' +
+        '<p>Tell us about your floor in about a minute. We come out, measure, and give you your price in person.</p>' +
+        '<a class="btn btn--lg" href="' + OFFER_URL + 'popup">Claim my 50% off</a>' +
+        '<button class="offer__no" type="button" data-offer-close>No thanks</button>' +
+      '</div>' +
+    '</div>';
+  doc.body.appendChild(wrap);
+
+  var shown = false, lastFocus = null;
+  function open() {
+    if (shown) return;
+    shown = true;
+    lastFocus = doc.activeElement;
+    wrap.hidden = false;
+    wrap.querySelector(".offer__panel .btn").focus();
+  }
+  function close() {
+    wrap.hidden = true;
+    try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  wrap.addEventListener("click", function (e) {
+    if (e.target.closest("[data-offer-close]")) close();
+  });
+  doc.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !wrap.hidden) close();
+  });
+  var timer = window.setTimeout(open, 7000);
+  window.addEventListener("scroll", function onScroll() {
+    var max = doc.documentElement.scrollHeight - window.innerHeight;
+    if (max > 0 && window.scrollY / max > 0.4) {
+      window.clearTimeout(timer);
+      window.removeEventListener("scroll", onScroll);
+      open();
+    }
+  }, { passive: true });
+})();

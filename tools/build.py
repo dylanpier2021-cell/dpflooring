@@ -691,8 +691,8 @@ def head(title, desc, path, image="/assets/img/og-image.jpg", schema=None):
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/assets/css/styles.css">{ld}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/styles.css?v=20260923">{ld}
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -843,7 +843,7 @@ def footer():
   <a class="btn btn--ghostDark" href="/contact/">Free Quote</a>
 </div>
 
-<script src="/assets/js/main.js?v=20260923" defer></script>
+<script src="/assets/js/main.js?v=20260923b" defer></script>
 {lc_widget()}</body>
 </html>
 """

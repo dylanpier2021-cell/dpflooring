@@ -33,8 +33,8 @@
   --sh-2: 0 30px 70px -30px rgba(4,12,30,.40);
 
   --gut: 1rem;
-  --fd: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --fb: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --fd: "Libre Franklin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --fb: "Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --ease: cubic-bezier(.22,.61,.36,1);
 }
 @media (min-width: 640px) { :root { --gut: 2rem; } }
