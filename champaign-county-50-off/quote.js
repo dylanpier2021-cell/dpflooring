@@ -421,6 +421,7 @@ function validate() {
     [$("#fFirst"), function (v) { return v.trim().length > 0; }],
     [phone,        function (v) { return phoneDigits(v).length === 10; }],
     [$("#fEmail"), function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }],
+    [$("#fAddress"), function (v) { return v.trim().length > 4; }],
     [$("#fCity"),  function (v) { return v.trim().length > 1; }]
   ];
   let first = null;
@@ -458,7 +459,7 @@ $("#quoteForm").addEventListener("submit", function (e) {
     last_name: last || null,
     phone: "(" + d.slice(0, 3) + ") " + d.slice(3, 6) + "-" + d.slice(6),
     email: $("#fEmail").value.trim(),
-    address: $("#fAddress").value.trim() || null,
+    address: $("#fAddress").value.trim(),
     city: $("#fCity").value.trim(),
     best_time_to_call: bestTime ? bestTime.value : "Anytime",
     notes: $("#fNotes").value.trim() || null,
