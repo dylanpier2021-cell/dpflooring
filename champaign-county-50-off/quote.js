@@ -14,7 +14,7 @@
 // GoHighLevel: Automation > Workflows > new workflow > trigger "Inbound
 // Webhook". Paste the URL it gives you between the quotes. Until you do, the
 // form still works end to end and logs what it WOULD send to the console.
-const WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/mjRUsuYleLiad81XISnz/webhook-trigger/0ccc4f13-4968-4900-850d-7b59c3b7571c";
+const WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/mjRUsuYleLiad81XISnz/webhook-trigger/dca357a9-50d0-4467-9beb-9242697fb160";
 
 // Meta Pixel ID (Events Manager > Data sources). Leave "" to skip loading it.
 // When set: PageView on load, Lead when the form is submitted.
