@@ -134,11 +134,9 @@ page and no funnel will fix it.
 
 ## 4. Two things to check before launch
 
-1. **The phone number.** Your brief for these pages said `(217) 417-5950`, but
-   the live site has used `(217) 372-7770` everywhere since Aug 24, when you
-   asked me to change it. I used the live one so all 32 pages match. If
-   417-5950 is actually correct, change `phone` and `phoneE164` in
-   `site.config.json` and rebuild — that fixes the whole site in one edit.
+1. **The phone number.** Resolved Sep 2026: the whole site now uses
+   `(217) 417-5950` (the marketing number the Meta ads run on). Make sure the
+   Google Business Profile lists the same number.
 2. **The Google link.** `googleReviewUrl` in `site.config.json` is the URL you
    supplied and is used as-is. `googleBusinessProfile` is **inferred** from it
    by dropping `/review`, and now appears in the footer and the LocalBusiness
