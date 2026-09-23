@@ -16,6 +16,9 @@
 // form still works end to end and logs what it WOULD send to the console.
 const WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/mjRUsuYleLiad81XISnz/webhook-trigger/dca357a9-50d0-4467-9beb-9242697fb160";
 
+// Same-origin forwarder (api/lead.js) that relays submissions to WEBHOOK_URL.
+const LEAD_ENDPOINT = "/api/lead";
+
 // Meta Pixel ID (Events Manager > Data sources). Leave "" to skip loading it.
 // When set: PageView on load, Lead when the form is submitted.
 const META_PIXEL_ID = "2277309869728746";
@@ -165,14 +168,26 @@ function send(payload) {
     showDevNote();
     return;
   }
-  fetch(WEBHOOK_URL, {
+  // Primary route: our own /api/lead function forwards to GHL as real JSON.
+  // Fallback: post straight to GHL if the function is unreachable.
+  fetch(LEAD_ENDPOINT, {
     method: "POST",
-    headers: { "Content-Type": "text/plain;charset=UTF-8" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
     keepalive: true
+  }).then(function (r) {
+    if (!r.ok) throw new Error("lead endpoint " + r.status);
   }).catch(function (err) {
-    console.error("[DP Quote] webhook failed, queued for retry:", err);
-    queueRetry(payload);
+    console.warn("[DP Quote] /api/lead failed, posting to GHL directly:", err);
+    fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=UTF-8" },
+      body: JSON.stringify(payload),
+      keepalive: true
+    }).catch(function (err2) {
+      console.error("[DP Quote] webhook failed, queued for retry:", err2);
+      queueRetry(payload);
+    });
   });
 }
 
