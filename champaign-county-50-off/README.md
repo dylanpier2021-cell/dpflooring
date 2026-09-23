@@ -20,8 +20,8 @@ Then a "You're all set" screen: we call you → we come out → you get your quo
 
 ## Setup (all at the top of `quote.js`)
 
-- `WEBHOOK_URL` — paste the GoHighLevel inbound webhook URL. Until then the
-  form still works and logs the payload to the browser console.
+- `WEBHOOK_URL` — the GoHighLevel inbound webhook ("50% Off Website Form" trigger on the
+  "Facebook Lead Follow-Up" workflow). Set Sep 2026.
 - `META_PIXEL_ID` — paste your pixel ID to fire `PageView` on load and `Lead`
   on submit. Leave `""` if the pixel is already installed another way.
 - `COLORS` — add/remove/rename swatches. Keep file names in sync with
