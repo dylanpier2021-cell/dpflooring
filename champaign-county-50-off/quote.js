@@ -18,7 +18,7 @@ const WEBHOOK_URL = "PASTE_GHL_WEBHOOK_HERE";
 
 // Meta Pixel ID (Events Manager > Data sources). Leave "" to skip loading it.
 // When set: PageView on load, Lead when the form is submitted.
-const META_PIXEL_ID = "";
+const META_PIXEL_ID = "2277309869728746";
 
 // How many colors someone may favorite.
 const MAX_COLORS = 3;
