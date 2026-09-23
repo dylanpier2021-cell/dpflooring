@@ -2101,7 +2101,7 @@ def page_colors():
     trail = [("Home", "/"), ("Colors &amp; Finishes", None)]
     title = "Epoxy Colors &amp; Finishes | Flake &amp; Metallic Blends | Central Illinois"
     desc = ("Flake and metallic epoxy colors from DP Flooring Services. Storm Grey, Onyx Black, "
-            "Ocean Blue and more, with typical per-square-foot pricing. Samples at every free quote.")
+            "Ocean Blue and more. Samples at every free in-person quote.")
 
     fin = "\n".join(f"""      <article class="fincard reveal">
         <div class="fincard__media">
@@ -2110,7 +2110,6 @@ def page_colors():
         <div class="fincard__body">
           <h3>{f['name']}</h3>
           <p>{f['blurb']}</p>
-          <p class="fincard__price"><b>{f['price']}</b><span>typical / sq&nbsp;ft</span></p>
           <a class="arrow-link" href="/contact/">Quote this finish <span aria-hidden="true">&rarr;</span></a>
         </div>
       </article>""" for f in CFG["finishes"])
@@ -2156,14 +2155,13 @@ def page_colors():
       <p class="eyebrow">Finish types</p>
       <h2>Three systems. Same prep underneath.</h2>
       <p class="lede">Every floor is diamond ground, repaired and sealed the same way. What changes
-      is the coat that goes on top, and what it costs per square foot.</p>
+      is the coat that goes on top.</p>
     </div>
     <div class="fincards">
 {fin}
     </div>
-    <p class="pricenote">Typical installed pricing per square foot. The number on your floor moves with
-    square footage, slab condition and how much repair it needs first &mdash; every quote is free,
-    on site and itemized.</p>
+    <p class="pricenote">Every floor is priced in person, after we have measured it and looked at the
+    concrete &mdash; every quote is free, on site and itemized.</p>
   </div>
 </section>
 
@@ -2228,7 +2226,7 @@ def page_colors():
   <div class="wrap wrap--narrow">
     <div class="section-head section-head--center">
       <p class="eyebrow">Every floor, every color</p>
-      <h2>What the price includes</h2>
+      <h2>What every floor includes</h2>
     </div>
     <ul class="checks checks--dark">
       <li>{I['check']}<span>Diamond grinding to open the concrete profile &mdash; never an acid etch</span></li>

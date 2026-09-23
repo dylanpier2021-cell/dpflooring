@@ -136,7 +136,7 @@
   },
   "copyrightYear": 2026,
   "pricing": {
-    "_note": "Optional. Put a real installed price range here (e.g. \"$4.50 - $7.00 / sq ft\") and the service page swaps its 'what moves the price' copy for that headline figure. Leave a value as \"\" to keep the cost-drivers version, which is what ships by default.",
+    "_note": "Leave these empty. The site intentionally shows no pricing; if a value is set the service page prints it as a headline price.",
     "garage-epoxy-floors": "",
     "basement-floors": "",
     "commercial-industrial-coatings": "",
@@ -148,7 +148,6 @@
     {
       "slug": "flake",
       "name": "Flake",
-      "price": "$7",
       "blurb": "Durable, slip-resistant, and it hides dirt between cleanings.",
       "img": "decorative-flake-epoxy-floor-finish.jpg",
       "alt": "Close-up of a gray and white speckled full-broadcast flake floor finish"
@@ -156,7 +155,6 @@
     {
       "slug": "solid",
       "name": "Solid Color",
-      "price": "$6",
       "blurb": "Clean and uniform. The most economical way to seal a slab.",
       "img": "high-gloss-epoxy-hangar-floor.jpg",
       "alt": "Smooth, high-gloss solid color floor reflecting the lights above it"
@@ -164,13 +162,12 @@
     {
       "slug": "metallic",
       "name": "Metallic",
-      "price": "$12",
       "blurb": "Swirled and high-gloss. No two floors come out alike.",
       "img": "metallic-epoxy-floor-finish.jpg",
       "alt": "Poured amber metallic floor finish with visible movement and depth"
     }
   ],
-  "_finishes_note": "Prices shown on /colors-and-finishes/ as a typical per-sq-ft figure. HEADS UP: funnel/funnel.js prices metallic at $9-$12, so the $12 here is the TOP of that range rather than a typical number. Pick one and make them agree before launch.",
+  "_finishes_note": "Finish cards on /colors-and-finishes/. Prices were removed on purpose (Sep 2026): the site shows no pricing, every floor is quoted in person.",
   "colors": {
     "flake": [
       {
