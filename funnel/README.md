@@ -1,5 +1,9 @@
 # DP Flooring Services — Instant Estimate Funnel
 
+> **Retired (Sep 2026).** The site no longer shows any pricing, so `index.html` is now a redirect to
+> `/champaign-county-50-off/`. The old instant-estimate page is in git history (commit before this note).
+
+
 A single-page, multi-step lead-qualification funnel for **DP Flooring Services LLC**
 (Drayton Potthast & Dylan Pierson, Champaign County, IL).
 
