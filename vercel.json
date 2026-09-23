@@ -39,7 +39,12 @@
       "permanent": false
     },
     {
-      "source": "/funnel/:path*",
+      "source": "/funnel/",
+      "destination": "/champaign-county-50-off/",
+      "permanent": false
+    },
+    {
+      "source": "/funnel/index.html",
       "destination": "/champaign-county-50-off/",
       "permanent": false
     }
