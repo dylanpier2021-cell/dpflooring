@@ -79,8 +79,12 @@ const COLOR_IMG_BASE = "/assets/img/colors/";
    2. Funnel machinery
    ========================================================================== */
 
-const STEPS = ["space", "size", "finish", "color", "condition", "timeline", "contact"];
-const TOTAL = STEPS.length;
+// The color step is skipped for "Not sure yet" - they pick in person.
+function flow() {
+  const s = ["space", "size", "finish"];
+  if (answers.finish !== "Not sure yet") s.push("color");
+  return s.concat(["condition", "timeline", "address", "contact"]);
+}
 
 const answers = {
   space: null, size: null, finish: null, colors: [],
@@ -223,42 +227,42 @@ function showDevNote() {
 /* -------------------------------------------------------------- step flow */
 
 function setProgress(i) {
-  const done = i >= TOTAL;
-  const pct = done ? 100 : Math.round(((i + 1) / TOTAL) * 100);
+  const total = flow().length;
+  const done = i >= total;
+  const pct = done ? 100 : Math.round(((i + 1) / total) * 100);
   $("#progressBar").style.width = pct + "%";
   $("#progressTrack").setAttribute("aria-valuenow", pct);
-  $("#progressPct").textContent = pct + "%";
-  $("#progressLabel").textContent = done ? "Request sent" : "Step " + (i + 1) + " of " + TOTAL;
+  $("#progressLabel").textContent = done ? "Request sent" : "Step " + (i + 1) + " of " + total;
   $("#progress").classList.toggle("is-done", done);
   $("#backBtn").hidden = i === 0 || done;
 }
 
-function show(i, dir) {
-  const name = i >= TOTAL ? "done" : STEPS[i];
+function show(i, moved) {
+  const steps = flow();
+  const name = i >= steps.length ? "done" : steps[i];
   if (name === "size") prepareSize();
   if (name === "color") prepareColors();
-  if (name === "contact") renderSummary($("#pickedSummary"));
 
-  $$(".step").forEach(function (s) { s.classList.remove("is-active", "is-back"); });
+  $$(".step").forEach(function (s) { s.classList.remove("is-active"); });
   const el = stepEl(name);
-  if (dir === "back") el.classList.add("is-back");
   el.classList.add("is-active");
+  $("#quoteForm").hidden = name === "done";
+  const body = $(".step__body", el);
+  if (body) body.scrollTop = 0;
   current = i;
   setProgress(i);
 
-  // Keep the top of the panel in view on phones without jumping if it already is.
-  const top = $("#quote").getBoundingClientRect().top;
-  if (top < -10 || top > window.innerHeight * 0.4) $("#quote").scrollIntoView({ block: "start" });
-
-  const heading = $(".step__q", el);
-  if (heading && dir) { heading.setAttribute("tabindex", "-1"); heading.focus({ preventScroll: true }); }
+  if (moved) {
+    const heading = $(".step__q", el);
+    if (heading) { heading.setAttribute("tabindex", "-1"); heading.focus({ preventScroll: true }); }
+  }
 }
 
 function next() {
   const i = current + 1;
-  track("quote_step_complete", { step_number: current + 1, step_id: STEPS[current] });
+  track("quote_step_complete", { step_number: current + 1, step_id: flow()[current] });
   try { history.pushState({ step: i }, ""); } catch (e) {}
-  show(i, "forward");
+  show(i, true);
 }
 
 function back() {
@@ -267,9 +271,9 @@ function back() {
 }
 
 window.addEventListener("popstate", function (e) {
-  if (submitted) { show(TOTAL); return; }
+  if (submitted) { show(flow().length); return; }
   const i = e.state && typeof e.state.step === "number" ? e.state.step : 0;
-  show(Math.min(i, TOTAL - 1), "back");
+  show(Math.min(i, flow().length - 1), true);
 });
 
 
@@ -288,8 +292,8 @@ $$(".cards[data-field]").forEach(function (group) {
     if (field === "space" && answers.space !== value) answers.size = null;
     answers[field] = value;
 
-    // Short pause so the tap registers visually before the screen moves.
-    setTimeout(next, 230);
+    // Brief beat so the tap shows, then straight on.
+    setTimeout(next, 120);
   });
 });
 
@@ -307,10 +311,10 @@ function prepareSize() {
 /* ------------------------------------------------------------ color step */
 
 function groupsFor(finish) {
-  if (finish === "Flake")       return [["flake", "Flake colors", ""]];
-  if (finish === "Metallic")    return [["metallic", "Metallic colors", ""]];
-  if (finish === "Solid color") return [["solid", "Solid colors", "Close match shown. We bring real chips."]];
-  return [["flake", "Flake", "Most popular"], ["metallic", "Metallic", "Premium"]];
+  if (finish === "Flake")       return [["flake", "Flake colors"]];
+  if (finish === "Metallic")    return [["metallic", "Metallic colors"]];
+  if (finish === "Solid color") return [["solid", "Solid colors"]];
+  return [["flake", "Flake"], ["metallic", "Metallic"]];
 }
 
 function prepareColors() {
@@ -319,23 +323,24 @@ function prepareColors() {
   if (wrap.getAttribute("data-for") !== finish) {
     wrap.setAttribute("data-for", finish);
     wrap.innerHTML = "";
-    groupsFor(finish).forEach(function (g) {
+    const groups = groupsFor(finish);
+    groups.forEach(function (g) {
       const kind = g[0];
       const sec = document.createElement("div");
       sec.className = "cgroup";
-      sec.innerHTML = '<h3 class="cgroup__title">' + g[1] + (g[2] ? " <small>" + g[2] + "</small>" : "") + "</h3>";
+      if (groups.length > 1) sec.innerHTML = '<h3 class="cgroup__title">' + g[1] + "</h3>";
       const grid = document.createElement("div");
       grid.className = "swatches";
       COLORS[kind].forEach(function (c) {
         const b = document.createElement("button");
         b.type = "button";
         b.className = "swatch";
-        const value = (finish === "Not sure yet" ? g[1] + ": " : "") + c.name;
+        const value = (groups.length > 1 ? g[1] + ": " : "") + c.name;
         b.setAttribute("data-value", value);
         b.setAttribute("aria-pressed", "false");
         b.innerHTML =
           (c.file
-            ? '<img src="' + COLOR_IMG_BASE + c.file + '" alt="" width="560" height="560" loading="lazy" decoding="async">'
+            ? '<img src="' + COLOR_IMG_BASE + c.file + '" alt="" width="560" height="560" decoding="async">'
             : '<span class="swatch__chip" style="background:' + c.hex + '"></span>') +
           '<span class="swatch__name">' + c.name + "</span>" +
           '<span class="swatch__check" aria-hidden="true"></span>';
@@ -344,34 +349,32 @@ function prepareColors() {
       sec.appendChild(grid);
       wrap.appendChild(sec);
     });
-    if (finish === "Metallic" || finish === "Not sure yet") {
+    if (finish === "Metallic") {
       const note = document.createElement("p");
       note.className = "cnote";
-      note.textContent = "Metallic swatches are color renderings. Every pour is one of a kind, so we bring real samples to your quote.";
+      note.textContent = "Color renderings. Every metallic pour is one of a kind.";
       wrap.appendChild(note);
     }
   }
 
   const q = { "Flake": "Pick your flake colors", "Metallic": "Pick your metallic colors",
-              "Solid color": "Pick your color", "Not sure yet": "Anything catch your eye?" };
+              "Solid color": "Pick your color" };
   $("#colorQ").textContent = q[finish] || "Pick your colors";
-  $("#colorHelp").textContent = "Tap up to " + MAX_COLORS + " favorites. We'll bring those samples when we come out.";
+  $("#colorHelp").textContent = "Tap up to " + MAX_COLORS + ". Optional, we bring samples.";
   syncColors();
 }
 
 function syncColors() {
-  const full = answers.colors.length >= MAX_COLORS;
   $$("#colorGroups .swatch").forEach(function (s) {
     const on = answers.colors.indexOf(s.getAttribute("data-value")) !== -1;
     s.classList.toggle("is-selected", on);
-    s.classList.toggle("is-maxed", full);
     s.setAttribute("aria-pressed", on ? "true" : "false");
   });
   const btn = $("#colorNext");
   const n = answers.colors.length;
-  btn.disabled = n === 0;
-  btn.textContent = n === 0 ? "Tap a color to continue"
+  btn.textContent = n === 0 ? "Skip, I'll pick in person"
                   : "Continue with " + n + " color" + (n > 1 ? "s" : "");
+  btn.classList.toggle("btn--quiet", n === 0);
 }
 
 $("#colorGroups").addEventListener("click", function (e) {
@@ -385,8 +388,7 @@ $("#colorGroups").addEventListener("click", function (e) {
   syncColors();
 });
 
-$("#colorNext").addEventListener("click", function () { if (answers.colors.length) next(); });
-$("#colorSkip").addEventListener("click", function () { answers.colors = []; syncColors(); next(); });
+$("#colorNext").addEventListener("click", next);
 
 
 /* ------------------------------------------------------------- summaries */
@@ -407,7 +409,7 @@ function renderSummary(target) {
 }
 
 
-/* --------------------------------------------------------------- contact */
+/* ------------------------------------------------------------ validation */
 
 const phone = $("#fPhone");
 phone.addEventListener("input", function () {
@@ -431,42 +433,60 @@ function setError(input, bad) {
   input.setAttribute("aria-invalid", bad ? "true" : "false");
 }
 
-function validate() {
-  const checks = [
-    [$("#fFirst"), function (v) { return v.trim().length > 0; }],
-    [phone,        function (v) { return phoneDigits(v).length === 10; }],
-    [$("#fEmail"), function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }],
-    [$("#fAddress"), function (v) { return v.trim().length > 4; }],
-    [$("#fCity"),  function (v) { return v.trim().length > 1; }]
-  ];
+function check(list, stepId) {
   let first = null;
-  checks.forEach(function (c) {
+  list.forEach(function (c) {
     const bad = !c[1](c[0].value);
     setError(c[0], bad);
     if (bad && !first) first = c[0];
   });
   if (first) {
     first.focus();
-    track("quote_validation_error", { field: first.name });
+    track("quote_validation_error", { step_id: stepId, field: first.name });
   }
   return !first;
 }
 
+const addressChecks = [
+  [$("#fAddress"), function (v) { return v.trim().length > 4; }],
+  [$("#fCity"),    function (v) { return v.trim().length > 1; }]
+];
+const contactChecks = [
+  [$("#fFirst"), function (v) { return v.trim().length > 0; }],
+  [phone,        function (v) { return phoneDigits(v).length === 10; }],
+  [$("#fEmail"), function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }]
+];
+
 $$(".fields input").forEach(function (el) {
   el.addEventListener("input", function () {
-    if (el.closest(".field") && el.closest(".field").classList.contains("has-error")) setError(el, false);
+    const f = el.closest(".field");
+    if (f && f.classList.contains("has-error")) setError(el, false);
   });
 });
 
+function addressNext() {
+  if (check(addressChecks, "address")) next();
+}
+$("#addressNext").addEventListener("click", addressNext);
+// Enter / "next" on the phone keyboard: street -> city -> continue
+$("#fAddress").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") { e.preventDefault(); $("#fCity").focus(); }
+});
+$("#fCity").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") { e.preventDefault(); addressNext(); }
+});
+
+
+/* ---------------------------------------------------------------- submit */
+
 $("#quoteForm").addEventListener("submit", function (e) {
   e.preventDefault();
-  if (current !== STEPS.indexOf("contact") || submitted) return;
-  if (!validate()) return;
+  if (flow()[current] !== "contact" || submitted) return;
+  if (!check(contactChecks, "contact")) return;
 
   const first = $("#fFirst").value.trim();
   const last = $("#fLast").value.trim();
   const d = phoneDigits(phone.value);
-  const bestTime = $('input[name="best_time"]:checked');
 
   send(buildPayload({
     name: (first + " " + last).trim(),
@@ -476,21 +496,22 @@ $("#quoteForm").addEventListener("submit", function (e) {
     email: $("#fEmail").value.trim(),
     address: $("#fAddress").value.trim(),
     city: $("#fCity").value.trim(),
-    best_time_to_call: bestTime ? bestTime.value : "Anytime",
-    notes: $("#fNotes").value.trim() || null,
+    best_time_to_call: "Anytime",
+    notes: null,
     sms_consent_service: $("#fSmsService").checked,
     sms_consent_marketing: $("#fSmsMarketing").checked
   }));
 
   submitted = true;
-  track("quote_step_complete", { step_number: TOTAL, step_id: "contact" });
+  track("quote_step_complete", { step_number: flow().length, step_id: "contact" });
   track("lead_submitted", { space: answers.space, finish: answers.finish });
   pixel("Lead", { content_name: "Free quote request", content_category: answers.finish || "" });
 
   $("#doneTitle").textContent = "You're all set, " + first + "!";
   renderSummary($("#doneSummary"));
-  try { history.replaceState({ step: TOTAL }, ""); } catch (err) {}
-  show(TOTAL, "forward");
+  const total = flow().length;
+  try { history.replaceState({ step: total }, ""); } catch (err) {}
+  show(total, true);
 });
 
 $("#backBtn").addEventListener("click", back);
@@ -509,6 +530,6 @@ setProgress(0);
 track("quote_start", { utm_source: UTMS.utm_source || null, utm_campaign: UTMS.utm_campaign || null });
 
 // Debug handle: DPQuote.answers, DPQuote.goTo(n)
-window.DPQuote = { answers: answers, goTo: function (n) { show(n, "forward"); } };
+window.DPQuote = { answers: answers, flow: flow, goTo: function (n) { show(n, true); } };
 
 })();
