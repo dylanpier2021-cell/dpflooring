@@ -5,18 +5,23 @@ floor in 7 tapped steps, leaves their details, and we call them to book an
 in-person quote. **No price is shown anywhere on this page** — that's the point.
 (The older `funnel/` page is the one that shows an instant price range.)
 
-Steps, with a progress bar and a Back button (the phone's back button works too):
+Full-screen layout: the page never scrolls. Header on top, the form panel fills
+the rest of the screen (offer column on the left on desktop). No slide/pop
+animations; cards auto-advance on tap. Steps, with a progress bar and a Back
+button (the phone's back button works too):
 
 1. What are we coating (garage, basement, patio, shop, commercial, other)
 2. How big (car count for garages, small/medium/large for everything else)
 3. Finish: Flake, Metallic, Solid color, or Not sure
-4. Colors: up to 3 favorites from the real swatches in `/assets/img/colors/`
-   (flake, metallic, or solid chips, depending on step 3; can be skipped)
+4. Colors: up to 3 favorites, optional (skipped entirely for "Not sure yet")
 5. Concrete condition
 6. Timeline
-7. Contact: name, phone, email, city, best time to call, notes, SMS consent
+7. Address: street + city
+8. Contact: first/last name, phone, email, SMS consent
 
 Then a "You're all set" screen: we call you → we come out → you get your quote.
+Best-time-to-call and notes were removed to cut friction; the payload still sends
+`best_time_to_call: "Anytime"` and `notes: null` so GHL mappings don't break.
 
 ## Setup (all at the top of `quote.js`)
 
