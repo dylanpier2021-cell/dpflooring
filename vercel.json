@@ -34,18 +34,18 @@
   ],
   "redirects": [
     {
-      "source": "/funnel",
-      "destination": "/champaign-county-50-off/",
+      "source": "/champaign-county-50-off",
+      "destination": "/funnel/",
       "permanent": false
     },
     {
-      "source": "/funnel/",
-      "destination": "/champaign-county-50-off/",
+      "source": "/champaign-county-50-off/",
+      "destination": "/funnel/",
       "permanent": false
     },
     {
-      "source": "/funnel/index.html",
-      "destination": "/champaign-county-50-off/",
+      "source": "/champaign-county-50-off/index.html",
+      "destination": "/funnel/",
       "permanent": false
     }
   ]

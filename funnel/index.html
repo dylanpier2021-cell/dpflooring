@@ -2,13 +2,305 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free Epoxy Floor Quote | DP Flooring Services</title>
+<meta name="description" content="Tell us about your floor in about a minute and we'll call you to set up a free in-person quote. Champaign County and nearby.">
+<meta name="theme-color" content="#071229">
+<meta name="format-detection" content="telephone=yes">
 <meta name="robots" content="noindex, follow">
-<title>DP Flooring Services</title>
-<meta http-equiv="refresh" content="0; url=/champaign-county-50-off/">
-<link rel="canonical" href="/champaign-county-50-off/">
-<script>location.replace("/champaign-county-50-off/" + location.search);</script>
+<link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Epoxy Floor Quote | DP Flooring Services">
+<meta property="og:description" content="Design your floor in about a minute. We come to you for a free in-person quote.">
+<meta property="og:image" content="/assets/img/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="quote.css?v=20261111b">
 </head>
 <body>
-<p><a href="/champaign-county-50-off/">Continue to DP Flooring Services</a></p>
+
+<header class="site-header">
+  <img class="logo" src="logo.png" alt="DP Flooring Services LLC" width="609" height="150">
+  <a class="header-call" href="tel:+12174175950" data-track="header_call">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span>(217) 417-5950</span>
+  </a>
+</header>
+
+<div class="layout">
+
+  <!-- Offer: one slim line on phones, a full side column on desktop -->
+  <aside class="offer">
+    <h1>Get a Free Epoxy Floor Quote</h1>
+    <p class="offer__sub">Tap a few answers. We call you, measure in person, and give you your exact price.</p>
+    <ul class="offer__ticks">
+      <li>Free in-person quote</li>
+      <li>No obligation</li>
+      <li>No trip charge</li>
+      <li>Diamond-ground prep, not acid wash</li>
+      <li>Most floors done in 1&ndash;2 days</li>
+      <li>Locally owned by Drayton &amp; Dylan</li>
+    </ul>
+  </aside>
+
+  <main class="panel" id="quote">
+
+    <div class="progress" id="progress">
+      <button class="back" type="button" id="backBtn" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        Back
+      </button>
+      <span class="progress__label" id="progressLabel">Step 1 of 8</span>
+      <div class="progress__track" role="progressbar" aria-label="Quote form progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="13" id="progressTrack">
+        <div class="progress__bar" id="progressBar" style="width:13%"></div>
+      </div>
+    </div>
+
+    <form id="quoteForm" novalidate>
+
+    <!-- STEP: space -->
+    <section class="step is-active" data-step="space">
+      <h2 class="step__q">What are we coating?</h2>
+      <div class="step__body">
+        <div class="cards cards--3 cards--pics" data-field="space">
+          <button class="card card--photo" type="button" data-value="Garage">
+            <img src="img/space-garage.jpg" alt="" width="520" height="347" decoding="async">
+            <span class="card__body"><span class="card__label">Garage</span></span>
+          </button>
+          <button class="card card--photo" type="button" data-value="Basement">
+            <img src="img/space-basement.jpg" alt="" width="520" height="347" decoding="async">
+            <span class="card__body"><span class="card__label">Basement</span></span>
+          </button>
+          <button class="card card--photo" type="button" data-value="Patio / Porch">
+            <img src="img/space-patio.jpg" alt="" width="520" height="347" decoding="async">
+            <span class="card__body"><span class="card__label">Patio / Porch</span></span>
+          </button>
+          <button class="card card--photo" type="button" data-value="Shop / Warehouse">
+            <img src="img/space-shop.jpg" alt="" width="520" height="347" decoding="async">
+            <span class="card__body"><span class="card__label">Shop / Warehouse</span></span>
+          </button>
+          <button class="card card--photo" type="button" data-value="Commercial / Business">
+            <img src="img/space-commercial.jpg" alt="" width="520" height="347" decoding="async">
+            <span class="card__body"><span class="card__label">Commercial</span></span>
+          </button>
+          <button class="card card--photo" type="button" data-value="Something else">
+            <img src="img/space-other.jpg" alt="" width="520" height="347" decoding="async">
+            <span class="card__body"><span class="card__label">Something else</span></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP: size -->
+    <section class="step" data-step="size">
+      <h2 class="step__q" id="sizeQ">How big is it?</h2>
+      <p class="step__help">A guess is fine. We measure when we come out.</p>
+      <div class="step__body">
+        <div class="cards cards--2" data-field="size" id="sizeGarage" hidden>
+          <button class="card" type="button" data-value="1-car garage"><span class="cars cars--1" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 5.8 7.4A2 2 0 0 1 7.7 6h8.6a2 2 0 0 1 1.9 1.4l1.8 5.1"/><rect x="2.5" y="12.5" width="19" height="5.5" rx="1.6"/><path d="M5.5 18v2M18.5 18v2"/><circle cx="6.8" cy="15.2" r=".9" fill="currentColor"/><circle cx="17.2" cy="15.2" r=".9" fill="currentColor"/></svg></span><span class="card__label">1-car</span></button>
+          <button class="card" type="button" data-value="2-car garage"><span class="cars cars--2" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 5.8 7.4A2 2 0 0 1 7.7 6h8.6a2 2 0 0 1 1.9 1.4l1.8 5.1"/><rect x="2.5" y="12.5" width="19" height="5.5" rx="1.6"/><path d="M5.5 18v2M18.5 18v2"/><circle cx="6.8" cy="15.2" r=".9" fill="currentColor"/><circle cx="17.2" cy="15.2" r=".9" fill="currentColor"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 5.8 7.4A2 2 0 0 1 7.7 6h8.6a2 2 0 0 1 1.9 1.4l1.8 5.1"/><rect x="2.5" y="12.5" width="19" height="5.5" rx="1.6"/><path d="M5.5 18v2M18.5 18v2"/><circle cx="6.8" cy="15.2" r=".9" fill="currentColor"/><circle cx="17.2" cy="15.2" r=".9" fill="currentColor"/></svg></span><span class="card__label">2-car</span></button>
+          <button class="card" type="button" data-value="3-car garage"><span class="cars cars--3" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 5.8 7.4A2 2 0 0 1 7.7 6h8.6a2 2 0 0 1 1.9 1.4l1.8 5.1"/><rect x="2.5" y="12.5" width="19" height="5.5" rx="1.6"/><path d="M5.5 18v2M18.5 18v2"/><circle cx="6.8" cy="15.2" r=".9" fill="currentColor"/><circle cx="17.2" cy="15.2" r=".9" fill="currentColor"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 5.8 7.4A2 2 0 0 1 7.7 6h8.6a2 2 0 0 1 1.9 1.4l1.8 5.1"/><rect x="2.5" y="12.5" width="19" height="5.5" rx="1.6"/><path d="M5.5 18v2M18.5 18v2"/><circle cx="6.8" cy="15.2" r=".9" fill="currentColor"/><circle cx="17.2" cy="15.2" r=".9" fill="currentColor"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 5.8 7.4A2 2 0 0 1 7.7 6h8.6a2 2 0 0 1 1.9 1.4l1.8 5.1"/><rect x="2.5" y="12.5" width="19" height="5.5" rx="1.6"/><path d="M5.5 18v2M18.5 18v2"/><circle cx="6.8" cy="15.2" r=".9" fill="currentColor"/><circle cx="17.2" cy="15.2" r=".9" fill="currentColor"/></svg></span><span class="card__label">3-car</span></button>
+          <button class="card" type="button" data-value="4+ car garage"><span class="cars cars--4" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 5.8 7.4A2 2 0 0 1 7.7 6h8.6a2 2 0 0 1 1.9 1.4l1.8 5.1"/><rect x="2.5" y="12.5" width="19" height="5.5" rx="1.6"/><path d="M5.5 18v2M18.5 18v2"/><circle cx="6.8" cy="15.2" r=".9" fill="currentColor"/><circle cx="17.2" cy="15.2" r=".9" fill="currentColor"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 5.8 7.4A2 2 0 0 1 7.7 6h8.6a2 2 0 0 1 1.9 1.4l1.8 5.1"/><rect x="2.5" y="12.5" width="19" height="5.5" rx="1.6"/><path d="M5.5 18v2M18.5 18v2"/><circle cx="6.8" cy="15.2" r=".9" fill="currentColor"/><circle cx="17.2" cy="15.2" r=".9" fill="currentColor"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 5.8 7.4A2 2 0 0 1 7.7 6h8.6a2 2 0 0 1 1.9 1.4l1.8 5.1"/><rect x="2.5" y="12.5" width="19" height="5.5" rx="1.6"/><path d="M5.5 18v2M18.5 18v2"/><circle cx="6.8" cy="15.2" r=".9" fill="currentColor"/><circle cx="17.2" cy="15.2" r=".9" fill="currentColor"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 5.8 7.4A2 2 0 0 1 7.7 6h8.6a2 2 0 0 1 1.9 1.4l1.8 5.1"/><rect x="2.5" y="12.5" width="19" height="5.5" rx="1.6"/><path d="M5.5 18v2M18.5 18v2"/><circle cx="6.8" cy="15.2" r=".9" fill="currentColor"/><circle cx="17.2" cy="15.2" r=".9" fill="currentColor"/></svg></span><span class="card__label">4-car or bigger</span></button>
+        </div>
+        <div class="cards cards--1" data-field="size" id="sizeArea" hidden>
+          <button class="card card--row" type="button" data-value="Under 300 sq ft"><span class="card__lead" aria-hidden="true"><span class="sq" style="width:14px;height:14px"></span></span><span class="card__txt"><span class="card__label">Small</span><span class="card__sub">Under 300 sq ft</span></span></button>
+          <button class="card card--row" type="button" data-value="300-600 sq ft"><span class="card__lead" aria-hidden="true"><span class="sq" style="width:20px;height:20px"></span></span><span class="card__txt"><span class="card__label">Medium</span><span class="card__sub">300&ndash;600 sq ft</span></span></button>
+          <button class="card card--row" type="button" data-value="600-1,500 sq ft"><span class="card__lead" aria-hidden="true"><span class="sq" style="width:26px;height:26px"></span></span><span class="card__txt"><span class="card__label">Large</span><span class="card__sub">600&ndash;1,500 sq ft</span></span></button>
+          <button class="card card--row" type="button" data-value="1,500+ sq ft"><span class="card__lead" aria-hidden="true"><span class="sq" style="width:32px;height:32px"></span></span><span class="card__txt"><span class="card__label">Very large</span><span class="card__sub">1,500+ sq ft</span></span></button>
+          <button class="card card--row" type="button" data-value="Not sure"><span class="card__lead" aria-hidden="true"><span class="sq sq--q">?</span></span><span class="card__txt"><span class="card__label">Not sure</span><span class="card__sub">We'll measure it</span></span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP: finish -->
+    <section class="step" data-step="finish">
+      <h2 class="step__q">Which look do you like?</h2>
+      <p class="step__help">Go with your gut. We bring real samples.</p>
+      <div class="step__body">
+        <div class="cards cards--2 cards--finish" data-field="finish">
+          <button class="card card--photo" type="button" data-value="Flake">
+            <img src="/assets/img/colors/flake-domino.jpg" alt="" width="560" height="560" decoding="async">
+            <span class="card__body"><span class="card__label">Flake</span><span class="pill">Most popular</span></span>
+          </button>
+          <button class="card card--photo" type="button" data-value="Metallic">
+            <img src="/assets/img/colors/metallic-silver-storm.jpg" alt="" width="560" height="560" decoding="async">
+            <span class="card__body"><span class="card__label">Metallic</span><span class="pill pill--gold">Premium</span></span>
+          </button>
+          <button class="card card--photo" type="button" data-value="Solid color">
+            <img src="img/finish-solid.jpg" alt="" width="520" height="347" decoding="async">
+            <span class="card__body"><span class="card__label">Solid color</span></span>
+          </button>
+          <button class="card card--photo" type="button" data-value="Not sure yet">
+            <span class="card__solid card__solid--q" aria-hidden="true">?</span>
+            <span class="card__body"><span class="card__label">Not sure yet</span></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP: color (skipped when finish is "Not sure yet") -->
+    <section class="step" data-step="color">
+      <h2 class="step__q" id="colorQ">Pick your colors</h2>
+      <p class="step__help" id="colorHelp">Tap up to 3. Optional.</p>
+      <div class="step__body">
+        <div id="colorGroups"><!-- filled by quote.js --></div>
+      </div>
+      <div class="step__foot">
+        <button class="btn btn--block" type="button" id="colorNext">Skip, I'll pick in person</button>
+      </div>
+    </section>
+
+    <!-- STEP: condition -->
+    <section class="step" data-step="condition">
+      <h2 class="step__q">What shape is the concrete in?</h2>
+      <p class="step__help">Pick the closest one.</p>
+      <div class="step__body">
+        <div class="cards cards--2 cards--pics" data-field="condition">
+          <button class="card card--photo" type="button" data-value="Good shape">
+            <img src="img/cond-good.jpg" alt="" width="520" height="347" decoding="async">
+            <span class="card__body"><span class="card__label">Good shape</span></span>
+          </button>
+          <button class="card card--photo" type="button" data-value="Some cracks or pitting">
+            <img src="img/cond-cracks.jpg" alt="" width="520" height="347" decoding="async">
+            <span class="card__body"><span class="card__label">Some cracks</span></span>
+          </button>
+          <button class="card card--photo" type="button" data-value="Rough, or has an old coating">
+            <img src="img/cond-rough.jpg" alt="" width="520" height="347" decoding="async">
+            <span class="card__body"><span class="card__label">Old paint or coating</span></span>
+          </button>
+          <button class="card card--photo" type="button" data-value="Not sure">
+            <span class="card__solid card__solid--q" aria-hidden="true">?</span>
+            <span class="card__body"><span class="card__label">Not sure</span></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP: timeline -->
+    <section class="step" data-step="timeline">
+      <h2 class="step__q">When do you want it done?</h2>
+      <div class="step__body">
+        <div class="cards cards--1" data-field="timeline">
+          <button class="card card--row" type="button" data-value="As soon as possible"><span class="card__lead card__lead--ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><span class="card__txt"><span class="card__label">As soon as possible</span></span></button>
+          <button class="card card--row" type="button" data-value="Within 1-2 months"><span class="card__lead card__lead--ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M8 14h3"/></svg></span><span class="card__txt"><span class="card__label">Within 1&ndash;2 months</span></span></button>
+          <button class="card card--row" type="button" data-value="In 3+ months"><span class="card__lead card__lead--ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M8 14h3M13 14h3M8 17.5h3"/></svg></span><span class="card__txt"><span class="card__label">In 3 months or more</span></span></button>
+          <button class="card card--row" type="button" data-value="Just exploring"><span class="card__lead card__lead--ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span><span class="card__txt"><span class="card__label">Just exploring for now</span></span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP: address -->
+    <section class="step" data-step="address">
+      <h2 class="step__q">Where's the floor?</h2>
+      <p class="step__help">So we know where to come measure.</p>
+      <div class="step__body">
+        <div class="fields">
+          <div class="field">
+            <label for="fAddress">Street address</label>
+            <input id="fAddress" name="address" type="text" autocomplete="street-address" placeholder="1200 W Springfield Ave" enterkeyhint="next" required>
+            <span class="err" data-msg="Enter the address of the floor."></span>
+          </div>
+          <div class="field">
+            <label for="fCity">City</label>
+            <input id="fCity" name="city" type="text" autocomplete="address-level2" list="towns" placeholder="Champaign" enterkeyhint="next" required>
+            <datalist id="towns">
+              <option>Champaign</option><option>Urbana</option><option>Savoy</option><option>Mahomet</option>
+              <option>Rantoul</option><option>St. Joseph</option><option>Tolono</option><option>Monticello</option>
+              <option>Tuscola</option><option>Bloomington</option><option>Normal</option><option>Decatur</option>
+              <option>Danville</option><option>Clinton</option><option>Paxton</option>
+            </datalist>
+            <span class="err" data-msg="Let us know what town you're in."></span>
+          </div>
+        </div>
+      </div>
+      <div class="step__foot">
+        <button class="btn btn--block" type="button" id="addressNext">Continue</button>
+      </div>
+    </section>
+
+    <!-- STEP: contact -->
+    <section class="step" data-step="contact">
+      <h2 class="step__q">Where can we reach you?</h2>
+      <div class="step__body">
+        <div class="fields">
+          <div class="field-row">
+            <div class="field">
+              <label for="fFirst">First name</label>
+              <input id="fFirst" name="first_name" type="text" autocomplete="given-name" required>
+              <span class="err" data-msg="Enter your first name."></span>
+            </div>
+            <div class="field">
+              <label for="fLast">Last name</label>
+              <input id="fLast" name="last_name" type="text" autocomplete="family-name">
+              <span class="err"></span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="fPhone">Phone</label>
+            <input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(217) 555-0134" required>
+            <span class="err" data-msg="Enter a 10-digit phone number."></span>
+          </div>
+          <div class="field">
+            <label for="fEmail">Email</label>
+            <input id="fEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <span class="err" data-msg="Enter a valid email address."></span>
+          </div>
+
+          <div class="consent">
+            <label class="consent__row">
+              <input type="checkbox" name="sms_consent_service" id="fSmsService">
+              <span>I consent to receive non-marketing text messages from <strong>DP Flooring Services LLC</strong>
+              about my quote request, scheduling and job updates. Message frequency varies,
+              message &amp; data rates may apply. Reply HELP for assistance, reply STOP to opt out.
+              You must be 18 years of age or older to use this SMS service.</span>
+            </label>
+            <label class="consent__row">
+              <input type="checkbox" name="sms_consent_marketing" id="fSmsMarketing">
+              <span>I consent to receive marketing text messages from <strong>DP Flooring Services LLC</strong>
+              about seasonal offers, promotions and new services. Message frequency varies,
+              message &amp; data rates may apply. Reply HELP for assistance, reply STOP to opt out.
+              You must be 18 years of age or older to use this SMS service.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="step__foot">
+        <button class="btn btn--block btn--go" type="submit" id="submitBtn">
+          Get My Free Quote
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="fineprint">
+          Free, no obligation. We never sell your info. <a href="/privacy-policy/">Privacy</a> &middot; <a href="/terms-and-conditions/">Terms</a>
+        </p>
+      </div>
+    </section>
+    </form>
+
+    <!-- DONE -->
+    <section class="step step--done" data-step="done" tabindex="-1">
+      <div class="step__body">
+        <div class="done__tick" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2 class="step__q" id="doneTitle">You're all set!</h2>
+        <p class="done__lead">Your request is in. Here's what happens next:</p>
+        <ol class="next">
+          <li><b>We call you</b><span>Usually within one business day.</span></li>
+          <li><b>We come to you</b><span>Measure, check the concrete, bring your samples.</span></li>
+          <li><b>You get your price</b><span>An exact price, in person. No pressure.</span></li>
+        </ol>
+        <div class="picked" id="doneSummary"></div>
+      </div>
+      <div class="step__foot">
+        <a class="btn btn--block" href="tel:+12174175950" data-track="done_call">Want to talk sooner? Call (217) 417-5950</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="quote.js?v=20261111b"></script>
 </body>
 </html>

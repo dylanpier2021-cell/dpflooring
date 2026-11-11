@@ -1,5 +1,5 @@
 /* ==========================================================================
-   DP Flooring Services - 50% off quote form (Meta ad traffic)
+   DP Flooring Services - free quote lead funnel (/funnel/, Meta ad traffic)
    Full-screen app layout: the page itself never scrolls. Header on top, the
    form panel fills the rest of the screen. On desktop an offer column sits
    to the left. No slide/pop animations; state changes are instant.
@@ -72,7 +72,7 @@ button { -webkit-tap-highlight-color: transparent; }
 
 /* Offer: on phones, just the headline line */
 .offer { flex: none; color: #fff; padding: .6rem 1rem .7rem; text-align: center; }
-.offer h1 { font-size: 1.05rem; font-weight: 700; color: #E3EAF6; }
+.offer h1 { font-size: 1.05rem; font-weight: 700; color: #fff; }
 .offer__big { color: var(--gold); font-weight: 800; }
 .offer__sub, .offer__ticks { display: none; }
 
@@ -112,7 +112,8 @@ button { -webkit-tap-highlight-color: transparent; }
 .cards--1 { grid-template-columns: 1fr; max-height: 390px; }
 .cards--2 { grid-template-columns: 1fr 1fr; max-height: 400px; }
 .cards--3 { grid-template-columns: 1fr 1fr; max-height: 480px; }
-.cards--finish { grid-auto-rows: minmax(96px, 1fr); max-height: 440px; }
+.cards--finish, .cards--pics { grid-auto-rows: minmax(96px, 1fr); max-height: 460px; }
+.cards--3.cards--pics { max-height: 520px; }
 
 .card {
   position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem;
@@ -128,7 +129,17 @@ button { -webkit-tap-highlight-color: transparent; }
 .card__label { font-family: var(--fd); font-weight: 700; font-size: 1rem; line-height: 1.2; }
 .card__sub { font-size: .84rem; color: var(--text-2); line-height: 1.3; }
 
-.card--row { align-items: flex-start; text-align: left; padding: .55rem 3rem .55rem 1rem; gap: .05rem; }
+.card--row { flex-direction: row; align-items: center; justify-content: flex-start; text-align: left; padding: .5rem 3rem .5rem .7rem; gap: .8rem; }
+.card__txt { display: flex; flex-direction: column; gap: .05rem; min-width: 0; }
+.card__lead { flex: none; width: 42px; height: 42px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+.card__lead svg { width: 24px; height: 24px; }
+.sq { display: block; border: 2.5px solid var(--accent); border-radius: 4px; background: rgba(0,80,240,.12); }
+.sq--q { width: 28px; height: 28px; border-style: dashed; display: flex; align-items: center; justify-content: center; font-family: var(--fd); font-weight: 800; font-size: .95rem; color: var(--accent); background: none; }
+.cars { display: flex; gap: 2px; color: var(--accent); }
+.cars svg { width: 46px; height: 46px; }
+.cars--2 svg { width: 42px; height: 42px; }
+.cars--3 svg { width: 36px; height: 36px; }
+.cars--4 svg { width: 30px; height: 30px; }
 .card--row::after { content: ""; position: absolute; right: 1rem; top: 50%; width: 22px; height: 22px; margin-top: -11px; border-radius: 50%; border: 2px solid var(--line); }
 .card--row.is-selected::after { border-color: var(--accent); background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 12px no-repeat; }
 
@@ -223,6 +234,8 @@ button { -webkit-tap-highlight-color: transparent; }
   .logo { height: 40px; }
   .cards--3 { grid-template-columns: repeat(3, 1fr); max-height: 340px; }
   .cards--finish { grid-template-columns: repeat(4, 1fr); max-height: 300px; }
+  .cards--3.cards--pics { grid-template-columns: repeat(3, 1fr); max-height: 440px; }
+  .cards--2.cards--pics { max-height: 480px; }
   .swatches { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: .5rem; }
   .swatch__name { font-size: .72rem; }
   .consent__row { font-size: .68rem; }
