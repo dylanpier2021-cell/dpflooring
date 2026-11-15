@@ -273,8 +273,8 @@
 
 /* ------------------------------------------------------------ Meta Pixel
    PageView on every page (for ad measurement and retargeting), plus a Lead
-   when someone lands on the contact form's thank-you page. The 50% off funnel
-   fires its own Lead from champaign-county-50-off/quote.js. */
+   when someone lands on the contact form's thank-you page. The quote funnel
+   fires its own Lead from free-quote/index.html. */
 (function () {
   "use strict";
   var META_PIXEL_ID = "2277309869728746";
@@ -293,19 +293,19 @@
   }
 })();
 
-/* ------------------------------------------------------ 50% off offer
+/* ------------------------------------------------------ free quote offer
    A slim bar at the top of every page, plus a one-time popup a few seconds
    in (or at 40% scroll). Once closed, the popup stays away for 3 days. */
 (function () {
   "use strict";
-  var OFFER_URL = "/champaign-county-50-off/?utm_source=website&utm_medium=";
+  var OFFER_URL = "/free-quote/?utm_source=website&utm_medium=";
   var doc = document;
-  if (/^\/(champaign-county-50-off|contact\/thank-you)\//.test(location.pathname)) return;
+  if (/^\/(free-quote|champaign-county-50-off|contact\/thank-you)\//.test(location.pathname)) return;
 
   var bar = doc.createElement("a");
   bar.className = "offerbar";
   bar.href = OFFER_URL + "topbar";
-  bar.innerHTML = "50% off epoxy floors for Champaign County &mdash; <u>claim your spot</u>";
+  bar.innerHTML = "Free epoxy floor quotes in Champaign County &mdash; <u>pick a time</u>";
   doc.body.insertBefore(bar, doc.body.firstChild);
 
   var KEY = "dp_offer_closed";
@@ -321,10 +321,10 @@
     '<div class="offer__panel" role="dialog" aria-modal="true" aria-labelledby="offerTitle">' +
       '<button class="offer__x" type="button" data-offer-close aria-label="Close">&times;</button>' +
       '<div class="offer__top"><small>Champaign County homeowners</small>' +
-        '<b id="offerTitle">50% Off</b><span>Your new epoxy floor</span></div>' +
+        '<b id="offerTitle">Free Quote</b><span>For your new epoxy floor</span></div>' +
       '<div class="offer__body">' +
-        '<p>Tell us about your floor in about a minute. We come out, measure, and give you your price in person.</p>' +
-        '<a class="btn btn--lg" href="' + OFFER_URL + 'popup">Claim my 50% off</a>' +
+        '<p>Answer 4 quick questions and pick a time. We come out, measure, and give you your price in person.</p>' +
+        '<a class="btn btn--lg" href="' + OFFER_URL + 'popup">Get my free quote</a>' +
         '<button class="offer__no" type="button" data-offer-close>No thanks</button>' +
       '</div>' +
     '</div>';
