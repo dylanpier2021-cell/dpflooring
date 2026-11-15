@@ -1,339 +1,292 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>50% Off Epoxy Floors for Champaign County | DP Flooring Services</title>
-<meta name="description" content="50% off epoxy floors for Champaign County homeowners. Design your floor in about a minute and we'll call you to set up a free in-person quote.">
-<meta name="theme-color" content="#071229">
-<meta name="format-detection" content="telephone=yes">
-<meta name="robots" content="noindex, follow">
-<link rel="icon" href="/assets/img/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<meta property="og:type" content="website">
-<meta property="og:title" content="50% Off Epoxy Floors for Champaign County">
-<meta property="og:description" content="Design your floor in about a minute. We come to you for a free in-person quote.">
-<meta property="og:image" content="/assets/img/og-image.jpg">
+<title>Free Epoxy Floor Quote | DP Flooring Services</title>
+<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="quote.css">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ---- config: tweak the look here ---- */
+#dpq{
+  --navy:#0b1630; --blue:#2563eb; --blue-d:#1d4ed8; --gold:#f5b335;
+  --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --bg:#f4f6fb; --card:#fff;
+  --r:16px;
+}
+/* full-screen shell: covers any GHL wrapper, no page scroll */
+#dpq{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;
+  height:100vh;height:100dvh;background:var(--bg);color:var(--ink);
+  font-family:"Source Sans 3","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+#dpq *{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow:hidden!important;height:100%;margin:0}
+
+/* header */
+#dpq .hd{flex:none;display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px;background:var(--navy)}
+#dpq .hd img{height:34px;width:auto;display:block}
+#dpq .call{display:flex;align-items:center;gap:6px;color:#fff;text-decoration:none;font-weight:700;
+  font-size:15px;white-space:nowrap;padding:8px 12px;border:1px solid rgba(255,255,255,.18);border-radius:10px}
+#dpq .call svg{width:16px;height:16px}
+
+/* trust bar */
+#dpq .trust{flex:none;display:flex;justify-content:center;gap:18px;flex-wrap:nowrap;overflow:hidden;
+  background:var(--blue);color:#fff;font-weight:700;font-size:13px;padding:8px 10px;white-space:nowrap}
+#dpq .trust span{display:flex;align-items:center;gap:5px}
+#dpq .trust svg{width:14px;height:14px;flex:none}
+
+/* main */
+#dpq .main{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;padding:14px 14px 8px}
+#dpq .offer{flex:none;text-align:center;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--blue-d);margin-bottom:6px}
+#dpq .offer b{color:var(--ink)}
+#dpq .card{flex:1;min-height:0;width:100%;max-width:560px;background:var(--card);border-radius:var(--r);
+  box-shadow:0 10px 30px rgba(15,23,42,.08);display:flex;flex-direction:column;padding:16px;position:relative}
+#dpq .bar{flex:none;height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:14px}
+#dpq .bar i{display:block;height:100%;width:20%;background:var(--blue);border-radius:6px;transition:width .3s}
+#dpq .top{flex:none;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+#dpq .top .bar{flex:1;margin:0}
+#dpq .back{flex:none;background:none;border:0;color:var(--muted);font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;visibility:hidden;padding:4px 0}
+#dpq h1{flex:none;font-family:"Libre Franklin",Helvetica,Arial,sans-serif;font-weight:800;
+  font-size:clamp(22px,6vw,30px);line-height:1.12;text-align:center;margin:4px 0 14px}
+#dpq h1 em{font-style:normal;color:var(--blue)}
+
+#dpq .step{display:none;flex:1;min-height:0;flex-direction:column}
+#dpq .step.on{display:flex}
+#dpq .grid{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:stretch}
+#dpq .opt{border:2px solid var(--line);border-radius:14px;background:#fff;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  font-family:inherit;font-weight:700;font-size:17px;line-height:1.1;color:var(--ink);padding:10px;min-height:0;
+  transition:border-color .15s,transform .1s,background .15s}
+#dpq .opt:active{transform:scale(.97)}
+@media (hover:hover){#dpq .opt:hover{border-color:var(--blue)}}
+#dpq .opt.sel{border-color:var(--blue);background:#eff4ff}
+#dpq .opt svg{width:34px;height:34px;color:var(--blue)}
+#dpq .opt .sw{width:100%;flex:1;min-height:40px;max-height:160px;border-radius:10px;background-size:cover;background-position:center}
+#dpq .opt small{font-weight:600;font-size:13px;color:var(--muted)}
+
+/* real jobs strip */
+#dpq .jobs{flex:none;position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;height:clamp(64px,13vh,120px);margin-bottom:10px}
+#dpq .jobs span{border-radius:10px;background-size:cover;background-position:center}
+#dpq .jobs em{position:absolute;left:8px;bottom:6px;font-style:normal;font-size:11px;font-weight:700;color:#fff;background:rgba(11,22,48,.75);padding:3px 8px;border-radius:999px}
+#dpq .opt .sw{position:relative}
+/* contact step */
+#dpq form{display:flex;flex-direction:column;gap:10px}
+#dpq input{width:100%;font-family:inherit;font-weight:600;font-size:17px;padding:15px 14px;border:2px solid var(--line);border-radius:12px;outline:none;color:var(--ink)}
+#dpq input:focus{border-color:var(--blue)}
+#dpq .btn{width:100%;border:0;border-radius:12px;background:var(--gold);color:var(--navy);
+  font:800 18px "Libre Franklin",Helvetica,Arial,sans-serif;padding:16px;cursor:pointer}
+#dpq .btn:disabled{opacity:.5;cursor:default}
+#dpq .fine{font-size:11px;line-height:1.35;color:var(--muted);text-align:center}
+#dpq .err{color:#dc2626;font-size:13px;font-weight:600;text-align:center;min-height:16px}
+
+/* calendar step */
+#dpq .cal{flex:1;min-height:0;border:0;width:100%;border-radius:10px;overflow:auto;-webkit-overflow-scrolling:touch}
+#dpq .cal iframe{width:100%;height:100%;min-height:100%;border:0;display:block}
+
+/* footer */
+#dpq .ft{flex:none;text-align:center;font-size:12px;color:var(--muted);padding:6px 12px 10px}
+#dpq .ft b{color:var(--ink)}
+#dpq .lock{font-size:12px;color:var(--muted);text-align:center;margin-top:8px;flex:none}
+
+#dpq.hidelock .lock{display:none}
+@media (max-width:420px){
+  #dpq .offer{font-size:11px;white-space:nowrap}
+  #dpq .ft .long{display:none}
+  #dpq .call{font-size:14px;padding:7px 10px}
+  #dpq .trust{gap:12px;font-size:12px}
+  #dpq .trust .x{display:none}
+  #dpq .hd img{height:28px}
+}
+@media (max-height:620px){
+  #dpq .opt svg{width:26px;height:26px}
+  #dpq h1{margin-bottom:10px}
+  #dpq input{padding:12px}
+}
+</style>
 </head>
 <body>
-
-<a class="skip-link" href="#quote">Skip to the quote form</a>
-
-<!-- ============================================================ HEADER == -->
-<header class="site-header">
-  <div class="wrap site-header__inner">
-    <img class="logo" src="logo.png" alt="DP Flooring Services LLC" width="609" height="150">
-    <a class="header-call" href="tel:+12174175950" data-track="header_call">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span>(217) 417-5950</span>
+<div id="dpq">
+  <header class="hd">
+    <img src="https://www.dpflooringservices.com/champaign-county-50-off/logo.png" alt="DP Flooring Services">
+    <a class="call" href="tel:+12174175950" data-track="call">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      (217) 417-5950
     </a>
+  </header>
+
+  <div class="trust">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Free quote</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Locally owned</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>No hidden fees</span>
+    <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Done in 1–2 days</span>
   </div>
-</header>
 
-<!-- ============================================================== HERO == -->
-<section class="hero">
-  <div class="wrap wrap--narrow">
-    <p class="hero__eyebrow"><span class="dot"></span> Champaign County only</p>
-    <h1><span class="hl hl--big">50% Off</span> Epoxy Floors for Champaign County</h1>
-    <p class="hero__sub">Design your new floor below to claim your spot. It takes about a minute. We'll call you,
-    come out and measure, and give you your exact price in person.</p>
-    <ul class="hero__ticks">
-      <li>Free in-person quote</li>
-      <li>No obligation</li>
-      <li>Locally owned</li>
-    </ul>
-  </div>
-</section>
+  <main class="main">
+    <div class="offer"><b>50% off</b> epoxy floors · Champaign County</div>
+    <section class="card">
+      <div class="top"><button class="back" type="button" id="back">← Back</button><div class="bar"><i id="prog"></i></div></div>
 
-<!-- ============================================================= QUOTE == -->
-<section class="quote-section" id="quote">
-  <div class="wrap wrap--narrow">
-    <div class="panel">
-
-      <div class="progress" id="progress">
-        <div class="progress__meta">
-          <button class="back" type="button" id="backBtn" hidden>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
-            Back
-          </button>
-          <span id="progressLabel">Step 1 of 7</span>
-          <span class="progress__pct" id="progressPct">14%</span>
+      <!-- 1 -->
+      <div class="step on" data-step="space">
+        <div class="jobs" aria-label="Real DP Flooring jobs">
+          <span style="background-image:url(https://files.leadconnectorhq.com/file/6af94d967c3b573a624bae00/dp-real-flake-garage.jpg)"></span>
+          <span style="background-image:url(https://files.leadconnectorhq.com/file/6af94d96fdf6b54fd73915ff/dp-job-garage-floor-2.jpg)"></span>
+          <span style="background-image:url(https://files.leadconnectorhq.com/file/6af94d96a30b968e3f92ae6e/dp-job-garage-floor-1.jpg)"></span>
+          <em>Our real floors</em>
         </div>
-        <div class="progress__track" role="progressbar" aria-label="Quote form progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="14" id="progressTrack">
-          <div class="progress__bar" id="progressBar" style="width:14%"></div>
+        <h1>What are we <em>coating?</em></h1>
+        <div class="grid">
+          <button class="opt" data-v="Garage"><span class="sw" style="background-image:url(https://files.leadconnectorhq.com/file/6af94d967c3b573a624bae00/dp-real-flake-garage.jpg)"></span>Garage</button>
+          <button class="opt" data-v="Basement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v11h14V10M9 21v-5h6v5"/></svg>Basement</button>
+          <button class="opt" data-v="Shop / Commercial"><span class="sw" style="background-image:url(https://files.leadconnectorhq.com/file/6af94d96fdf6b54fd73915ff/dp-job-garage-floor-2.jpg)"></span>Shop / Commercial</button>
+          <button class="opt" data-v="Patio / Other"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>Patio / Other</button>
         </div>
       </div>
 
-      <form id="quoteForm" novalidate>
-
-      <!-- ------------------------------------------------- STEP 1: space -->
-      <div class="step is-active" data-step="space">
-        <h2 class="step__q">What are we coating?</h2>
-        <p class="step__help">Tap the closest match.</p>
-        <div class="cards cards--2" data-field="space">
-          <button class="card" type="button" data-value="Garage">
-            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8.5L12 4l9 4.5V21"/><path d="M6.5 21v-7h11v7"/><path d="M6.5 17.5h11"/></svg></span>
-            <span class="card__label">Garage</span>
-          </button>
-          <button class="card" type="button" data-value="Basement">
-            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 4l9 6.5"/><path d="M5 12.5V20h14v-7.5"/><path d="M9 20v-4h6v4"/></svg></span>
-            <span class="card__label">Basement</span>
-          </button>
-          <button class="card" type="button" data-value="Patio / Porch">
-            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11h20"/><path d="M4 11V7l8-4 8 4v4"/><path d="M5 11v9M19 11v9M12 11v9"/></svg></span>
-            <span class="card__label">Patio / Porch</span>
-          </button>
-          <button class="card" type="button" data-value="Shop / Warehouse">
-            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-5 9 5v12"/><path d="M7 21v-6h4v6M13 21v-6h4v6"/></svg></span>
-            <span class="card__label">Shop / Warehouse</span>
-          </button>
-          <button class="card" type="button" data-value="Commercial / Business">
-            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="18" rx="1"/><rect x="13" y="8" width="8" height="13" rx="1"/><path d="M6 7h2M6 11h2M6 15h2M16 12h2M16 16h2"/></svg></span>
-            <span class="card__label">Commercial</span>
-          </button>
-          <button class="card" type="button" data-value="Something else">
-            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.6 2.6 0 1 1 3.4 2.5c-.6.2-.9.8-.9 1.4v.3"/><circle cx="12" cy="17" r=".9" fill="currentColor"/></svg></span>
-            <span class="card__label">Something else</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- -------------------------------------------------- STEP 2: size -->
+      <!-- 2 -->
       <div class="step" data-step="size">
-        <h2 class="step__q" id="sizeQ">How big is it?</h2>
-        <p class="step__help">A rough guess is fine. We measure everything when we come out.</p>
-
-        <div class="cards cards--2" data-field="size" id="sizeGarage" hidden>
-          <button class="card" type="button" data-value="1-car garage"><span class="card__big">1</span><span class="card__label">1-car</span></button>
-          <button class="card" type="button" data-value="2-car garage"><span class="card__big">2</span><span class="card__label">2-car</span></button>
-          <button class="card" type="button" data-value="3-car garage"><span class="card__big">3</span><span class="card__label">3-car</span></button>
-          <button class="card" type="button" data-value="4+ car garage"><span class="card__big">4+</span><span class="card__label">4-car or bigger</span></button>
-        </div>
-
-        <div class="cards cards--1" data-field="size" id="sizeArea" hidden>
-          <button class="card card--row" type="button" data-value="Under 300 sq ft"><span class="card__label">Small</span><span class="card__sub">Under 300 sq ft, about a one-car garage</span></button>
-          <button class="card card--row" type="button" data-value="300-600 sq ft"><span class="card__label">Medium</span><span class="card__sub">300 to 600 sq ft, about a two-car garage</span></button>
-          <button class="card card--row" type="button" data-value="600-1,500 sq ft"><span class="card__label">Large</span><span class="card__sub">600 to 1,500 sq ft</span></button>
-          <button class="card card--row" type="button" data-value="1,500+ sq ft"><span class="card__label">Very large</span><span class="card__sub">1,500 sq ft or more</span></button>
-          <button class="card card--row" type="button" data-value="Not sure"><span class="card__label">Not sure</span><span class="card__sub">No problem, we'll measure it</span></button>
-        </div>
+        <h1 id="sizeQ">How many <em>cars</em> does it fit?</h1>
+        <div class="grid" id="sizeGrid"></div>
       </div>
 
-      <!-- ------------------------------------------------ STEP 3: finish -->
+      <!-- 3 -->
       <div class="step" data-step="finish">
-        <h2 class="step__q">Which look do you like?</h2>
-        <p class="step__help">You'll see real samples in person, so go with your gut.</p>
-        <div class="cards cards--finish" data-field="finish">
-          <button class="card card--photo" type="button" data-value="Flake">
-            <img src="/assets/img/colors/flake-domino.jpg" alt="" width="560" height="560" loading="lazy" decoding="async">
-            <span class="card__body">
-              <span class="card__label">Flake <span class="pill">Most popular</span></span>
-              <span class="card__sub">Speckled chips. Hides dirt and gives you grip.</span>
-            </span>
-          </button>
-          <button class="card card--photo" type="button" data-value="Metallic">
-            <img src="/assets/img/colors/metallic-silver-storm.jpg" alt="" width="560" height="560" loading="lazy" decoding="async">
-            <span class="card__body">
-              <span class="card__label">Metallic <span class="pill pill--gold">Premium</span></span>
-              <span class="card__sub">Swirled, glossy, marble-like. No two floors alike.</span>
-            </span>
-          </button>
-          <button class="card card--photo" type="button" data-value="Solid color">
-            <span class="card__solid" aria-hidden="true"></span>
-            <span class="card__body">
-              <span class="card__label">Solid color</span>
-              <span class="card__sub">Clean, even and glossy. The simplest option.</span>
-            </span>
-          </button>
-          <button class="card card--photo" type="button" data-value="Not sure yet">
-            <span class="card__solid card__solid--q" aria-hidden="true">?</span>
-            <span class="card__body">
-              <span class="card__label">Not sure yet</span>
-              <span class="card__sub">Show me a few options and I'll decide.</span>
-            </span>
-          </button>
+        <h1>Pick your <em>look</em></h1>
+        <div class="grid">
+          <button class="opt" data-v="Flake"><span class="sw" style="background-image:url(https://files.leadconnectorhq.com/file/6af94d967c3b573a624bae00/dp-real-flake-garage.jpg);background-position:center 75%"></span>Flake</button>
+          <button class="opt" data-v="Metallic"><span class="sw" style="background-image:url(https://files.leadconnectorhq.com/file/6af94d96a30b968e3f92ae6e/dp-job-garage-floor-1.jpg)"></span>Metallic</button>
+          <button class="opt" data-v="Solid color"><span class="sw" style="background:linear-gradient(135deg,#6b7280,#9ca3af)"></span>Solid color</button>
+          <button class="opt" data-v="Not sure yet"><span class="sw" style="background:repeating-linear-gradient(45deg,#eef2ff,#eef2ff 10px,#e0e7ff 10px,#e0e7ff 20px)"></span>Not sure yet</button>
         </div>
       </div>
 
-      <!-- ------------------------------------------------- STEP 4: color -->
-      <div class="step" data-step="color">
-        <h2 class="step__q" id="colorQ">Pick your colors</h2>
-        <p class="step__help" id="colorHelp">Choose up to 3 favorites. We'll bring those samples to your quote.</p>
-        <div id="colorGroups"><!-- filled by quote.js --></div>
-        <div class="color-actions">
-          <button class="btn btn--block btn--xl" type="button" id="colorNext" disabled>Continue</button>
-          <button class="linkbtn" type="button" id="colorSkip">Skip, I'll pick when you come out</button>
-        </div>
-      </div>
-
-      <!-- --------------------------------------------- STEP 5: condition -->
-      <div class="step" data-step="condition">
-        <h2 class="step__q">What shape is the concrete in?</h2>
-        <p class="step__help">This helps us plan the prep. We'll look it over in person.</p>
-        <div class="cards cards--1" data-field="condition">
-          <button class="card card--row" type="button" data-value="Good shape"><span class="card__label">Good shape</span><span class="card__sub">Few or no cracks, nothing on it now</span></button>
-          <button class="card card--row" type="button" data-value="Some cracks or pitting"><span class="card__label">Some cracks or pitting</span><span class="card__sub">Normal wear and tear</span></button>
-          <button class="card card--row" type="button" data-value="Rough, or has an old coating"><span class="card__label">Rough, or has an old coating</span><span class="card__sub">Big cracks, flaking, or paint/epoxy that's peeling</span></button>
-          <button class="card card--row" type="button" data-value="Not sure"><span class="card__label">Not sure</span><span class="card__sub">We'll check it when we come out</span></button>
-        </div>
-      </div>
-
-      <!-- ---------------------------------------------- STEP 6: timeline -->
-      <div class="step" data-step="timeline">
-        <h2 class="step__q">When are you hoping to get it done?</h2>
-        <p class="step__help">No pressure either way. It just helps us plan.</p>
-        <div class="cards cards--1" data-field="timeline">
-          <button class="card card--row" type="button" data-value="As soon as possible"><span class="card__label">As soon as possible</span></button>
-          <button class="card card--row" type="button" data-value="Within 1-2 months"><span class="card__label">Within 1&ndash;2 months</span></button>
-          <button class="card card--row" type="button" data-value="In 3+ months"><span class="card__label">In 3 months or more</span></button>
-          <button class="card card--row" type="button" data-value="Just exploring"><span class="card__label">Just exploring for now</span></button>
-        </div>
-      </div>
-
-      <!-- ----------------------------------------------- STEP 7: contact -->
+      <!-- 4 -->
       <div class="step" data-step="contact">
-        <h2 class="step__q">Last step. Where can we reach you?</h2>
-        <p class="step__help">We'll call to go over your floor and set up a time to come out.</p>
-
-        <div class="picked" id="pickedSummary"><!-- filled by quote.js --></div>
-
-        <div class="fields">
-          <div class="field-row">
-            <div class="field">
-              <label for="fFirst">First name</label>
-              <input id="fFirst" name="first_name" type="text" autocomplete="given-name" required>
-              <span class="err" data-msg="Please enter your first name."></span>
-            </div>
-            <div class="field">
-              <label for="fLast">Last name</label>
-              <input id="fLast" name="last_name" type="text" autocomplete="family-name">
-              <span class="err"></span>
-            </div>
-          </div>
-          <div class="field">
-            <label for="fPhone">Phone</label>
-            <input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(217) 555-0134" required>
-            <span class="err" data-msg="Enter a 10-digit phone number."></span>
-          </div>
-          <div class="field">
-            <label for="fEmail">Email</label>
-            <input id="fEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-            <span class="err" data-msg="Enter a valid email address."></span>
-          </div>
-          <div class="field">
-            <label for="fAddress">Street address</label>
-            <input id="fAddress" name="address" type="text" autocomplete="street-address" placeholder="1200 W Springfield Ave" required>
-            <span class="err" data-msg="Enter the address of the floor so we can come out."></span>
-          </div>
-          <div class="field">
-            <label for="fCity">City</label>
-            <input id="fCity" name="city" type="text" autocomplete="address-level2" list="towns" required>
-            <datalist id="towns">
-              <option>Champaign</option><option>Urbana</option><option>Savoy</option><option>Mahomet</option>
-              <option>Rantoul</option><option>St. Joseph</option><option>Tolono</option><option>Monticello</option>
-              <option>Tuscola</option><option>Bloomington</option><option>Normal</option><option>Decatur</option>
-              <option>Danville</option><option>Clinton</option><option>Paxton</option>
-            </datalist>
-            <span class="err" data-msg="Let us know what town you're in."></span>
-          </div>
-
-          <fieldset class="calltime">
-            <legend>Best time to call you</legend>
-            <div class="calltime__row">
-              <label class="chip"><input type="radio" name="best_time" value="Morning"><span>Morning</span></label>
-              <label class="chip"><input type="radio" name="best_time" value="Afternoon"><span>Afternoon</span></label>
-              <label class="chip"><input type="radio" name="best_time" value="Evening"><span>Evening</span></label>
-              <label class="chip"><input type="radio" name="best_time" value="Anytime" checked><span>Anytime</span></label>
-            </div>
-          </fieldset>
-
-          <div class="field">
-            <label for="fNotes">Anything else we should know? <span class="opt">optional</span></label>
-            <textarea id="fNotes" name="notes" rows="3" placeholder="Stairs, a drain, a deadline, a color you saw somewhere..."></textarea>
-          </div>
-
-          <div class="consent">
-            <label class="consent__row">
-              <input type="checkbox" name="sms_consent_service" id="fSmsService">
-              <span>I consent to receive non-marketing text messages from <strong>DP Flooring Services LLC</strong>
-              about my quote request, scheduling and job updates. Message frequency varies,
-              message &amp; data rates may apply. Reply HELP for assistance, reply STOP to opt out.
-              You must be 18 years of age or older to use this SMS service.</span>
-            </label>
-            <label class="consent__row">
-              <input type="checkbox" name="sms_consent_marketing" id="fSmsMarketing">
-              <span>I consent to receive marketing text messages from <strong>DP Flooring Services LLC</strong>
-              about seasonal offers, promotions and new services. Message frequency varies,
-              message &amp; data rates may apply. Reply HELP for assistance, reply STOP to opt out.
-              You must be 18 years of age or older to use this SMS service.</span>
-            </label>
-          </div>
-        </div>
-
-        <button class="btn btn--block btn--xl" type="submit" id="submitBtn">
-          Claim My 50% Off
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </button>
-        <p class="fineprint">
-          The 50% off offer is for homes and businesses in Champaign County; we go over the details at your quote.
-          Free and no obligation. We only use your details to contact you about your floor, and we
-          never sell them. See our <a href="/privacy-policy/">Privacy Policy</a> and
-          <a href="/terms-and-conditions/">Terms</a>.
-        </p>
-      </div>
-      </form>
-
-      <!-- ------------------------------------------------------ DONE -->
-      <div class="step step--done" data-step="done" tabindex="-1">
-        <div class="done__tick" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <h2 class="step__q" id="doneTitle">You're all set!</h2>
-        <p class="done__lead">Your 50% off spot is saved. We've got your floor details and we'll be in touch soon.</p>
-
-        <ol class="next">
-          <li><b>We call you</b><span>Usually within one business day, to talk through your project.</span></li>
-          <li><b>We come to you</b><span>We measure, check the concrete, and bring the color samples you picked.</span></li>
-          <li><b>You get your quote</b><span>Your exact price in person, with your 50% off. No pressure, no obligation.</span></li>
-        </ol>
-
-        <div class="picked picked--done" id="doneSummary"></div>
-
-        <p class="done__call">Want to talk sooner? Give us a call.</p>
-        <a class="btn btn--block btn--xl" href="tel:+12174175950" data-track="done_call">Call (217) 417-5950</a>
+        <h1>Where should we <em>text</em> your quote time?</h1>
+        <form id="cf" novalidate>
+          <input id="fn" name="name" autocomplete="name" placeholder="Your name" required>
+          <input id="ph" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Mobile number" required>
+          <div class="err" id="err"></div>
+          <button class="btn" type="submit" id="go">Pick My Quote Time →</button>
+          <p class="fine">By continuing you agree to get calls/texts from DP Flooring Services about your quote. Msg &amp; data rates may apply. Reply STOP to opt out.</p>
+        </form>
       </div>
 
-    </div>
-  </div>
-</section>
+      <!-- 5 -->
+      <div class="step" data-step="book">
+        <h1>Pick a time — <em>next 4 days</em></h1>
+        <div class="cal" id="cal"></div>
+      </div>
 
-<!-- ============================================================== WHY == -->
-<section class="why">
-  <div class="wrap">
-    <h2 class="section-title">Why homeowners go with DP Flooring</h2>
-    <div class="why__grid">
-      <div class="why__item"><b>We grind, we don't acid wash</b><span>Diamond-ground prep so your coating bonds to the concrete and stays put.</span></div>
-      <div class="why__item"><b>Most floors done in 1&ndash;2 days</b><span>Residential garages and basements, start to finish.</span></div>
-      <div class="why__item"><b>Free in-person quotes</b><span>No trip charge anywhere in our service area.</span></div>
-      <div class="why__item"><b>Locally owned</b><span>Drayton &amp; Dylan, based in Champaign County.</span></div>
-    </div>
-    <a class="btn btn--xl why__cta" href="#quote" data-track="why_cta">Claim My 50% Off</a>
-  </div>
-</section>
+      <p class="lock">🔒 Your info stays private. Never shared or sold.</p>
+    </section>
+  </main>
 
-<!-- ============================================================ FOOTER == -->
-<footer class="site-footer">
-  <div class="wrap">
-    <p><b>DP Flooring Services LLC</b> &middot; Champaign County, Illinois</p>
-    <p><a href="tel:+12174175950">(217) 417-5950</a> &middot; <a href="mailto:info@dpflooringservices.com">info@dpflooringservices.com</a></p>
-    <p class="site-footer__legal">&copy; 2026 DP Flooring Services LLC &middot; <a href="/privacy-policy/">Privacy</a> &middot; <a href="/terms-and-conditions/">Terms</a></p>
-  </div>
-</footer>
+  <footer class="ft"><b>Drayton &amp; Dylan</b> · Locally owned in Champaign County<span class="long"> · © <span id="yr"></span> DP Flooring Services LLC</span></footer>
+</div>
 
-<script src="quote.js"></script>
+<script>
+(function(){
+  "use strict";
+  // ---- config ----
+  var WEBHOOK_URL  = "https://services.leadconnectorhq.com/hooks/mjRUsuYleLiad81XISnz/webhook-trigger/dca357a9-50d0-4467-9beb-9242697fb160";
+  var CALENDAR_URL = "https://api.leadconnectorhq.com/widget/booking/qvy8BDBIJjOh1Rq3LEJS";
+  var PIXEL_ID     = "2277309869728746";
+
+  var STEPS = ["space","size","finish","contact","book"];
+  var SIZES = {
+    garage: [["1 car","1-car"],["2 car","2-car"],["3 car","3-car"],["4+ / bigger","4+ car"]],
+    other:  [["Small","Small (under 400 sq ft)"],["Medium","Medium (400–800 sq ft)"],["Large","Large (800+ sq ft)"],["Not sure","Not sure"]]
+  };
+  var ans = {space:null,size:null,finish:null};
+  var idx = 0;
+  var root = document.getElementById("dpq");
+  var $ = function(s){return root.querySelector(s)};
+  var $$ = function(s){return Array.prototype.slice.call(root.querySelectorAll(s))};
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // pixel (skips if already on page)
+  if (PIXEL_ID && !window.fbq) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', PIXEL_ID); fbq('track','PageView');
+  }
+  function track(ev,data){ try{ window.fbq && fbq('track',ev,data||{}); }catch(e){} }
+
+  // utm passthrough
+  var qs = new URLSearchParams(location.search), utm = {};
+  ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid"].forEach(function(k){ if(qs.get(k)) utm[k]=qs.get(k); });
+
+  function show(i){
+    idx = i;
+    $$(".step").forEach(function(s,n){ s.classList.toggle("on", n===i); });
+    $("#prog").style.width = ((i+1)/STEPS.length*100) + "%";
+    $("#back").style.visibility = (i>0 && i<4) ? "visible" : "hidden";
+    root.classList.toggle("hidelock", i>=3);
+    if (STEPS[i]==="size") buildSizes();
+    if (STEPS[i]==="contact") setTimeout(function(){ $("#fn").focus(); }, 250);
+    try { history.pushState({s:i}, ""); } catch(e){}
+  }
+  window.addEventListener("popstate", function(){ if (idx>0 && idx<4) show(idx-1); });
+  $("#back").addEventListener("click", function(){ if (idx>0) show(idx-1); });
+
+  function buildSizes(){
+    var g = ans.space === "Garage";
+    $("#sizeQ").innerHTML = g ? "How many <em>cars</em> does it fit?" : "About how <em>big</em> is it?";
+    $("#sizeGrid").innerHTML = (g?SIZES.garage:SIZES.other).map(function(o){
+      return '<button class="opt'+(ans.size===o[1]?' sel':'')+'" data-v="'+o[1]+'">'+o[0]+'</button>';
+    }).join("");
+  }
+
+  root.addEventListener("click", function(e){
+    var b = e.target.closest(".opt"); if (!b) return;
+    var step = b.closest(".step").getAttribute("data-step");
+    $$('[data-step="'+step+'"] .opt').forEach(function(o){ o.classList.remove("sel"); });
+    b.classList.add("sel");
+    ans[step] = b.getAttribute("data-v");
+    if (step==="space") ans.size = null;
+    setTimeout(function(){ show(idx+1); }, 160);
+  });
+
+  function digits(p){ return (p||"").replace(/\D/g,""); }
+  $("#cf").addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = $("#fn").value.trim(), ph = digits($("#ph").value);
+    if (ph.length===11 && ph[0]==="1") ph = ph.slice(1);
+    if (name.length<2) { $("#err").textContent="Please add your name."; return; }
+    if (ph.length!==10) { $("#err").textContent="Please enter a 10-digit mobile number."; return; }
+    $("#err").textContent=""; $("#go").disabled = true;
+    var parts = name.split(/\s+/), first = parts.shift(), last = parts.join(" ");
+    var payload = Object.assign({
+      event:"quote_requested", source:"GHL quick-quote page",
+      name:name, first_name:first, last_name:last, phone:"+1"+ph,
+      space:ans.space, size:ans.size, finish:ans.finish,
+      notes:"Booking free quote via calendar",
+      submitted_at:new Date().toISOString(), page_url:location.href
+    }, utm);
+    // On dpflooringservices.com: same-origin /api/lead forwards real JSON to GHL.
+    // Anywhere else (GHL-hosted copy): post straight to the GHL webhook.
+    function direct(){ try { fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify(payload),keepalive:true}).catch(function(){}); } catch(err){} }
+    if (/dpflooringservices\.com$/.test(location.hostname)) {
+      fetch("/api/lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),keepalive:true})
+        .then(function(r){ if(!r.ok) throw 0; }).catch(direct);
+    } else { direct(); }
+    track("Lead",{content_name:"Epoxy quote", content_category: ans.finish});
+    // prefill the GHL calendar
+    var p = new URLSearchParams(Object.assign({first_name:first,last_name:last,full_name:name,phone:"+1"+ph}, utm));
+    $("#cal").innerHTML = '<iframe src="'+CALENDAR_URL+'?'+p.toString()+'" title="Pick a time" scrolling="yes"></iframe>';
+    $("#go").disabled = false;
+    show(4);
+  });
+
+  // GHL booking widget posts a message when booked
+  window.addEventListener("message", function(e){
+    var d = e.data; var s = typeof d==="string" ? d : (d && (d.type||d.event||d[0])) || "";
+    if (/booking|appointment|msgsndr-booking-complete/i.test(String(s))) track("Schedule");
+  });
+
+  try { history.replaceState({s:0}, ""); } catch(e){}
+})();
+</script>
 </body>
 </html>

@@ -20,7 +20,7 @@ module.exports = async function handler(req, res) {
   if (typeof body === "string") {
     try { body = JSON.parse(body); } catch (e) { body = null; }
   }
-  if (!body || typeof body !== "object" || !body.phone || !body.email) {
+  if (!body || typeof body !== "object" || !body.phone) {
     res.status(400).json({ ok: false, error: "missing_fields" });
     return;
   }
