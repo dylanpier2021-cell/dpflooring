@@ -34,18 +34,33 @@
   ],
   "redirects": [
     {
+      "source": "/champaign-county-50-off",
+      "destination": "/free-quote/",
+      "permanent": false
+    },
+    {
+      "source": "/champaign-county-50-off/",
+      "destination": "/free-quote/",
+      "permanent": false
+    },
+    {
+      "source": "/champaign-county-50-off/index.html",
+      "destination": "/free-quote/",
+      "permanent": false
+    },
+    {
       "source": "/funnel",
-      "destination": "/champaign-county-50-off/",
+      "destination": "/free-quote/",
       "permanent": false
     },
     {
       "source": "/funnel/",
-      "destination": "/champaign-county-50-off/",
+      "destination": "/free-quote/",
       "permanent": false
     },
     {
       "source": "/funnel/index.html",
-      "destination": "/champaign-county-50-off/",
+      "destination": "/free-quote/",
       "permanent": false
     }
   ]

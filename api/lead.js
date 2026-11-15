@@ -1,4 +1,4 @@
-// Vercel serverless function: receives the 50% off funnel submission from the
+// Vercel serverless function: receives the free quote funnel submission from the
 // browser (same origin, plain JSON) and forwards it to the GoHighLevel inbound
 // webhook server-to-server. Doing it here avoids the browser's cross-origin
 // limits, so GHL always gets a real application/json body it can map.

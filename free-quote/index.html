@@ -160,8 +160,13 @@ html,body{overflow:hidden!important;height:100%;margin:0}
   var qs = new URLSearchParams(location.search), utm = {};
   ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid"].forEach(function(k){ if(qs.get(k)) utm[k]=qs.get(k); });
 
+  function cookie(n){ var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)')); return m?decodeURIComponent(m[1]):null; }
+  function custom(ev,d){ try{ window.fbq && fbq('trackCustom',ev,d||{}); }catch(e){} }
+  var started=false;
   function show(k){
     cur = k;
+    custom("QuoteStep",{step:k, step_number:ORDER.indexOf(k)+1});
+    if (k==="far") custom("OutOfArea",{});
     root.querySelectorAll(".step").forEach(function(s){ s.classList.toggle("on", s.getAttribute("data-k")===k); });
     var i = ORDER.indexOf(k);
     $("#prog").style.width = (i<0?100:((i+1)/ORDER.length*100)) + "%";
@@ -183,6 +188,8 @@ html,body{overflow:hidden!important;height:100%;margin:0}
   root.addEventListener("change", function(e){
     var t = e.target; if (t.type!=="radio") return;
     ans[t.name] = t.value; if (t.name==="space") ans.size = null;
+    if (!started) { started=true; custom("QuoteStarted",{}); }
+    custom("QuoteAnswer",{question:t.name, answer:t.value});
     $("#next").disabled = false;
   });
   $("#back").addEventListener("click", function(){ var i = ORDER.indexOf(cur); if (i>0) show(ORDER[i-1]); });
@@ -203,13 +210,15 @@ html,body{overflow:hidden!important;height:100%;margin:0}
     var payload = Object.assign({ event:"quote_requested", source:"quote funnel",
       name:name, first_name:first, last_name:last, phone:"+1"+ph,
       space:ans.space, size:ans.size, finish:ans.finish, within_30mi:ans.area,
-      notes:"Booking free quote via calendar", submitted_at:new Date().toISOString(), page_url:location.href }, utm);
+      notes:"Booking free quote via calendar", submitted_at:new Date().toISOString(), page_url:location.href,
+      referrer:document.referrer||null, fbp:cookie("_fbp"), fbc:cookie("_fbc"), user_agent:navigator.userAgent,
+      device:(innerWidth<700?"mobile":"desktop") }, utm);
     function direct(){ try { fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify(payload),keepalive:true}).catch(function(){}); } catch(err){} }
     if (/dpflooringservices\.com$/.test(location.hostname)) {
       fetch("/api/lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),keepalive:true})
         .then(function(r){ if(!r.ok) throw 0; }).catch(direct);
     } else { direct(); }
-    track("Lead",{content_name:"Epoxy quote", content_category: ans.finish});
+    track("Lead",{content_name:"Epoxy quote", content_category: ans.finish, space: ans.space, size: ans.size});
     var p = new URLSearchParams(Object.assign({first_name:first,last_name:last,full_name:name,phone:"+1"+ph}, utm));
     $("#cal").innerHTML = '<iframe src="'+CALENDAR_URL+'?'+p.toString()+'" title="Pick a time"></iframe>';
     show("book");
@@ -218,6 +227,8 @@ html,body{overflow:hidden!important;height:100%;margin:0}
     var d=e.data, s = typeof d==="string" ? d : (d && (d.type||d.event||d[0])) || "";
     if (/booking|appointment|msgsndr-booking-complete/i.test(String(s))) track("Schedule");
   });
+  var tel=root.querySelector('a[href^="tel:"]');
+  root.addEventListener("click", function(e){ if (e.target.closest('a[href^="tel:"]')) track("Contact",{method:"phone", step:cur}); });
   show("area");
 })();
 </script>
