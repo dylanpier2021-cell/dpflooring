@@ -5,8 +5,9 @@ The landing page for Meta ads, rebuilt Nov 15 2026. One self-contained `index.ht
 "DP Free Quote - Book Now" as a Custom Code element).
 
 No scrolling on phone or desktop. Header (logo + tap-to-call), trust bar, footer.
-Four taps, then the GHL calendar:
+One simple question per screen (radio + NEXT bar, Coat Goats style), then the GHL calendar:
 
+0. Within 30 miles of Champaign-Urbana? (No -> call/text screen)
 1. What are we coating (Garage, Basement, Shop / Commercial, Patio / Other)
 2. Size (cars for garages, small/medium/large otherwise)
 3. Finish (Flake, Metallic, Solid color, Not sure yet)
