@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Free Epoxy Floor Quote | DP Flooring Services</title>
 <meta name="robots" content="noindex">
+<link rel="preconnect" href="https://api.leadconnectorhq.com" crossorigin>
+<link rel="preconnect" href="https://link.msgsndr.com" crossorigin>
+<link rel="preconnect" href="https://stcdn.leadconnectorhq.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -51,7 +54,12 @@ html,body{overflow:hidden!important;height:100%;margin:0}
 #dpq .nav .next{flex:none;background:var(--blue);border:0;color:#fff;font:700 17px Outfit,sans-serif;letter-spacing:.02em;padding:0 26px;cursor:pointer}
 #dpq .nav .next:disabled{opacity:.45;cursor:default}
 #dpq .cal{flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch}
-#dpq .cal iframe{width:100%;height:100%;min-height:100%;border:0;display:block}
+#dpq .cal{position:relative}
+#dpq .cal iframe{width:100%;height:100%;min-height:100%;border:0;display:block;position:relative;z-index:1;background:transparent}
+#dpq .spin{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:14px}
+#dpq .spin i{width:34px;height:34px;border:3px solid #dbe6ff;border-top-color:var(--blue);border-radius:50%;animation:dpspin .8s linear infinite}
+@keyframes dpspin{to{transform:rotate(360deg)}}
+#dpq .warm{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;border:0;left:-9999px}
 #dpq .lock{flex:none;text-align:center;font-size:12px;color:var(--muted);margin-top:10px}
 #dpq .ft{flex:none;text-align:center;font-size:12px;color:var(--muted);padding:6px 12px 10px;border-top:1px solid var(--line)}
 @media (max-width:640px){
@@ -162,7 +170,11 @@ html,body{overflow:hidden!important;height:100%;margin:0}
 
   function cookie(n){ var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)')); return m?decodeURIComponent(m[1]):null; }
   function custom(ev,d){ try{ window.fbq && fbq('trackCustom',ev,d||{}); }catch(e){} }
-  var started=false;
+  var started=false, warmed=false;
+  function warm(){ if (warmed) return; warmed=true;
+    var w=document.createElement("iframe"); w.className="warm"; w.setAttribute("aria-hidden","true"); w.tabIndex=-1;
+    w.src=CALENDAR_URL; root.appendChild(w); }
+  setTimeout(warm, 1500);
   function show(k){
     cur = k;
     custom("QuoteStep",{step:k, step_number:ORDER.indexOf(k)+1});
@@ -188,7 +200,7 @@ html,body{overflow:hidden!important;height:100%;margin:0}
   root.addEventListener("change", function(e){
     var t = e.target; if (t.type!=="radio") return;
     ans[t.name] = t.value; if (t.name==="space") ans.size = null;
-    if (!started) { started=true; custom("QuoteStarted",{}); }
+    if (!started) { started=true; custom("QuoteStarted",{}); warm(); }
     custom("QuoteAnswer",{question:t.name, answer:t.value});
     $("#next").disabled = false;
   });
@@ -220,7 +232,8 @@ html,body{overflow:hidden!important;height:100%;margin:0}
     } else { direct(); }
     track("Lead",{content_name:"Epoxy quote", content_category: ans.finish, space: ans.space, size: ans.size});
     var p = new URLSearchParams(Object.assign({first_name:first,last_name:last,full_name:name,phone:"+1"+ph}, utm));
-    $("#cal").innerHTML = '<iframe src="'+CALENDAR_URL+'?'+p.toString()+'" title="Pick a time"></iframe>';
+    $("#cal").innerHTML = '<div class="spin"><i></i>Loading open times…</div><iframe src="'+CALENDAR_URL+'?'+p.toString()+'" title="Pick a time"></iframe>';
+    var fr=$("#cal iframe"); fr.addEventListener("load", function(){ var sp=$("#cal .spin"); if(sp) sp.remove(); });
     show("book");
   }
   window.addEventListener("message", function(e){
